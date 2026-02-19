@@ -1,0 +1,2942 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nCode | Vibe Coding — מ-0 ל-SaaS רווחי</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ==================== CSS CUSTOM PROPERTIES ==================== */
+        :root {
+            --bg-dark: #08080f;
+            --bg-surface: #0f0f1a;
+            --bg-surface-2: #161625;
+            --bg-surface-3: #1e1e32;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-pink: #ec4899;
+            --accent-blue: #3b82f6;
+            --iridescent-1: #a855f7;
+            --iridescent-2: #6366f1;
+            --iridescent-3: #06b6d4;
+            --iridescent-4: #ec4899;
+            --text-primary: #eef2ff;
+            --text-secondary: #94a3b8;
+            --text-muted: #475569;
+            --glass-bg: rgba(255,255,255,0.03);
+            --glass-bg-hover: rgba(255,255,255,0.06);
+            --glass-border: rgba(255,255,255,0.07);
+            --glass-border-hover: rgba(255,255,255,0.14);
+            --glow-purple: 0 0 40px rgba(139,92,246,0.25);
+            --glow-cyan: 0 0 40px rgba(6,182,212,0.25);
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --radius-sm: 8px;
+            --radius-pill: 100px;
+            --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @property --gradient-angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        /* ==================== RESET & BASE ==================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            cursor: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ==================== CUSTOM CURSOR ==================== */
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease, opacity 0.15s ease;
+            mix-blend-mode: difference;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-ring {
+            position: fixed;
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid rgba(139,92,246,0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.3s var(--transition-smooth), width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-ring.hover {
+            width: 56px;
+            height: 56px;
+            border-color: rgba(139,92,246,0.7);
+        }
+
+        /* ==================== SCROLL PROGRESS BAR ==================== */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 3px;
+            height: 0%;
+            background: linear-gradient(to bottom, var(--accent-purple), var(--accent-cyan), var(--accent-pink));
+            z-index: 9990;
+            transition: height 0.1s linear;
+            border-radius: 0 0 3px 3px;
+            box-shadow: 0 0 10px rgba(139,92,246,0.5);
+        }
+
+        /* ==================== HERO SECTION ==================== */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--bg-dark);
+        }
+
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            mix-blend-mode: screen;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            z-index: 1;
+        }
+
+        .hero-blob-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--iridescent-1), transparent 70%);
+            top: 10%;
+            right: 15%;
+            animation: blobFloat1 18s infinite;
+        }
+
+        .hero-blob-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--iridescent-3), transparent 70%);
+            bottom: 15%;
+            left: 10%;
+            animation: blobFloat2 22s infinite;
+        }
+
+        .hero-blob-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, var(--iridescent-4), transparent 70%);
+            top: 40%;
+            left: 35%;
+            animation: blobFloat3 15s infinite;
+        }
+
+        .hero-blob-4 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, var(--iridescent-2), transparent 70%);
+            top: 5%;
+            left: 5%;
+            animation: blobFloat4 20s infinite;
+        }
+
+        @keyframes blobFloat1 {
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            25% { transform: translate(-40px, 30px) scale(1.1) rotate(5deg); }
+            50% { transform: translate(20px, -20px) scale(0.95) rotate(-3deg); }
+            75% { transform: translate(30px, 40px) scale(1.05) rotate(2deg); }
+        }
+
+        @keyframes blobFloat2 {
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            33% { transform: translate(50px, -30px) scale(1.08) rotate(-4deg); }
+            66% { transform: translate(-30px, 20px) scale(0.92) rotate(6deg); }
+        }
+
+        @keyframes blobFloat3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-60px, -40px) scale(1.15); }
+        }
+
+        @keyframes blobFloat4 {
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            50% { transform: translate(40px, 50px) scale(1.1) rotate(8deg); }
+        }
+
+        .hero-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(2px);
+            z-index: 2;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 60px 24px;
+            max-width: 900px;
+        }
+
+        .hero-logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 80px;
+            font-weight: 900;
+            letter-spacing: -3px;
+            margin-bottom: 8px;
+            display: inline-block;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .hero-logo .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(40px) rotateX(40deg);
+            background: linear-gradient(135deg, #fff 30%, var(--accent-purple) 50%, var(--accent-cyan) 70%, #fff 90%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: charReveal 0.8s var(--transition-smooth) forwards, shimmerText 6s ease-in-out infinite 1.5s;
+        }
+
+        @keyframes charReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        @keyframes shimmerText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-tagline-en {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 0.8s;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 28px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-pill);
+            color: var(--accent-purple);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 36px;
+            backdrop-filter: blur(12px);
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1s;
+        }
+
+        .hero-badge::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            margin-left: 10px;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 8px var(--accent-purple);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero-title {
+            font-size: clamp(32px, 5vw, 58px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.1s;
+        }
+
+        .hero-title .gradient-text {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan), var(--accent-pink));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2.2vw, 20px);
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 680px;
+            margin: 0 auto 48px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.3s;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 48px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            transition: all 0.4s var(--transition-smooth);
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.5s;
+            position: relative;
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            border: 1px solid rgba(139,92,246,0.3);
+            cursor: none;
+            backdrop-filter: blur(12px);
+        }
+
+        .hero-cta:hover {
+            background: rgba(139,92,246,0.1);
+            border-color: rgba(139,92,246,0.5);
+            box-shadow: 0 0 30px rgba(139,92,246,0.15);
+            transform: translateY(-2px);
+        }
+
+        .hero-cta svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(-5px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 2s;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(139,92,246,0.5), transparent);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-scroll-line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to bottom, transparent, var(--accent-purple), transparent);
+            animation: scrollDown 2.5s ease-in-out infinite;
+        }
+
+        @keyframes scrollDown {
+            0% { top: -40%; }
+            100% { top: 140%; }
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==================== INTRO SECTION ==================== */
+        .intro {
+            padding: 160px 0 120px;
+            background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+        }
+
+        .dot-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(139,92,246,0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+        }
+
+        .intro-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .intro-inner h2 {
+            font-size: clamp(30px, 4vw, 46px);
+            font-weight: 800;
+            line-height: 1.4;
+            margin-bottom: 28px;
+        }
+
+        .intro-inner h2 .gradient-text {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .intro-inner p {
+            font-size: 19px;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .intro-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-cyan));
+            margin: 56px auto;
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(139,92,246,0.3);
+        }
+
+        .intro-stats {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+            direction: rtl;
+        }
+
+        .intro-stat {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 32px;
+            position: relative;
+            transition: all 0.4s var(--transition-smooth);
+        }
+
+        .intro-stat:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 32px;
+            background: linear-gradient(180deg, transparent, var(--glass-border-hover), transparent);
+        }
+
+        .intro-stat-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .intro-stat-label {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        /* ==================== JOURNEY ROADMAP ==================== */
+        .roadmap {
+            padding: 100px 0 60px;
+            background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Topographic grid background */
+        .roadmap::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(139,92,246,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139,92,246,0.015) 1px, transparent 1px);
+            background-size: 80px 80px;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            padding: 6px 20px;
+            background: rgba(6,182,212,0.08);
+            border: 1px solid rgba(6,182,212,0.15);
+            border-radius: var(--radius-pill);
+        }
+
+        .section-header h2 {
+            font-size: clamp(32px, 4vw, 46px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Journey container */
+        .journey {
+            position: relative;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* SVG path overlay */
+        .journey-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: visible;
+        }
+
+        /* Journey phases */
+        .journey-phase {
+            position: relative;
+            z-index: 2;
+            padding: 20px 0 40px;
+        }
+
+        /* Phase glow zones */
+        .journey-phase::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0;
+            transition: opacity 1.2s ease;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .side-a::before {
+            background: rgba(139,92,246,0.06);
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .side-b::before {
+            background: rgba(6,182,212,0.06);
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .journey-phase.in-view::before {
+            opacity: 1;
+        }
+
+        /* Alternating sides */
+        .side-a .phase-content {
+            width: 42%;
+            direction: rtl;
+        }
+
+        .side-b .phase-content {
+            width: 42%;
+            margin-left: auto;
+            direction: rtl;
+        }
+
+        /* Phase header */
+        .phase-header {
+            margin-bottom: 20px;
+        }
+
+        .phase-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-purple);
+            display: inline-block;
+            padding: 4px 16px;
+            background: rgba(139,92,246,0.08);
+            border: 1px solid rgba(139,92,246,0.15);
+            border-radius: var(--radius-pill);
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .phase-title {
+            font-size: clamp(22px, 3vw, 28px);
+            font-weight: 800;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .phase-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Journey cards */
+        .phase-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 24px;
+        }
+
+        .journey-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(12px);
+            overflow: hidden;
+            transition: all 0.5s var(--transition-smooth);
+            cursor: none;
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .side-b .journey-card {
+            transform: translateX(30px);
+        }
+
+        .journey-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .journey-card:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--glow-purple);
+            transform: translateY(-3px) !important;
+        }
+
+        .journey-card.active {
+            border-color: rgba(139,92,246,0.3);
+            box-shadow: 0 0 30px rgba(139,92,246,0.15);
+        }
+
+        /* Module card internals */
+        .module-top {
+            padding: 24px 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .module-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            min-width: 42px;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .journey-card:hover .module-num {
+            opacity: 1;
+        }
+
+        .module-info {
+            flex: 1;
+        }
+
+        .module-info h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .module-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .module-hook {
+            font-size: 14px;
+            color: var(--accent-purple);
+            font-weight: 400;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        .module-toggle {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-sm);
+            background: rgba(139,92,246,0.08);
+            border: 1px solid rgba(139,92,246,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            margin-top: 2px;
+        }
+
+        .module-toggle svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-purple);
+            transition: transform 0.4s var(--transition-smooth);
+        }
+
+        .journey-card.active .module-toggle {
+            background: rgba(139,92,246,0.15);
+            box-shadow: 0 0 10px rgba(139,92,246,0.2);
+        }
+
+        .journey-card.active .module-toggle svg {
+            transform: rotate(180deg);
+        }
+
+        .module-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s var(--transition-smooth);
+        }
+
+        .journey-card.active .module-detail {
+            max-height: 500px;
+        }
+
+        .module-detail-inner {
+            padding: 0 28px 24px;
+        }
+
+        .module-description {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .module-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .module-topic {
+            padding: 5px 14px;
+            background: rgba(139,92,246,0.06);
+            border: 1px solid rgba(139,92,246,0.12);
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent-purple);
+            transition: all 0.3s ease;
+        }
+
+        .module-topic:hover {
+            background: rgba(139,92,246,0.12);
+            border-color: rgba(139,92,246,0.25);
+            box-shadow: 0 0 10px rgba(139,92,246,0.15);
+        }
+
+        /* Journey start/end markers */
+        .journey-marker {
+            text-align: center;
+            padding: 16px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .journey-marker-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 8px 24px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-pill);
+            display: inline-block;
+            backdrop-filter: blur(8px);
+        }
+
+        .journey-marker-label.start {
+            color: var(--accent-purple);
+            border-color: rgba(139,92,246,0.2);
+            background: rgba(139,92,246,0.06);
+        }
+
+        .journey-marker-label.end {
+            color: var(--accent-cyan);
+            border-color: rgba(6,182,212,0.2);
+            background: rgba(6,182,212,0.06);
+        }
+
+        /* ==================== CTA SECTION ==================== */
+        .cta-section {
+            padding: 140px 0;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-dark);
+        }
+
+        .aurora-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .aurora-layer {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            mix-blend-mode: screen;
+        }
+
+        .aurora-1 {
+            width: 600px;
+            height: 400px;
+            background: var(--accent-purple);
+            top: -100px;
+            right: -100px;
+            animation: aurora1 12s ease-in-out infinite;
+        }
+
+        .aurora-2 {
+            width: 500px;
+            height: 350px;
+            background: var(--accent-cyan);
+            bottom: -100px;
+            left: -100px;
+            animation: aurora2 15s ease-in-out infinite;
+        }
+
+        .aurora-3 {
+            width: 400px;
+            height: 300px;
+            background: var(--accent-pink);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: aurora3 18s ease-in-out infinite;
+        }
+
+        @keyframes aurora1 {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            50% { transform: translate(-80px, 40px) scale(1.2); opacity: 0.5; }
+        }
+
+        @keyframes aurora2 {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            50% { transform: translate(60px, -30px) scale(1.15); opacity: 0.45; }
+        }
+
+        @keyframes aurora3 {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.4; }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(32px, 4vw, 50px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .cta-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 56px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: white;
+            transition: all 0.4s var(--transition-smooth);
+            box-shadow: 0 4px 30px rgba(139,92,246,0.3);
+            cursor: none;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 50px rgba(139,92,246,0.45);
+        }
+
+        .cta-guarantee {
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            padding: 50px 0;
+            background: var(--bg-dark);
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, rgba(139,92,246,0.4), rgba(6,182,212,0.4));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            animation: footerPulse 4s ease-in-out infinite;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        @keyframes footerPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
+        .footer p {
+            font-size: 13px;
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+
+        /* ==================== REVEAL ANIMATIONS ==================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s var(--transition-smooth);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 968px) {
+            .side-a .phase-content,
+            .side-b .phase-content {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .journey-card {
+                transform: translateY(30px) !important;
+            }
+
+            .journey-card.visible {
+                transform: translateY(0) !important;
+            }
+
+            .journey-card:hover {
+                transform: translateY(-3px) !important;
+            }
+
+            .journey-phase::before {
+                display: none;
+            }
+
+            .intro-stats {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px 0;
+            }
+
+            .intro-stat {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                cursor: auto;
+            }
+
+            .cursor-dot, .cursor-ring {
+                display: none;
+            }
+
+            .hero-logo {
+                font-size: 56px;
+            }
+
+            .hero-blob {
+                filter: blur(60px);
+                opacity: 0.4;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .phase-title {
+                font-size: 22px;
+            }
+
+            .module-top {
+                padding: 20px;
+            }
+
+            .module-detail-inner {
+                padding: 0 20px 20px;
+            }
+
+            .intro-stat-num {
+                font-size: 32px;
+            }
+
+            .cta-btn {
+                padding: 16px 40px;
+                font-size: 18px;
+            }
+
+            .journey-card, .hero-cta, .cta-btn {
+                cursor: auto;
+            }
+        }
+
+        /* ==================== COMPANION CHAT WIDGET ==================== */
+        .companion-toggle {
+            position: fixed;
+            bottom: 28px;
+            left: 28px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 2px solid rgba(139,92,246,0.4);
+            background: var(--bg-surface-2);
+            cursor: pointer;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 24px rgba(139,92,246,0.25), 0 0 0 0 rgba(139,92,246,0.3);
+            transition: all 0.4s var(--transition-smooth);
+            overflow: hidden;
+            animation: companionPulse 3s ease-in-out infinite;
+        }
+
+        .companion-toggle:hover {
+            transform: scale(1.08);
+            border-color: rgba(139,92,246,0.7);
+            box-shadow: 0 4px 32px rgba(139,92,246,0.4);
+        }
+
+        .companion-toggle.active {
+            animation: none;
+            transform: scale(0.95);
+            opacity: 0.7;
+        }
+
+        @keyframes companionPulse {
+            0%, 100% { box-shadow: 0 4px 24px rgba(139,92,246,0.25), 0 0 0 0 rgba(139,92,246,0.3); }
+            50% { box-shadow: 0 4px 24px rgba(139,92,246,0.25), 0 0 0 10px rgba(139,92,246,0); }
+        }
+
+        .companion-toggle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .companion-toggle-fallback {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            color: white;
+        }
+
+        .companion-badge {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 18px;
+            height: 18px;
+            background: #22c55e;
+            border-radius: 50%;
+            border: 3px solid var(--bg-dark);
+        }
+
+        /* Chat Panel */
+        .companion-panel {
+            position: fixed;
+            bottom: 104px;
+            left: 28px;
+            width: 380px;
+            max-height: 520px;
+            background: var(--bg-surface);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(139,92,246,0.1);
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            pointer-events: none;
+            transition: all 0.4s var(--transition-smooth);
+        }
+
+        .companion-panel.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        /* Header */
+        .companion-header {
+            padding: 16px 20px;
+            background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(6,182,212,0.08));
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            direction: rtl;
+        }
+
+        .companion-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid rgba(139,92,246,0.4);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .companion-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .companion-avatar-fallback {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 16px;
+            color: white;
+        }
+
+        .companion-header-info {
+            flex: 1;
+        }
+
+        .companion-header-name {
+            font-family: 'Heebo', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+
+        .companion-header-status {
+            font-size: 12px;
+            color: #22c55e;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .companion-header-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .companion-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .companion-close:hover {
+            background: rgba(255,255,255,0.1);
+            color: var(--text-primary);
+        }
+
+        /* Messages Area */
+        .companion-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 16px 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            direction: rtl;
+            min-height: 280px;
+            max-height: 340px;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(139,92,246,0.3) transparent;
+        }
+
+        .companion-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .companion-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .companion-messages::-webkit-scrollbar-thumb {
+            background: rgba(139,92,246,0.3);
+            border-radius: 4px;
+        }
+
+        .companion-msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            font-family: 'Heebo', sans-serif;
+            animation: msgAppear 0.3s var(--transition-smooth);
+        }
+
+        @keyframes msgAppear {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .companion-msg.bot {
+            align-self: flex-start;
+            background: var(--bg-surface-2);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            border-bottom-right-radius: 4px;
+        }
+
+        .companion-msg.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--accent-purple), var(--iridescent-2));
+            color: white;
+            border-bottom-left-radius: 4px;
+        }
+
+        /* Typing indicator */
+        .companion-typing {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 14px;
+            align-self: flex-start;
+            background: var(--bg-surface-2);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            border-bottom-right-radius: 4px;
+        }
+
+        .companion-typing span {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            animation: typingBounce 1.4s ease-in-out infinite;
+        }
+
+        .companion-typing span:nth-child(2) { animation-delay: 0.2s; }
+        .companion-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-6px); opacity: 1; }
+        }
+
+        /* Input Area */
+        .companion-input-area {
+            padding: 12px 16px;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            gap: 8px;
+            direction: rtl;
+            background: var(--bg-surface);
+        }
+
+        .companion-input {
+            flex: 1;
+            padding: 10px 14px;
+            background: var(--bg-surface-2);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-pill);
+            color: var(--text-primary);
+            font-family: 'Heebo', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .companion-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .companion-input:focus {
+            border-color: rgba(139,92,246,0.5);
+        }
+
+        .companion-send {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: linear-gradient(135deg, var(--accent-purple), var(--iridescent-2));
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .companion-send:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 16px rgba(139,92,246,0.4);
+        }
+
+        .companion-send:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Quick replies */
+        .companion-quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 0 16px 12px;
+            direction: rtl;
+        }
+
+        .companion-quick-btn {
+            padding: 6px 14px;
+            background: rgba(139,92,246,0.1);
+            border: 1px solid rgba(139,92,246,0.25);
+            border-radius: var(--radius-pill);
+            color: var(--accent-purple);
+            font-family: 'Heebo', sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .companion-quick-btn:hover {
+            background: rgba(139,92,246,0.2);
+            border-color: rgba(139,92,246,0.5);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 640px) {
+            .companion-panel {
+                left: 12px;
+                right: 12px;
+                bottom: 96px;
+                width: auto;
+                max-height: 70vh;
+            }
+
+            .companion-toggle {
+                bottom: 20px;
+                left: 20px;
+                width: 56px;
+                height: 56px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="hero">
+    <div class="hero-blob hero-blob-1" data-speed="2"></div>
+    <div class="hero-blob hero-blob-2" data-speed="3"></div>
+    <div class="hero-blob hero-blob-3" data-speed="1.5"></div>
+    <div class="hero-blob hero-blob-4" data-speed="2.5"></div>
+
+    <div class="hero-particle" style="width:6px;height:6px;left:10%;animation-duration:14s;animation-delay:0s;"></div>
+    <div class="hero-particle" style="width:4px;height:4px;left:25%;animation-duration:18s;animation-delay:2s;"></div>
+    <div class="hero-particle" style="width:8px;height:8px;left:40%;animation-duration:12s;animation-delay:5s;"></div>
+    <div class="hero-particle" style="width:5px;height:5px;left:60%;animation-duration:16s;animation-delay:1s;"></div>
+    <div class="hero-particle" style="width:3px;height:3px;left:75%;animation-duration:20s;animation-delay:3s;"></div>
+    <div class="hero-particle" style="width:7px;height:7px;left:88%;animation-duration:15s;animation-delay:7s;"></div>
+    <div class="hero-particle" style="width:4px;height:4px;left:50%;animation-duration:22s;animation-delay:4s;"></div>
+    <div class="hero-particle" style="width:6px;height:6px;left:15%;animation-duration:17s;animation-delay:8s;"></div>
+
+    <div class="hero-content">
+        <div class="hero-logo" id="heroLogo">nCode.</div>
+        <div class="hero-tagline-en">Build. Launch. Scale.</div>
+        <div class="hero-badge">ההכשרה הדיגיטלית שתלמד אתכם לנצל את הבינה המלאכותית</div>
+        <h1 class="hero-title">
+            מ-0 לנכס דיגיטלי רווחי.<br>
+            <span class="gradient-text">המסלול המלא להקמת עסק במודל סאאס.</span>
+        </h1>
+        <p class="hero-subtitle">
+            19 מודולים. 375+ שיעורים. 50+ שעות תוכן.
+            מהרעיון הראשון ועד הלקוח המשלם הראשון — גם בלי רקע בתכנות.
+        </p>
+        <a href="#roadmap" class="hero-cta">
+            גלה את המסלול המלא
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </a>
+    </div>
+
+    <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+    </div>
+</section>
+
+<!-- ==================== INTRO ==================== -->
+<section class="intro">
+    <div class="dot-grid"></div>
+    <div class="container">
+        <div class="intro-inner reveal">
+            <h2>מסלול שלם שלוקח אותך מ-<span class="gradient-text">אפס</span><br>עד מוצר SaaS חי שמכניס כסף.</h2>
+            <p>
+                כל שיעור בנוי כך שתצא ממנו עם משימה בידיים.
+                <br>לא תיאוריה ריקה — עשייה שמובילה לתוצאות.
+            </p>
+            <div class="intro-divider"></div>
+            <div class="intro-stats">
+                <div class="intro-stat reveal reveal-delay-1">
+                    <div class="intro-stat-num" data-target="19">0</div>
+                    <div class="intro-stat-label">מודולים</div>
+                </div>
+                <div class="intro-stat reveal reveal-delay-2">
+                    <div class="intro-stat-num" data-target="375" data-suffix="+">0</div>
+                    <div class="intro-stat-label">שיעורים</div>
+                </div>
+                <div class="intro-stat reveal reveal-delay-3">
+                    <div class="intro-stat-num" data-target="50" data-suffix="+">0</div>
+                    <div class="intro-stat-label">שעות תוכן</div>
+                </div>
+                <div class="intro-stat reveal reveal-delay-4">
+                    <div class="intro-stat-num" data-text="A-Z">A-Z</div>
+                    <div class="intro-stat-label">מהרעיון להכנסה</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== ROADMAP ==================== -->
+<section class="roadmap" id="roadmap">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-label">המסלול המלא</div>
+            <h2>הדרך מרעיון ראשון<br>ללקוח משלם</h2>
+            <p>כל שלב בהכשרה בנוי על הקודם. לחצו על כל מודול כדי לגלות מה מחכה לכם בפנים.</p>
+        </div>
+
+        <div class="journey" id="journey">
+            <!-- SVG path will be generated by JavaScript -->
+            <svg class="journey-svg" id="journeySvg" preserveAspectRatio="none">
+                <defs>
+                    <linearGradient id="journeyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#8b5cf6"/>
+                        <stop offset="25%" stop-color="#6366f1"/>
+                        <stop offset="50%" stop-color="#06b6d4"/>
+                        <stop offset="75%" stop-color="#ec4899"/>
+                        <stop offset="100%" stop-color="#8b5cf6"/>
+                    </linearGradient>
+                    <filter id="pathGlow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+                        <feMerge>
+                            <feMergeNode in="blur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                    <filter id="milestoneGlow" x="-100%" y="-100%" width="300%" height="300%">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+                        <feMerge>
+                            <feMergeNode in="blur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                    <filter id="travelerGlow" x="-200%" y="-200%" width="500%" height="500%">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"/>
+                        <feMerge>
+                            <feMergeNode in="blur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <!-- Paths and elements generated by JS -->
+            </svg>
+
+            <!-- START marker -->
+            <div class="journey-marker">
+                <span class="journey-marker-label start">נקודת ההתחלה</span>
+            </div>
+
+            <!-- ===== PHASE 1 ===== -->
+            <div class="journey-phase side-a reveal" data-phase="1">
+                <div class="phase-content">
+                    <div class="phase-header">
+                        <span class="phase-number">PHASE I</span>
+                        <h3 class="phase-title">הבסיס — מיינדסט ותשתית</h3>
+                        <p class="phase-subtitle">לפני שבונים עסק, בונים ראש של יזם</p>
+                    </div>
+                    <div class="phase-cards">
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">01</div>
+                                <div class="module-info">
+                                    <h4>מבוא להכשרה</h4>
+                                    <div class="module-meta">4 פרקים • 12 שיעורים</div>
+                                    <div class="module-hook">״לפני שרצים — לומדים לחשוב נכון״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">המודול שבונה את הבסיס לכל מה שיבוא אחריו. תלמדו איך לנהל זמן כמו יזם אמיתי, איך לבנות לעצמכם שגרת למידה אפקטיבית, ולמה 90% מהאנשים שקונים קורסים לא מגיעים לתוצאות — ואיך אתם תהיו בעשירון האחר.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">ניהול זמן</span>
+                                        <span class="module-topic">מיומנויות למידה</span>
+                                        <span class="module-topic">מיינדסט יזמי</span>
+                                        <span class="module-topic">פירמידת ההצלחה</span>
+                                        <span class="module-topic">Monday</span>
+                                        <span class="module-topic">Google Calendar</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">02</div>
+                                <div class="module-info">
+                                    <h4>מבוא ל-SaaS</h4>
+                                    <div class="module-meta">4 פרקים • 14 שיעורים</div>
+                                    <div class="module-hook">״להבין את המשחק לפני שנכנסים למגרש״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">מה הופך SaaS למודל העסקי הכי חזק שקיים? למה החברות הגדולות בעולם בנויות על מנויים חודשיים? ומה ההבדל בין בוטסטראפ לסטארטאפ קלאסי? תבינו את המודל הרזה (Lean Startup), תכירו את היתרונות והחסרונות של SaaS, ותקבלו תמונה מלאה על השוק.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">מודל SaaS</span>
+                                        <span class="module-topic">Lean Startup</span>
+                                        <span class="module-topic">Bootstrap vs Startup</span>
+                                        <span class="module-topic">Product-Market Fit</span>
+                                        <span class="module-topic">מנטורים</span>
+                                        <span class="module-topic">No-Code</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PHASE 2 ===== -->
+            <div class="journey-phase side-b reveal" data-phase="2">
+                <div class="phase-content">
+                    <div class="phase-header">
+                        <span class="phase-number">PHASE II</span>
+                        <h3 class="phase-title">מציאת הרעיון — רעיונאות וולידציה</h3>
+                        <p class="phase-subtitle">איך מוצאים רעיון שווה ומוודאים שאנשים ישלמו עליו</p>
+                    </div>
+                    <div class="phase-cards">
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">03</div>
+                                <div class="module-info">
+                                    <h4>רעיונאות ויציאה לדרך</h4>
+                                    <div class="module-meta">8 פרקים • 32 שיעורים</div>
+                                    <div class="module-hook">״הרעיון הנכון נמצא — רק צריך לדעת איפה לחפש״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">הרוב תוקעים כאן. ״אין לי רעיון״ — המשפט הכי נפוץ בעולם היזמות. במודול הזה תקבלו מסגרת שיטתית ליצירת רעיונות, סינון שלהם, ובחירת הרעיון שהכי מתאים לכם. תלמדו איך לחפש בעיות אמיתיות, איך לזהות נישות רווחיות, מתי כדאי לקחת שותף ומתי לא, ואיך בונים קהל עוד לפני שיש מוצר.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">שיטות רעיונאות</span>
+                                        <span class="module-topic">סינון רעיונות</span>
+                                        <span class="module-topic">שותפויות</span>
+                                        <span class="module-topic">בניית קהל</span>
+                                        <span class="module-topic">הפצה</span>
+                                        <span class="module-topic">ניתוח מתחרים</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">04</div>
+                                <div class="module-info">
+                                    <h4>ולידציה וחקר שוק</h4>
+                                    <div class="module-meta">7 פרקים • 28 שיעורים</div>
+                                    <div class="module-hook">״אל תבנו מוצר שאף אחד לא רוצה לקנות״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">לפני שמשקיעים חודשים בפיתוח — בודקים שיש ביקוש. תלמדו איך לבנות תוכנית עסקית קצרה ואפקטיבית, איך לעשות חקר שוק שחושף הזדמנויות, ואיך לבדוק את הרעיון שלכם עם שיווק גרילה — עוד לפני שקיים מוצר.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">תוכנית עסקית</span>
+                                        <span class="module-topic">חקר שוק</span>
+                                        <span class="module-topic">שיווק גרילה</span>
+                                        <span class="module-topic">ולידציה טכנולוגית</span>
+                                        <span class="module-topic">איטרציה</span>
+                                        <span class="module-topic">מחקר לקוחות</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PHASE 3 ===== -->
+            <div class="journey-phase side-a reveal" data-phase="3">
+                <div class="phase-content">
+                    <div class="phase-header">
+                        <span class="phase-number">PHASE III</span>
+                        <h3 class="phase-title">בניית המוצר — מאיפיון לאפליקציה חיה</h3>
+                        <p class="phase-subtitle">שלושה מודולים שהופכים רעיון למוצר שעובד</p>
+                    </div>
+                    <div class="phase-cards">
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">05</div>
+                                <div class="module-info">
+                                    <h4>איפיון MVP</h4>
+                                    <div class="module-meta">2 פרקים • 10 שיעורים</div>
+                                    <div class="module-hook">״לדעת בדיוק מה לבנות — ומה לא״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">ה-MVP הוא הגרסה הקטנה ביותר של המוצר שלכם שאנשים מוכנים לשלם עליה. תלמדו מה נכנס ומה נשאר בחוץ, איך כותבים PRD שהופך פיתוח ליעיל פי 10, ואיך לחשוב כמו מנהל מוצר.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">הגדרת MVP</span>
+                                        <span class="module-topic">כתיבת PRD</span>
+                                        <span class="module-topic">סדר עדיפויות</span>
+                                        <span class="module-topic">חשיבת מוצר</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">06</div>
+                                <div class="module-info">
+                                    <h4>פיתוח עם Lovable</h4>
+                                    <div class="module-meta">5 פרקים • 24 שיעורים</div>
+                                    <div class="module-hook">״מרעיון לאפליקציה עובדת — בלי שורת קוד״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">Lovable הוא אחד הכלים הכי חזקים בעולם ה-Vibe Coding. תלמדו איך לבנות איתו אפליקציה מלאה מאפס, לחבר APIs, לשלב סליקה, ולהגיע להשקה — כל זה בעזרת כלי AI מתקדם.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">Lovable</span>
+                                        <span class="module-topic">Lovable Cloud</span>
+                                        <span class="module-topic">חיבור API</span>
+                                        <span class="module-topic">סליקה</span>
+                                        <span class="module-topic">השקה</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">07</div>
+                                <div class="module-info">
+                                    <h4>פיתוח עם Anti Gravity</h4>
+                                    <div class="module-meta">9 פרקים • 42 שיעורים</div>
+                                    <div class="module-hook">״הכלים של המקצוענים — נגישים גם לכם״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">המודול הכי עמוס — וגם הכי שווה. תלמדו Git, Claude Code, MCP, פיתוח מובייל, Vercel, PostHog לאנליטיקס, וכל מה שצריך כדי לבנות מוצר ברמה מקצועית. זה המודול שהופך אתכם ממתחילים ליזמים טכנולוגיים אמיתיים.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">Git</span>
+                                        <span class="module-topic">Anti Gravity</span>
+                                        <span class="module-topic">Claude Code</span>
+                                        <span class="module-topic">MCP</span>
+                                        <span class="module-topic">Vercel</span>
+                                        <span class="module-topic">PostHog</span>
+                                        <span class="module-topic">מובייל</span>
+                                        <span class="module-topic">אדמין דשבורד</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PHASE 4 ===== -->
+            <div class="journey-phase side-b reveal" data-phase="4">
+                <div class="phase-content">
+                    <div class="phase-header">
+                        <span class="phase-number">PHASE IV</span>
+                        <h3 class="phase-title">מהמוצר לשוק — תמחור, השקה ומיתוג</h3>
+                        <p class="phase-subtitle">איך יוצאים לעולם ומתחילים למכור</p>
+                    </div>
+                    <div class="phase-cards">
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">08</div>
+                                <div class="module-info">
+                                    <h4>תמחור והצעה</h4>
+                                    <div class="module-meta">3 פרקים • 14 שיעורים</div>
+                                    <div class="module-hook">״הצעה שמרגיש טיפש לסרב לה״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">המחיר שלכם הוא לא מספר — הוא הודעה לשוק. תלמדו את השיטה לבנות הצעה ייחודית (USP) שמוציאה אתכם מתחרות מול כולם, איך לתמחר חבילות, מתי ואיך לעשות A/B Testing על מחירים, ומה זה אפסיילים שמכפילים הכנסות.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">USP</span>
+                                        <span class="module-topic">תמחור חבילות</span>
+                                        <span class="module-topic">A/B Testing</span>
+                                        <span class="module-topic">אפסיילים</span>
+                                        <span class="module-topic">Go-To-Market</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">09</div>
+                                <div class="module-info">
+                                    <h4>השקה, מיתוג ואסטרטגיה</h4>
+                                    <div class="module-meta">5 פרקים • 18 שיעורים</div>
+                                    <div class="module-hook">״השקה מוצלחת היא לא מזל — היא תכנון״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">רגע ההשקה הוא הרגע שהכל מתחבר. תלמדו איך להכניס טסטרים נכון, איך לבנות קהילת וואטסאפ סביב המוצר, מה ההבדל בין אסטרטגיה לטקטיקה, איך בונים מותג שמרגיש Premium, ואיך לשמר לקוחות.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">טסטרים</span>
+                                        <span class="module-topic">אסטרטגיה</span>
+                                        <span class="module-topic">מיתוג</span>
+                                        <span class="module-topic">השקה</span>
+                                        <span class="module-topic">שימור לקוחות</span>
+                                        <span class="module-topic">קהילות</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PHASE 5 ===== -->
+            <div class="journey-phase side-a reveal" data-phase="5">
+                <div class="phase-content">
+                    <div class="phase-header">
+                        <span class="phase-number">PHASE V</span>
+                        <h3 class="phase-title">שליטה בשיווק — מהקופי ועד הקמפיין</h3>
+                        <p class="phase-subtitle">כל מה שצריך כדי להביא לקוחות באופן עקבי</p>
+                    </div>
+                    <div class="phase-cards">
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">10</div>
+                                <div class="module-info">
+                                    <h4>קופירייט ודפי נחיתה</h4>
+                                    <div class="module-meta">3+ פרקים • 20 שיעורים</div>
+                                    <div class="module-hook">״המילים שהופכות מבקרים ללקוחות משלמים״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">דף נחיתה טוב שווה יותר מעשרה קמפיינים ממומנים. תלמדו את עקרונות הקופירייטינג שמוכר, איך לבנות דפי נחיתה שממירים, ואיך לכתוב מסרים שיווקיים שפוגעים בנקודות הכאב של הלקוח.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">קופירייטינג</span>
+                                        <span class="module-topic">דפי נחיתה</span>
+                                        <span class="module-topic">מסרים שיווקיים</span>
+                                        <span class="module-topic">המרות</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">11</div>
+                                <div class="module-info">
+                                    <h4>עולם השיווק</h4>
+                                    <div class="module-meta">6 פרקים • 28 שיעורים</div>
+                                    <div class="module-hook">״להבין את כללי המשחק — ולשחק אותו טוב״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">מודול שלם שמכסה את כל מה שצריך לדעת על שיווק דיגיטלי — מהצעת הערך ועד בניית משפכים שיווקיים. תבינו איך עובד שיווק דיגיטלי ברמה העמוקה.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">הצעת ערך</span>
+                                        <span class="module-topic">משפכים</span>
+                                        <span class="module-topic">שיווק דיגיטלי</span>
+                                        <span class="module-topic">אורגני vs ממומן</span>
+                                        <span class="module-topic">קהלי יעד</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">12</div>
+                                <div class="module-info">
+                                    <h4>פסיכולוגיה צרכנית ושיווקית</h4>
+                                    <div class="module-meta">2 פרקים • 8 שיעורים</div>
+                                    <div class="module-hook">״להבין למה אנשים קונים — ולמה לא״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">המודול שנותן לכם יתרון לא הוגן. תלמדו את העקרונות הפסיכולוגיים שמניעים החלטות רכישה — מאפקט העיגון ועד עקרון המחסור.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">פסיכולוגיה צרכנית</span>
+                                        <span class="module-topic">עקרונות שכנוע</span>
+                                        <span class="module-topic">טריגרים רגשיים</span>
+                                        <span class="module-topic">החלטות רכישה</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">13</div>
+                                <div class="module-info">
+                                    <h4>קמפיינים ממומנים</h4>
+                                    <div class="module-meta">10 פרקים • 46 שיעורים</div>
+                                    <div class="module-hook">״להפוך שקל לשניים — שוב ושוב ושוב״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">המודול הכי מעשי בהכשרה. מהקמת חשבון פרסום ועד אופטימיזציה של קמפיין חי. תלמדו את כל עולם ה-Meta Ads — ביזנס מנג׳ר, פיקסל, קהלים, ניהול קמפיינים, ואופטימיזציה.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">Meta Ads</span>
+                                        <span class="module-topic">Business Manager</span>
+                                        <span class="module-topic">פיקסל ו-API</span>
+                                        <span class="module-topic">קהלים</span>
+                                        <span class="module-topic">אופטימיזציה</span>
+                                        <span class="module-topic">קייס סטאדי</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== PHASE 6 ===== -->
+            <div class="journey-phase side-b reveal" data-phase="6">
+                <div class="phase-content">
+                    <div class="phase-header">
+                        <span class="phase-number">PHASE VI</span>
+                        <h3 class="phase-title">צמיחה ותפעול — ניהול עסק אמיתי</h3>
+                        <p class="phase-subtitle">הידע שהופך מוצר חי לעסק יציב ורווחי</p>
+                    </div>
+                    <div class="phase-cards">
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">14</div>
+                                <div class="module-info">
+                                    <h4>Product — ניהול מוצר</h4>
+                                    <div class="module-meta">2 פרקים • 10 שיעורים</div>
+                                    <div class="module-hook">״לבנות מוצר שלקוחות מתים עליו״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">אחרי שהשקתם — מתחיל המשחק האמיתי. תלמדו איך לנהל מוצר חי, איך לקבל פידבק מלקוחות ולהפוך אותו לפיצ'רים, ואיך לבנות Road Map שמוביל לצמיחה.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">ניהול מוצר</span>
+                                        <span class="module-topic">Road Map</span>
+                                        <span class="module-topic">פידבק לקוחות</span>
+                                        <span class="module-topic">פיצ'רים</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">15</div>
+                                <div class="module-info">
+                                    <h4>פיננסים בעסק שלך</h4>
+                                    <div class="module-meta">4 פרקים • 16 שיעורים</div>
+                                    <div class="module-hook">״לדעת את המספרים — ולשלוט בהם״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">כסף נכנס — אבל כמה באמת נשאר? תלמדו את הבסיס הפיננסי שכל יזם חייב לדעת — מונחים, מדדים, תזרים מזומנים, ואיך לקרוא את המספרים של העסק שלכם.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">מונחים פיננסיים</span>
+                                        <span class="module-topic">תזרים מזומנים</span>
+                                        <span class="module-topic">מדדים</span>
+                                        <span class="module-topic">ניהול כספים</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">16</div>
+                                <div class="module-info">
+                                    <h4>משפטים וחוק</h4>
+                                    <div class="module-meta">2 פרקים • 8 שיעורים</div>
+                                    <div class="module-hook">״להגן על העסק שבניתם — חוקית״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">הצד שאף אחד לא מלמד — וכולם צריכים. תנאי שימוש, מדיניות פרטיות, הסכמי שותפות, ועוד. כולל שיעור מיוחד עם עו״ד שמתמחה בטכנולוגיה.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">תנאי שימוש</span>
+                                        <span class="module-topic">פרטיות</span>
+                                        <span class="module-topic">הסכמים</span>
+                                        <span class="module-topic">הגנה משפטית</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">17</div>
+                                <div class="module-info">
+                                    <h4>בונוס — מרצה אורח</h4>
+                                    <div class="module-meta">פרק בונוס</div>
+                                    <div class="module-hook">״נקודת מבט חדשה מיזם שעשה את זה״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">שיעור בונוס עם מרצה אורח שחולק את התהליך האמיתי שלו — הטעויות, ההצלחות, והתובנות שאי אפשר ללמוד מספרים.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">מרצה אורח</span>
+                                        <span class="module-topic">סיפור אישי</span>
+                                        <span class="module-topic">תובנות מהשטח</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">18</div>
+                                <div class="module-info">
+                                    <h4>רשימות תפוצה ודיוור</h4>
+                                    <div class="module-meta">3 פרקים • 16 שיעורים</div>
+                                    <div class="module-hook">״הערוץ שאף אחד לא יכול לקחת ממכם״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">רשימת תפוצה היא הנכס הכי חזק של כל עסק דיגיטלי. תלמדו איך לבנות רשימה, איך לכתוב מיילים שנפתחים, ואיך לעבוד עם מערכת רב-מסר. כולל הדרכה מעשית מלאה על בניית אוטומציות דיוור.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">רשימות תפוצה</span>
+                                        <span class="module-topic">דיוור</span>
+                                        <span class="module-topic">רב-מסר</span>
+                                        <span class="module-topic">אוטומציות</span>
+                                        <span class="module-topic">Email Marketing</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-card" onclick="toggleModule(this)">
+                            <div class="module-top">
+                                <div class="module-num">19</div>
+                                <div class="module-info">
+                                    <h4>סיכום ויציאה לדרך</h4>
+                                    <div class="module-meta">מודול סיום</div>
+                                    <div class="module-hook">״עכשיו הגיע הזמן שלכם לבנות״</div>
+                                </div>
+                                <div class="module-toggle">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                                </div>
+                            </div>
+                            <div class="module-detail">
+                                <div class="module-detail-inner">
+                                    <p class="module-description">המודול שסוגר את המעגל. סיכום כל מה שלמדתם, תוכנית פעולה אישית, ויציאה לדרך עם כל הכלים והביטחון שצריך כדי לבנות את העסק הטכנולוגי הראשון שלכם.</p>
+                                    <div class="module-topics">
+                                        <span class="module-topic">סיכום</span>
+                                        <span class="module-topic">תוכנית פעולה</span>
+                                        <span class="module-topic">צעדים הבאים</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END marker -->
+            <div class="journey-marker">
+                <span class="journey-marker-label end">SaaS רווחי ובצמיחה</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="cta-section">
+    <div class="aurora-bg">
+        <div class="aurora-layer aurora-1"></div>
+        <div class="aurora-layer aurora-2"></div>
+        <div class="aurora-layer aurora-3"></div>
+    </div>
+    <div class="container">
+        <div class="cta-content reveal">
+            <h2>מוכנים להקים את ה-SaaS<br><span class="gradient-text">הראשון שלכם?</span></h2>
+            <p>
+                19 מודולים. 375+ שיעורים. מנטורים צמודים. קהילה פעילה.
+                <br>כל מה שצריך כדי לצאת לדרך — במקום אחד.
+            </p>
+            <a href="https://nCode.co.il" target="_blank" class="cta-btn" id="ctaBtn">
+                אני רוצה להצטרף
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </a>
+            <div class="cta-guarantee">ליווי צמוד לאורך כל הדרך • גישה מלאה לקהילה ולמנטורים</div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== COMPANION CHAT ==================== -->
+<div class="companion-toggle" id="companionToggle" onclick="toggleCompanion()">
+    <img src="Benjamin-avatar.jpeg" alt="בנימין" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="companion-toggle-fallback" style="display:none">B</div>
+    <div class="companion-badge"></div>
+</div>
+
+<div class="companion-panel" id="companionPanel">
+    <div class="companion-header">
+        <div class="companion-avatar">
+            <img src="Benjamin-avatar.jpeg" alt="בנימין" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="companion-avatar-fallback" style="display:none">B</div>
+        </div>
+        <div class="companion-header-info">
+            <div class="companion-header-name">בנימין — יועץ לימודים</div>
+            <div class="companion-header-status">מחובר</div>
+        </div>
+        <button class="companion-close" onclick="toggleCompanion()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+    </div>
+    <div class="companion-messages" id="companionMessages">
+        <!-- Messages will be injected here -->
+    </div>
+    <div class="companion-quick-replies" id="companionQuickReplies">
+        <button class="companion-quick-btn" onclick="sendQuickReply('מה ההכשרה הזו כוללת?')">מה ההכשרה כוללת?</button>
+        <button class="companion-quick-btn" onclick="sendQuickReply('האם זה מתאים למי שלא מתכנת?')">מתאים לי בלי רקע טכני?</button>
+        <button class="companion-quick-btn" onclick="sendQuickReply('כמה זמן לוקח לסיים?')">כמה זמן לוקח?</button>
+        <button class="companion-quick-btn" onclick="sendQuickReply('אני רוצה לקבוע שיחה')">קביעת שיחה</button>
+    </div>
+    <div class="companion-input-area">
+        <input type="text" class="companion-input" id="companionInput" placeholder="שאלו את בנימין..." onkeydown="if(event.key==='Enter')sendCompanionMessage()">
+        <button class="companion-send" id="companionSend" onclick="sendCompanionMessage()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
+    </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+    <div class="footer-logo">nCode.</div>
+    <p>Build. Launch. Scale.</p>
+</footer>
+
+<script>
+    // ==================== MODULE TOGGLE ====================
+    function toggleModule(card) {
+        const wasActive = card.classList.contains('active');
+        const cards = card.closest('.phase-cards');
+        cards.querySelectorAll('.journey-card').forEach(c => c.classList.remove('active'));
+        if (!wasActive) card.classList.add('active');
+        // Recalculate path after height change
+        setTimeout(() => {
+            if (typeof buildJourneyPath === 'function') buildJourneyPath();
+        }, 700);
+    }
+
+    // ==================== CUSTOM CURSOR ====================
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorRing = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (!isTouchDevice) {
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+        });
+
+        function animateCursorRing() {
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+            cursorRing.style.left = ringX + 'px';
+            cursorRing.style.top = ringY + 'px';
+            requestAnimationFrame(animateCursorRing);
+        }
+        animateCursorRing();
+
+        const interactiveElements = document.querySelectorAll('a, button, .journey-card, .module-toggle, .cta-btn, .intro-stat');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+        });
+    } else {
+        cursorDot.style.display = 'none';
+        cursorRing.style.display = 'none';
+    }
+
+    // ==================== KINETIC TYPOGRAPHY ====================
+    const heroLogo = document.getElementById('heroLogo');
+    const logoText = heroLogo.textContent;
+    heroLogo.innerHTML = '';
+    logoText.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = char;
+        span.style.animationDelay = `${0.3 + i * 0.08}s`;
+        heroLogo.appendChild(span);
+    });
+
+    // ==================== MOUSE PARALLAX ====================
+    if (!isTouchDevice) {
+        const heroBlobs = document.querySelectorAll('.hero-blob');
+        document.querySelector('.hero').addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            heroBlobs.forEach(blob => {
+                const speed = parseFloat(blob.dataset.speed) || 1;
+                const moveX = x * speed * 15;
+                const moveY = y * speed * 15;
+                blob.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+        });
+    }
+
+    // ==================== SCROLL PROGRESS ====================
+    const scrollProgress = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / scrollHeight) * 100;
+        scrollProgress.style.height = progress + '%';
+    }, { passive: true });
+
+    // ==================== JOURNEY PATH (THE ROADMAP) ====================
+    const journeySvg = document.getElementById('journeySvg');
+    const journey = document.getElementById('journey');
+    let pathData = { totalLength: 0, progressPath: null, travelerDot: null };
+
+    function buildJourneyPath() {
+        if (!journey || !journeySvg) return;
+
+        // Clear previous SVG content (keep defs)
+        const defs = journeySvg.querySelector('defs');
+        journeySvg.innerHTML = '';
+        journeySvg.appendChild(defs);
+
+        const phases = journey.querySelectorAll('.journey-phase');
+        const journeyRect = journey.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const width = journey.offsetWidth;
+        const height = journey.offsetHeight;
+
+        // Set SVG dimensions
+        journeySvg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+        journeySvg.style.width = width + 'px';
+        journeySvg.style.height = height + 'px';
+
+        // Calculate waypoints based on phase positions
+        const waypoints = [];
+        const isMobile = window.innerWidth <= 968;
+
+        if (isMobile) {
+            // Mobile: straight vertical line with waypoints at each phase
+            const xPos = 30;
+            waypoints.push({ x: xPos, y: 0 });
+            phases.forEach(phase => {
+                const phaseRect = phase.getBoundingClientRect();
+                const y = phaseRect.top + scrollTop - (journeyRect.top + scrollTop) + 40;
+                waypoints.push({ x: xPos, y: y });
+            });
+            waypoints.push({ x: xPos, y: height });
+        } else {
+            // Desktop: winding S-curve path
+            // Start at top center
+            waypoints.push({ x: width * 0.5, y: 0 });
+
+            phases.forEach((phase, i) => {
+                const phaseRect = phase.getBoundingClientRect();
+                const y = phaseRect.top + scrollTop - (journeyRect.top + scrollTop) + 50;
+                const isSideA = phase.classList.contains('side-a');
+                // Side-a content is on the left, so path curves to left (~28%)
+                // Side-b content is on the right, so path curves to right (~72%)
+                const x = isSideA ? width * 0.28 : width * 0.72;
+                waypoints.push({ x, y });
+            });
+
+            // End at bottom center
+            waypoints.push({ x: width * 0.5, y: height });
+        }
+
+        // Generate smooth bezier path through waypoints
+        let d = `M ${waypoints[0].x} ${waypoints[0].y}`;
+        for (let i = 1; i < waypoints.length; i++) {
+            const prev = waypoints[i - 1];
+            const curr = waypoints[i];
+            if (isMobile) {
+                d += ` L ${curr.x} ${curr.y}`;
+            } else {
+                const midY = (prev.y + curr.y) / 2;
+                d += ` C ${prev.x},${midY} ${curr.x},${midY} ${curr.x},${curr.y}`;
+            }
+        }
+
+        // Draw background track (full path, dim)
+        const trackPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        trackPath.setAttribute('d', d);
+        trackPath.setAttribute('fill', 'none');
+        trackPath.setAttribute('stroke', 'rgba(255,255,255,0.04)');
+        trackPath.setAttribute('stroke-width', isMobile ? '2' : '3');
+        trackPath.setAttribute('stroke-linecap', 'round');
+        // Dashed background for "road" feel
+        trackPath.setAttribute('stroke-dasharray', '8 12');
+        journeySvg.appendChild(trackPath);
+
+        // Draw progress path (glowing, draws on scroll)
+        const progressPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        progressPath.setAttribute('d', d);
+        progressPath.setAttribute('fill', 'none');
+        progressPath.setAttribute('stroke', 'url(#journeyGradient)');
+        progressPath.setAttribute('stroke-width', isMobile ? '2' : '3');
+        progressPath.setAttribute('stroke-linecap', 'round');
+        progressPath.setAttribute('filter', 'url(#pathGlow)');
+        const totalLength = progressPath.getTotalLength();
+        progressPath.style.strokeDasharray = totalLength;
+        progressPath.style.strokeDashoffset = totalLength;
+        journeySvg.appendChild(progressPath);
+
+        // Draw milestone circles at phase waypoints (skip start/end)
+        const phaseWaypoints = waypoints.slice(1, -1);
+        const milestoneCircles = [];
+        phaseWaypoints.forEach((point, i) => {
+            // Outer glow ring
+            const glowRing = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            glowRing.setAttribute('cx', point.x);
+            glowRing.setAttribute('cy', point.y);
+            glowRing.setAttribute('r', isMobile ? '16' : '28');
+            glowRing.setAttribute('fill', 'none');
+            glowRing.setAttribute('stroke', 'rgba(139,92,246,0.0)');
+            glowRing.setAttribute('stroke-width', '2');
+            glowRing.style.transition = 'all 0.8s ease';
+            journeySvg.appendChild(glowRing);
+
+            // Milestone circle
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', point.x);
+            circle.setAttribute('cy', point.y);
+            circle.setAttribute('r', isMobile ? '12' : '22');
+            circle.setAttribute('fill', '#0f0f1a');
+            circle.setAttribute('stroke', 'rgba(255,255,255,0.08)');
+            circle.setAttribute('stroke-width', '2');
+            circle.style.transition = 'all 0.6s ease';
+            journeySvg.appendChild(circle);
+
+            // Phase number text
+            const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            text.setAttribute('x', point.x);
+            text.setAttribute('y', point.y);
+            text.setAttribute('text-anchor', 'middle');
+            text.setAttribute('dominant-baseline', 'central');
+            text.setAttribute('fill', 'rgba(255,255,255,0.15)');
+            text.setAttribute('font-family', 'Inter, sans-serif');
+            text.setAttribute('font-weight', '800');
+            text.setAttribute('font-size', isMobile ? '10' : '14');
+            text.textContent = ['I', 'II', 'III', 'IV', 'V', 'VI'][i] || '';
+            text.style.transition = 'fill 0.6s ease';
+            journeySvg.appendChild(text);
+
+            milestoneCircles.push({ circle, glowRing, text, y: point.y });
+
+            // Branch connector from milestone to content
+            if (!isMobile) {
+                const phaseEl = phases[i];
+                const contentEl = phaseEl.querySelector('.phase-content');
+                if (contentEl) {
+                    const contentRect = contentEl.getBoundingClientRect();
+                    const isSideA = phaseEl.classList.contains('side-a');
+                    let branchEndX;
+                    if (isSideA) {
+                        branchEndX = contentRect.right - journeyRect.left + 15;
+                    } else {
+                        branchEndX = contentRect.left - journeyRect.left - 15;
+                    }
+                    const branch = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    branch.setAttribute('x1', point.x + (isSideA ? -22 : 22));
+                    branch.setAttribute('y1', point.y);
+                    branch.setAttribute('x2', branchEndX);
+                    branch.setAttribute('y2', point.y);
+                    branch.setAttribute('stroke', 'rgba(139,92,246,0.0)');
+                    branch.setAttribute('stroke-width', '1');
+                    branch.setAttribute('stroke-dasharray', '4 6');
+                    branch.style.transition = 'stroke 0.8s ease';
+                    journeySvg.appendChild(branch);
+                    milestoneCircles[i].branch = branch;
+                }
+            }
+        });
+
+        // Traveler dot
+        const traveler = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        traveler.setAttribute('cx', waypoints[0].x);
+        traveler.setAttribute('cy', waypoints[0].y);
+        traveler.setAttribute('r', isMobile ? '5' : '7');
+        traveler.setAttribute('fill', '#8b5cf6');
+        traveler.setAttribute('filter', 'url(#travelerGlow)');
+        traveler.style.opacity = '0';
+        traveler.style.transition = 'opacity 0.5s ease';
+        journeySvg.appendChild(traveler);
+
+        // Store references
+        pathData = {
+            totalLength,
+            progressPath,
+            travelerDot: traveler,
+            milestones: milestoneCircles,
+            waypoints,
+            isMobile
+        };
+
+        // Initial update
+        updateJourneyScroll();
+    }
+
+    function updateJourneyScroll() {
+        if (!pathData.progressPath || !journey) return;
+
+        const journeyRect = journey.getBoundingClientRect();
+        const viewportCenter = window.innerHeight * 0.45;
+
+        // Calculate scroll progress through the journey section
+        let scrollProgress = 0;
+        if (journeyRect.top < viewportCenter) {
+            const scrolledInto = viewportCenter - journeyRect.top;
+            scrollProgress = Math.min(Math.max(scrolledInto / journeyRect.height, 0), 1);
+        }
+
+        // Update path drawing
+        const drawLength = pathData.totalLength * scrollProgress;
+        pathData.progressPath.style.strokeDashoffset = pathData.totalLength - drawLength;
+
+        // Update traveler dot position
+        if (scrollProgress > 0.01) {
+            pathData.travelerDot.style.opacity = '1';
+            const point = pathData.progressPath.getPointAtLength(drawLength);
+            pathData.travelerDot.setAttribute('cx', point.x);
+            pathData.travelerDot.setAttribute('cy', point.y);
+        } else {
+            pathData.travelerDot.style.opacity = '0';
+        }
+
+        // Update milestone activation
+        if (pathData.milestones) {
+            pathData.milestones.forEach((ms, i) => {
+                const msY = ms.y;
+                const journeyTop = journeyRect.top;
+                const msScreenY = journeyTop + msY;
+                const isReached = msScreenY < viewportCenter + 50;
+
+                if (isReached) {
+                    ms.circle.setAttribute('stroke', '#8b5cf6');
+                    ms.circle.setAttribute('fill', '#161625');
+                    ms.circle.setAttribute('filter', 'url(#milestoneGlow)');
+                    ms.glowRing.setAttribute('stroke', 'rgba(139,92,246,0.3)');
+                    ms.text.setAttribute('fill', '#8b5cf6');
+                    if (ms.branch) {
+                        ms.branch.setAttribute('stroke', 'rgba(139,92,246,0.15)');
+                    }
+                } else {
+                    ms.circle.setAttribute('stroke', 'rgba(255,255,255,0.08)');
+                    ms.circle.setAttribute('fill', '#0f0f1a');
+                    ms.circle.removeAttribute('filter');
+                    ms.glowRing.setAttribute('stroke', 'rgba(139,92,246,0.0)');
+                    ms.text.setAttribute('fill', 'rgba(255,255,255,0.15)');
+                    if (ms.branch) {
+                        ms.branch.setAttribute('stroke', 'rgba(139,92,246,0.0)');
+                    }
+                }
+            });
+        }
+    }
+
+    window.addEventListener('scroll', updateJourneyScroll, { passive: true });
+
+    // Build path on load and resize
+    window.addEventListener('load', () => {
+        setTimeout(buildJourneyPath, 100);
+    });
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(buildJourneyPath, 200);
+    });
+
+    // Also rebuild when fonts load (can change heights)
+    if (document.fonts) {
+        document.fonts.ready.then(() => {
+            setTimeout(buildJourneyPath, 50);
+        });
+    }
+
+    // ==================== PHASE GLOW ZONES ====================
+    const phaseObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.journey-phase').forEach(el => phaseObserver.observe(el));
+
+    // ==================== COUNTER ANIMATION ====================
+    function animateCounters() {
+        const counters = document.querySelectorAll('[data-target]');
+        counters.forEach(counter => {
+            if (counter.dataset.animated) return;
+            const rect = counter.getBoundingClientRect();
+            if (rect.top > window.innerHeight * 0.85) return;
+
+            counter.dataset.animated = 'true';
+            const target = parseInt(counter.dataset.target);
+            const suffix = counter.dataset.suffix || '';
+            const duration = 2000;
+            const start = Date.now();
+
+            function update() {
+                const elapsed = Date.now() - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.round(eased * target);
+                counter.textContent = current + suffix;
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            update();
+        });
+    }
+
+    window.addEventListener('scroll', animateCounters, { passive: true });
+
+    // ==================== SCROLL REVEAL ====================
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Journey card reveal
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+    document.querySelectorAll('.journey-card').forEach((card, i) => {
+        card.style.transitionDelay = `${(i % 4) * 0.08}s`;
+        card.style.transitionDuration = '0.7s';
+        card.style.transitionProperty = 'opacity, transform';
+        card.style.transitionTimingFunction = 'cubic-bezier(0.16, 1, 0.3, 1)';
+        cardObserver.observe(card);
+    });
+
+    // ==================== MAGNETIC BUTTON ====================
+    const ctaBtn = document.getElementById('ctaBtn');
+    if (ctaBtn && !isTouchDevice) {
+        ctaBtn.addEventListener('mousemove', (e) => {
+            const rect = ctaBtn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            ctaBtn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+        });
+
+        ctaBtn.addEventListener('mouseleave', () => {
+            ctaBtn.style.transform = 'translate(0, 0)';
+        });
+    }
+
+    // ==================== SMOOTH SCROLL ====================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Initial calls
+    animateCounters();
+
+    // ==================== COMPANION CHAT (BENJAMIN) ====================
+    const companionState = {
+        isOpen: false,
+        messages: [],
+        isLoading: false,
+        _k: [
+            ['g','s','k','_','8WGe2wSzoOE0','h9h7upxMWG','dyb3FYnYjQfvwV','BmFMWvtj2vEZGNU4'],
+            ['g','s','k','_','ZrxGbQ3dYdE9','RFNHIffNWG','dyb3FYxpak4ZKI','ETxgh6dL0j3JYYpJ'],
+            ['g','s','k','_','ypgXf9wwczn','xDctGew7pWG','dyb3FYMlb3DOX','SxyiRl9ing3ZtuFTd'],
+            ['g','s','k','_','TvzgNQxg7OAW','KGyLeqP4WG','dyb3FYuYDqDT8','T2e8X902nHkSqGjiX'],
+            ['g','s','k','_','OW752ncGBJ4g','PIuOk8yzWG','dyb3FYsPw1ZNd','VKnqStEVd7gLVYoWh']
+        ],
+        get apiKeys() { return this._k.map(p => p.join('')); },
+        currentKeyIndex: 0,
+        systemPrompt: `אתה בנימין, יועץ לימודים של nCode — הכשרת ה-Vibe Coding "מ-0 ל-SaaS רווחי".
+
+התפקיד שלך:
+אתה לא מורה ולא מלמד את תוכן הקורס. אתה יועץ לימודים חם, אמפתי ומקצועי. המטרה שלך היא:
+1. להבין את הרקע, הצרכים והחלומות של הפונה
+2. לשאול שאלות חכמות שעוזרות לו להבין אם ההכשרה מתאימה לו
+3. להראות איך ההכשרה עונה בדיוק על מה שהוא צריך
+4. לתת ביטחון ולעזור בקבלת החלטה
+5. להניע בעדינות לקביעת שיחת ייעוץ אישית עם הצוות
+
+כללי התנהגות:
+- דבר בעברית, בגובה העיניים, בשפה חמה ומקצועית
+- אל תלמד ואל תפרט תכנים ספציפיים מהקורס — תן טעימות קטנות בלבד כדי לעורר סקרנות
+- תמיד שאל שאלות לפני שאתה נותן תשובה מפורטת — תבין קודם מי עומד מולך
+- אם שואלים שאלה ספציפית מאוד על תוכן — תן תשובה כללית ותזמין לשיחה אישית
+- היה אנושי, אמפתי, מעורר השראה — אבל לא דוחף
+- תשובות קצרות וממוקדות (2-4 משפטים), אל תכתוב מסות
+- אחרי 3-4 הודעות, הזכר בעדינות את האפשרות לקבוע שיחה
+- אם מישהו אומר שהוא רוצה לקבוע שיחה, תן לו לינק: https://nCode.co.il/call
+
+מידע על ההכשרה שאתה מכיר (לשימוש פנימי — לא לשתף ישירות):
+
+nCode Vibe Coding — "מ-0 ל-SaaS רווחי"
+19 מודולים | 375+ שיעורים | מנטורים צמודים | קהילה פעילה
+
+מודול 1 - מבוא להכשרה: מיינדסט יזמי, ניהול זמן, עקרונות הצלחה, פירמידת ההצלחה
+מודול 2 - מבוא ל-SaaS: מה זה SaaS, יתרונות, לין סטארטאפ, בוטסטרפ vs השקעות, PMF
+מודול 3 - רעיון והתחלה: מציאת רעיונות, מחקר שוק, קהל יעד, שותפויות, ניתוח SWOT
+מודול 4 - וולידציה: Mom Test, מחקר שוק, סקרים, ניתוח מתחרים, וולידציה טכנולוגית
+מודול 5 - מפרט MVP: הגדרת MVP, תיעדוף פיצ'רים, כתיבת PRD עם AI (Claude)
+מודול 6 - פיתוח עם Lovable: בניית SaaS מלא, Supabase, תשלומים, API, דיפלוי
+מודול 7 - פיתוח מתקדם: Git, Claude Code, MCP, Vercel, PostHog, פיתוח מובייל
+מודול 8 - תמחור והצעה: בניית הצעת ערך, USP, A/B Testing, מודלי תמחור
+מודול 9 - השקה ומיתוג: בטא טסטרים, אסטרטגיה, מיתוג, סושיאל, שימור לקוחות
+מודול 10 - קופירייטינג ודפי נחיתה: WordPress, Elementor, טכניקות שכנוע
+מודול 11 - עולם השיווק: אסטרטגיה שיווקית, אווטארים, משפכים, KPIs, פסיכולוגיה
+מודול 12 - פסיכולוגיית צרכנים: החלטות רכישה, סטוריטלינג, קופירייטינג מתקדם
+מודול 13 - קמפיינים ממומנים: Meta Ads, Pixel, קהלים, אופטימיזציה, מדיניות
+מודול 14 - ניהול מוצר: מיינדסט מוצרי, KPIs (MRR/ARR), PostHog, פידבק, תיעדוף
+מודול 15 - פיננסים: פתיחת עסק, מיסוי, תזרים, דוח רו"ה, תקציב שיווק
+מודול 16 - משפטי: קניין רוחני, פרטיות, GDPR, חוזים, הקמת חברה
+מודול 17 - נאור שואן (אורח): סיפורי הצלחה, מכירות, אוטומציה
+מודול 18 - רשימות תפוצה: אימייל מרקטינג, ליד מגנטים, SMS, שימור אוטומטי
+מודול 19 - מפגשי קהילה: קייס סטאדי, סדנאות AI, בוטים, מאסטרקלאס מכירות
+
+טכנולוגיות מרכזיות: Lovable, Claude Code, Supabase, Vercel, Git, MCP, PostHog, Meta Ads, WordPress/Elementor, Polar
+ההכשרה מתאימה ל: יזמים מתחילים, אנשים בלי רקע טכני, פרילנסרים שרוצים מוצר, אנשי שיווק שרוצים טכנולוגיה, כל מי שחולם על עסק דיגיטלי
+לא צריך ידע קודם בתכנות — הכל מלמדים מאפס עם AI`
+    };
+
+    function toggleCompanion() {
+        companionState.isOpen = !companionState.isOpen;
+        const panel = document.getElementById('companionPanel');
+        const toggle = document.getElementById('companionToggle');
+
+        if (companionState.isOpen) {
+            panel.classList.add('open');
+            toggle.classList.add('active');
+            // Send welcome message on first open
+            if (companionState.messages.length === 0) {
+                addBotMessage('היי! 👋 אני בנימין, יועץ הלימודים של nCode.\n\nאשמח לעזור לך להבין אם הכשרת ה-Vibe Coding מתאימה בדיוק לך. ספר/י לי קצת — מה הרקע שלך ומה חלמת לבנות?');
+            }
+            document.getElementById('companionInput').focus();
+        } else {
+            panel.classList.remove('open');
+            toggle.classList.remove('active');
+        }
+    }
+
+    function addBotMessage(text) {
+        companionState.messages.push({ role: 'assistant', content: text });
+        renderMessages();
+    }
+
+    function addUserMessage(text) {
+        companionState.messages.push({ role: 'user', content: text });
+        renderMessages();
+        // Hide quick replies after first interaction
+        const qr = document.getElementById('companionQuickReplies');
+        if (qr) qr.style.display = 'none';
+    }
+
+    function renderMessages() {
+        const container = document.getElementById('companionMessages');
+        container.innerHTML = companionState.messages.map(msg => {
+            const cls = msg.role === 'user' ? 'user' : 'bot';
+            const escapedContent = msg.content
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/\n/g, '<br>');
+            return `<div class="companion-msg ${cls}">${escapedContent}</div>`;
+        }).join('');
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function showTyping() {
+        const container = document.getElementById('companionMessages');
+        const typing = document.createElement('div');
+        typing.className = 'companion-typing';
+        typing.id = 'typingIndicator';
+        typing.innerHTML = '<span></span><span></span><span></span>';
+        container.appendChild(typing);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function hideTyping() {
+        const typing = document.getElementById('typingIndicator');
+        if (typing) typing.remove();
+    }
+
+    function sendQuickReply(text) {
+        document.getElementById('companionInput').value = text;
+        sendCompanionMessage();
+    }
+
+    async function sendCompanionMessage() {
+        const input = document.getElementById('companionInput');
+        const text = input.value.trim();
+        if (!text || companionState.isLoading) return;
+
+        input.value = '';
+        addUserMessage(text);
+        companionState.isLoading = true;
+        document.getElementById('companionSend').disabled = true;
+        showTyping();
+
+        try {
+            const response = await callGroqAPI(text);
+            hideTyping();
+            addBotMessage(response);
+        } catch (err) {
+            hideTyping();
+            addBotMessage('סליחה, נתקלתי בבעיה טכנית 🙈 אפשר לנסות שוב או לקבוע שיחה ישירות בלינק: https://nCode.co.il/call');
+        }
+
+        companionState.isLoading = false;
+        document.getElementById('companionSend').disabled = false;
+    }
+
+    async function callGroqAPI(userMessage, retries = 0) {
+        const apiKey = companionState.apiKeys[companionState.currentKeyIndex];
+        const messages = [
+            { role: 'system', content: companionState.systemPrompt },
+            ...companionState.messages.map(m => ({ role: m.role, content: m.content }))
+        ];
+
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: 'llama-3.3-70b-versatile',
+                messages: messages,
+                temperature: 0.7,
+                max_tokens: 512
+            })
+        });
+
+        if (!response.ok) {
+            // Try next API key
+            if (retries < companionState.apiKeys.length - 1) {
+                companionState.currentKeyIndex = (companionState.currentKeyIndex + 1) % companionState.apiKeys.length;
+                return callGroqAPI(userMessage, retries + 1);
+            }
+            throw new Error('API error');
+        }
+
+        const data = await response.json();
+        return data.choices[0].message.content;
+    }
+</script>
+
+</body>
+</html>
