@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nCode | הכשרה דיגיטלית להקמת SaaS רווחי</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue-deep: #1a2a4a;
+            --blue-primary: #2d4a7a;
+            --blue-mid: #4a6fa5;
+            --blue-light: #6b8fc5;
+            --blue-pale: #8bb0df;
+            --blue-wash: #c5d9f0;
+            --cream: #f5f0eb;
+            --cream-dark: #e8e0d8;
+            --white: #ffffff;
+            --text-dark: #1a1a2e;
+            --text-mid: #3a3a5c;
+            --text-light: #6a6a8a;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --glass-bg-light: rgba(42, 74, 122, 0.06);
+            --glass-border-light: rgba(42, 74, 122, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Utility */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(165deg, var(--blue-deep) 0%, var(--blue-primary) 35%, var(--blue-mid) 70%, var(--blue-light) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(107, 143, 197, 0.3) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(139, 176, 223, 0.2) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 30%);
+            animation: heroShift 20s ease-in-out infinite;
+        }
+
+        @keyframes heroShift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-2%, 1%) rotate(1deg); }
+            66% { transform: translate(1%, -1%) rotate(-0.5deg); }
+        }
+
+        /* Glass orbs */
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), rgba(255,255,255,0.02));
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-orb-1 {
+            width: 400px; height: 400px;
+            top: -100px; right: -100px;
+            animation: float 15s ease-in-out infinite;
+        }
+        .hero-orb-2 {
+            width: 250px; height: 250px;
+            bottom: -50px; left: 10%;
+            animation: float 18s ease-in-out infinite reverse;
+        }
+        .hero-orb-3 {
+            width: 150px; height: 150px;
+            top: 30%; left: -30px;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.03); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 60px 24px;
+            max-width: 900px;
+        }
+
+        .hero-logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -2px;
+            margin-bottom: 8px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards 0.3s;
+        }
+
+        .hero-tagline-en {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 48px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease forwards 0.5s;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            color: var(--blue-wash);
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 32px;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease forwards 0.6s;
+        }
+
+        .hero-title {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards 0.7s;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, #c5d9f0, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2.2vw, 20px);
+            font-weight: 300;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            max-width: 680px;
+            margin: 0 auto 48px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease forwards 0.9s;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 48px;
+            background: var(--white);
+            color: var(--blue-deep);
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease forwards 1.1s;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+        }
+
+        .hero-cta svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .hero-cta:hover svg {
+            transform: translateX(-4px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.5s;
+        }
+
+        .hero-scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-scroll-line::after {
+            content: '';
+            position: absolute;
+            top: -100%;
+            width: 100%;
+            height: 50%;
+            background: white;
+            animation: scrollDown 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollDown {
+            0% { top: -50%; }
+            100% { top: 150%; }
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==================== INTRO SECTION ==================== */
+        .intro {
+            padding: 160px 0 140px;
+            background: var(--cream);
+        }
+
+        .intro-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .intro-inner h2 {
+            font-size: clamp(32px, 4vw, 46px);
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1.35;
+            margin-bottom: 32px;
+        }
+
+        .intro-inner h2 span {
+            color: var(--blue-mid);
+        }
+
+        .intro-inner p {
+            font-size: 19px;
+            line-height: 1.9;
+            color: var(--text-mid);
+            font-weight: 300;
+        }
+
+        .intro-divider {
+            width: 48px;
+            height: 2px;
+            background: var(--blue-pale);
+            margin: 56px auto;
+            opacity: 0.5;
+        }
+
+        .intro-points {
+            display: flex;
+            justify-content: center;
+            gap: 56px;
+        }
+
+        .intro-point {
+            text-align: center;
+        }
+
+        .intro-point-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--blue-primary);
+            margin-bottom: 6px;
+        }
+
+        .intro-point-label {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* ==================== JOURNEY SECTION ==================== */
+        .journey {
+            padding: 120px 0 60px;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--blue-mid);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ==================== PHASES ==================== */
+        .phase {
+            margin-bottom: 40px;
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 28px;
+            padding: 0 8px;
+        }
+
+        .phase-number {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--blue-primary), var(--blue-mid));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 22px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .phase-info h3 {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .phase-info p {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        /* Module Cards */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .module-card {
+            background: var(--cream);
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.04);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .module-card:hover {
+            box-shadow: 0 8px 40px rgba(45, 74, 122, 0.08);
+            border-color: rgba(45, 74, 122, 0.1);
+        }
+
+        .module-card.active {
+            box-shadow: 0 8px 40px rgba(45, 74, 122, 0.1);
+            border-color: var(--blue-mid);
+        }
+
+        .module-top {
+            padding: 28px 32px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .module-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--blue-pale);
+            min-width: 48px;
+            text-align: center;
+        }
+
+        .module-info {
+            flex: 1;
+        }
+
+        .module-info h4 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .module-info .module-meta {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .module-hook {
+            font-size: 15px;
+            color: var(--blue-mid);
+            font-weight: 500;
+            max-width: 400px;
+        }
+
+        .module-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .module-toggle svg {
+            width: 18px;
+            height: 18px;
+            color: var(--blue-mid);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .module-card.active .module-toggle svg {
+            transform: rotate(180deg);
+        }
+
+        .module-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .module-card.active .module-detail {
+            max-height: 600px;
+        }
+
+        .module-detail-inner {
+            padding: 0 32px 28px;
+            padding-right: 100px;
+        }
+
+        .module-description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-mid);
+            margin-bottom: 20px;
+        }
+
+        .module-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .module-topic {
+            padding: 6px 16px;
+            background: var(--white);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--blue-mid);
+            border: 1px solid var(--glass-border-light);
+        }
+
+        /* ==================== CTA SECTION ==================== */
+        .cta-section {
+            padding: 120px 0;
+            background: linear-gradient(165deg, var(--blue-deep) 0%, var(--blue-primary) 50%, var(--blue-mid) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(139, 176, 223, 0.15), transparent 60%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .cta-content p {
+            font-size: 18px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 56px;
+            background: var(--white);
+            color: var(--blue-deep);
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 16px;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+        }
+
+        .cta-guarantee {
+            margin-top: 24px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            padding: 40px 0;
+            background: var(--blue-deep);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.3);
+            margin-bottom: 8px;
+        }
+
+        .footer p {
+            font-size: 13px;
+            color: rgba(255,255,255,0.15);
+        }
+
+        /* ==================== SCROLL ANIMATIONS ==================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 968px) {
+            .intro-points {
+                gap: 36px;
+            }
+            .module-detail-inner {
+                padding-right: 32px;
+            }
+            .module-top {
+                flex-wrap: wrap;
+            }
+            .module-hook {
+                max-width: 100%;
+                order: 4;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-logo {
+                font-size: 48px;
+            }
+            .intro-points {
+                flex-direction: column;
+                gap: 24px;
+            }
+            .section-header h2 {
+                font-size: 32px;
+            }
+            .phase-info h3 {
+                font-size: 22px;
+            }
+            .module-top {
+                padding: 20px;
+            }
+            .module-detail-inner {
+                padding: 0 20px 20px;
+            }
+            .module-num {
+                font-size: 24px;
+                min-width: 36px;
+            }
+            .module-info h4 {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+
+    <div class="hero-content">
+        <div class="hero-logo">nCode.</div>
+        <div class="hero-tagline-en">Build. Launch. Scale.</div>
+        <div class="hero-badge">ההכשרה הדיגיטלית להקמת SaaS רווחי</div>
+        <h1 class="hero-title">
+            מ-0 ל-SaaS רווחי.<br>
+            <span>מסלול מלא. בלי קיצורים.</span>
+        </h1>
+        <p class="hero-subtitle">
+            19 מודולים. 375+ שיעורים. מהרעיון הראשון ועד הלקוח המשלם הראשון.
+            הכשרה פרקטית שבנויה לתת לך את כל הכלים להקים עסק טכנולוגי — גם בלי רקע בתכנות.
+        </p>
+        <a href="#syllabus" class="hero-cta">
+            גלה את הסילבוס המלא
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </a>
+    </div>
+
+    <div class="hero-scroll">
+        <div class="hero-scroll-line"></div>
+    </div>
+</section>
+
+<!-- ==================== INTRO ==================== -->
+<section class="intro">
+    <div class="container">
+        <div class="intro-inner reveal">
+            <h2>מסלול שלם שלוקח אותך מ-<span>אפס</span><br>עד מוצר SaaS חי שמכניס כסף.</h2>
+            <p>
+                כל שיעור בנוי כך שתצא ממנו עם משימה בידיים.
+                <br>לא תיאוריה ריקה — עשייה שמובילה לתוצאות.
+            </p>
+            <div class="intro-divider"></div>
+            <div class="intro-points">
+                <div class="intro-point">
+                    <div class="intro-point-num">19</div>
+                    <div class="intro-point-label">מודולים</div>
+                </div>
+                <div class="intro-point">
+                    <div class="intro-point-num">375+</div>
+                    <div class="intro-point-label">שיעורים</div>
+                </div>
+                <div class="intro-point">
+                    <div class="intro-point-num">A-Z</div>
+                    <div class="intro-point-label">מהרעיון להכנסה</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== SYLLABUS ==================== -->
+<section class="journey" id="syllabus">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-label">הסילבוס המלא</div>
+            <h2>הדרך מרעיון ראשון<br>ללקוח משלם</h2>
+            <p>כל שלב בהכשרה בנוי על הקודם. לחצו על כל מודול כדי לגלות מה מחכה לכם בפנים.</p>
+        </div>
+
+        <!-- PHASE 1 -->
+        <div class="phase reveal">
+            <div class="phase-header">
+                <div class="phase-number">I</div>
+                <div class="phase-info">
+                    <h3>הבסיס — מיינדסט ותשתית</h3>
+                    <p>לפני שבונים עסק, בונים ראש של יזם</p>
+                </div>
+            </div>
+            <div class="modules-grid">
+
+                <!-- Module 1 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">01</div>
+                        <div class="module-info">
+                            <h4>מבוא להכשרה</h4>
+                            <div class="module-meta">4 פרקים • 12 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״לפני שרצים — לומדים לחשוב נכון״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                המודול שבונה את הבסיס לכל מה שיבוא אחריו. תלמדו איך לנהל זמן כמו יזם אמיתי, איך לבנות לעצמכם שגרת למידה אפקטיבית, ולמה 90% מהאנשים שקונים קורסים לא מגיעים לתוצאות — ואיך אתם תהיו בעשירון האחר. כולל שיטת ניהול הזמן של בן, מיומנויות למידה שיחסכו לכם חודשים, ופירמידת ההצלחה שתשנה לכם את הראש.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">ניהול זמן</span>
+                                <span class="module-topic">מיומנויות למידה</span>
+                                <span class="module-topic">מיינדסט יזמי</span>
+                                <span class="module-topic">פירמידת ההצלחה</span>
+                                <span class="module-topic">Monday</span>
+                                <span class="module-topic">Google Calendar</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">02</div>
+                        <div class="module-info">
+                            <h4>מבוא ל-SaaS</h4>
+                            <div class="module-meta">4 פרקים • 14 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״להבין את המשחק לפני שנכנסים למגרש״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                מה הופך SaaS למודל העסקי הכי חזק שקיים? למה החברות הגדולות בעולם בנויות על מנויים חודשיים? ומה ההבדל בין בוטסטראפ לסטארטאפ קלאסי? תבינו את המודל הרזה (Lean Startup), תכירו את היתרונות והחסרונות של SaaS, ותקבלו תמונה מלאה על השוק — כולל מנטורים, אקסלרטורים, ומהו Product-Market Fit.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">מודל SaaS</span>
+                                <span class="module-topic">Lean Startup</span>
+                                <span class="module-topic">Bootstrap vs Startup</span>
+                                <span class="module-topic">Product-Market Fit</span>
+                                <span class="module-topic">מנטורים</span>
+                                <span class="module-topic">No-Code</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PHASE 2 -->
+        <div class="phase reveal">
+            <div class="phase-header">
+                <div class="phase-number">II</div>
+                <div class="phase-info">
+                    <h3>מציאת הרעיון — רעיונאות וולידציה</h3>
+                    <p>איך מוצאים רעיון שווה ומוודאים שאנשים ישלמו עליו</p>
+                </div>
+            </div>
+            <div class="modules-grid">
+
+                <!-- Module 3 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">03</div>
+                        <div class="module-info">
+                            <h4>רעיונאות ויציאה לדרך</h4>
+                            <div class="module-meta">8 פרקים • 32 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״הרעיון הנכון נמצא — רק צריך לדעת איפה לחפש״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                הרוב תוקעים כאן. ״אין לי רעיון״ — המשפט הכי נפוץ בעולם היזמות. במודול הזה תקבלו מסגרת שיטתית ליצירת רעיונות, סינון שלהם, ובחירת הרעיון שהכי מתאים לכם. תלמדו איך לחפש בעיות אמיתיות, איך לזהות נישות רווחיות, מתי כדאי לקחת שותף ומתי לא, ואיך בונים קהל עוד לפני שיש מוצר.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">שיטות רעיונאות</span>
+                                <span class="module-topic">סינון רעיונות</span>
+                                <span class="module-topic">שותפויות</span>
+                                <span class="module-topic">בניית קהל</span>
+                                <span class="module-topic">הפצה</span>
+                                <span class="module-topic">ניתוח מתחרים</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">04</div>
+                        <div class="module-info">
+                            <h4>ולידציה וחקר שוק</h4>
+                            <div class="module-meta">7 פרקים • 28 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״אל תבנו מוצר שאף אחד לא רוצה לקנות״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                לפני שמשקיעים חודשים בפיתוח — בודקים שיש ביקוש. תלמדו איך לבנות תוכנית עסקית קצרה ואפקטיבית, איך לעשות חקר שוק שחושף הזדמנויות, ואיך לבדוק את הרעיון שלכם עם שיווק גרילה — עוד לפני שקיים מוצר. כולל ולידציה טכנולוגית, איטרציות מהירות, ותהליך שמונע מכם לבזבז זמן על רעיון שלא עובד.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">תוכנית עסקית</span>
+                                <span class="module-topic">חקר שוק</span>
+                                <span class="module-topic">שיווק גרילה</span>
+                                <span class="module-topic">ולידציה טכנולוגית</span>
+                                <span class="module-topic">איטרציה</span>
+                                <span class="module-topic">מחקר לקוחות</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PHASE 3 -->
+        <div class="phase reveal">
+            <div class="phase-header">
+                <div class="phase-number">III</div>
+                <div class="phase-info">
+                    <h3>בניית המוצר — מאיפיון לאפליקציה חיה</h3>
+                    <p>שלושה מודולים שהופכים רעיון למוצר שעובד</p>
+                </div>
+            </div>
+            <div class="modules-grid">
+
+                <!-- Module 5 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">05</div>
+                        <div class="module-info">
+                            <h4>איפיון MVP</h4>
+                            <div class="module-meta">2 פרקים • 10 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״לדעת בדיוק מה לבנות — ומה לא״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                ה-MVP הוא הגרסה הקטנה ביותר של המוצר שלכם שאנשים מוכנים לשלם עליה. תלמדו מה נכנס ומה נשאר בחוץ, איך כותבים PRD (מסמך דרישות מוצר) שהופך פיתוח ליעיל פי 10, ואיך לחשוב כמו מנהל מוצר — גם אם מעולם לא הייתם אחד.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">הגדרת MVP</span>
+                                <span class="module-topic">כתיבת PRD</span>
+                                <span class="module-topic">סדר עדיפויות</span>
+                                <span class="module-topic">חשיבת מוצר</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 6 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">06</div>
+                        <div class="module-info">
+                            <h4>פיתוח עם Lovable</h4>
+                            <div class="module-meta">5 פרקים • 24 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״מרעיון לאפליקציה עובדת — בלי שורת קוד״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                Lovable הוא אחד הכלים הכי חזקים בעולם ה-No-Code. תלמדו איך לבנות איתו אפליקציה מלאה מאפס, לחבר APIs, לשלב סליקה (Stripe ודומים), ולהגיע להשקה — כל זה בעזרת כלי AI מתקדם שעושה את העבודה הכבדה בשבילכם.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">Lovable</span>
+                                <span class="module-topic">Lovable Cloud</span>
+                                <span class="module-topic">חיבור API</span>
+                                <span class="module-topic">סליקה</span>
+                                <span class="module-topic">השקה</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 7 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">07</div>
+                        <div class="module-info">
+                            <h4>פיתוח עם Anti Gravity</h4>
+                            <div class="module-meta">9 פרקים • 42 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״הכלים של המקצוענים — נגישים גם לכם״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                המודול הכי עמוס — וגם הכי שווה. תלמדו Git, Claude Code, MCP, פיתוח מובייל, Vercel, PostHog לאנליטיקס, וכל מה שצריך כדי לבנות מוצר ברמה מקצועית. כולל מיגרציה מ-Lovable, תהליכי פיתוח מתקדמים, ודשבורד אדמין. זה המודול שהופך אתכם ממתחילים ליזמים טכנולוגיים אמיתיים.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">Git</span>
+                                <span class="module-topic">Anti Gravity</span>
+                                <span class="module-topic">Claude Code</span>
+                                <span class="module-topic">MCP</span>
+                                <span class="module-topic">Vercel</span>
+                                <span class="module-topic">PostHog</span>
+                                <span class="module-topic">מובייל</span>
+                                <span class="module-topic">אדמין דשבורד</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PHASE 4 -->
+        <div class="phase reveal">
+            <div class="phase-header">
+                <div class="phase-number">IV</div>
+                <div class="phase-info">
+                    <h3>מהמוצר לשוק — תמחור, השקה ומיתוג</h3>
+                    <p>איך יוצאים לעולם ומתחילים למכור</p>
+                </div>
+            </div>
+            <div class="modules-grid">
+
+                <!-- Module 8 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">08</div>
+                        <div class="module-info">
+                            <h4>תמחור והצעה</h4>
+                            <div class="module-meta">3 פרקים • 14 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״הצעה שמרגיש טיפש לסרב לה״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                המחיר שלכם הוא לא מספר — הוא הודעה לשוק. תלמדו את השיטה לבנות הצעה ייחודית (USP) שמוציאה אתכם מתחרות מול כולם, איך לתמחר חבילות, מתי ואיך לעשות A/B Testing על מחירים, ומה זה אפסיילים שמכפילים הכנסות. כולל מבנים נפוצים, מנופי תמחור, ואסטרטגיית יציאה לשוק.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">USP</span>
+                                <span class="module-topic">תמחור חבילות</span>
+                                <span class="module-topic">A/B Testing</span>
+                                <span class="module-topic">אפסיילים</span>
+                                <span class="module-topic">Go-To-Market</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 9 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">09</div>
+                        <div class="module-info">
+                            <h4>השקה, מיתוג ואסטרטגיה</h4>
+                            <div class="module-meta">5 פרקים • 18 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״השקה מוצלחת היא לא מזל — היא תכנון״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                רגע ההשקה הוא הרגע שהכל מתחבר. תלמדו איך להכניס טסטרים נכון, איך לבנות קהילת וואטסאפ סביב המוצר, מה ההבדל בין אסטרטגיה לטקטיקה, איך בונים מותג שמרגיש Premium, ואיך לשמר לקוחות אחרי שכבר סגרתם אותם. שירות ושימור לקוחות — הנשק הסודי של עסקים שגדלים.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">טסטרים</span>
+                                <span class="module-topic">אסטרטגיה</span>
+                                <span class="module-topic">מיתוג</span>
+                                <span class="module-topic">השקה</span>
+                                <span class="module-topic">שימור לקוחות</span>
+                                <span class="module-topic">קהילות</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PHASE 5 -->
+        <div class="phase reveal">
+            <div class="phase-header">
+                <div class="phase-number">V</div>
+                <div class="phase-info">
+                    <h3>שליטה בשיווק — מהקופי ועד הקמפיין</h3>
+                    <p>כל מה שצריך כדי להביא לקוחות באופן עקבי</p>
+                </div>
+            </div>
+            <div class="modules-grid">
+
+                <!-- Module 10 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">10</div>
+                        <div class="module-info">
+                            <h4>קופירייט ודפי נחיתה</h4>
+                            <div class="module-meta">3+ פרקים • 20 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״המילים שהופכות מבקרים ללקוחות משלמים״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                דף נחיתה טוב שווה יותר מעשרה קמפיינים ממומנים. תלמדו את עקרונות הקופירייטינג שמוכר, איך לבנות דפי נחיתה שממירים, ואיך לכתוב מסרים שיווקיים שפוגעים בנקודות הכאב של הלקוח — ומציעים את הפתרון שלכם כתשובה היחידה.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">קופירייטינג</span>
+                                <span class="module-topic">דפי נחיתה</span>
+                                <span class="module-topic">מסרים שיווקיים</span>
+                                <span class="module-topic">המרות</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 11 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">11</div>
+                        <div class="module-info">
+                            <h4>עולם השיווק</h4>
+                            <div class="module-meta">6 פרקים • 28 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״להבין את כללי המשחק — ולשחק אותו טוב״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                מודול שלם שמכסה את כל מה שצריך לדעת על שיווק דיגיטלי — מהצעת הערך ועד בניית משפכים שיווקיים. תבינו איך עובד שיווק דיגיטלי ברמה העמוקה, מה ההבדל בין אורגני לממומן, ואיך בונים מערכת שיווק שעובדת גם כשאתם ישנים.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">הצעת ערך</span>
+                                <span class="module-topic">משפכים</span>
+                                <span class="module-topic">שיווק דיגיטלי</span>
+                                <span class="module-topic">אורגני vs ממומן</span>
+                                <span class="module-topic">קהלי יעד</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 12 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">12</div>
+                        <div class="module-info">
+                            <h4>פסיכולוגיה צרכנית ושיווקית</h4>
+                            <div class="module-meta">2 פרקים • 8 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״להבין למה אנשים קונים — ולמה לא״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                המודול שנותן לכם יתרון לא הוגן. תלמדו את העקרונות הפסיכולוגיים שמניעים החלטות רכישה — מאפקט העיגון ועד עקרון המחסור. ברגע שתבינו למה אנשים קונים, תוכלו לבנות הצעות, דפי מכירה וקמפיינים שמדברים ישירות ל-"כפתור הקנייה" במוח של הלקוח.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">פסיכולוגיה צרכנית</span>
+                                <span class="module-topic">עקרונות שכנוע</span>
+                                <span class="module-topic">טריגרים רגשיים</span>
+                                <span class="module-topic">החלטות רכישה</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 13 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">13</div>
+                        <div class="module-info">
+                            <h4>קמפיינים ממומנים</h4>
+                            <div class="module-meta">10 פרקים • 46 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״להפוך שקל לשניים — שוב ושוב ושוב״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                המודול הכי מעשי בהכשרה. מהקמת חשבון פרסום ועד אופטימיזציה של קמפיין חי. תלמדו את כל עולם ה-Meta Ads — ביזנס מנג׳ר, פיקסל, קהלים, ניהול קמפיינים, ואופטימיזציה. כולל קייס סטאדי מלא שבו בונים קמפיין מאפס — צעד אחרי צעד.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">Meta Ads</span>
+                                <span class="module-topic">Business Manager</span>
+                                <span class="module-topic">פיקסל ו-API</span>
+                                <span class="module-topic">קהלים</span>
+                                <span class="module-topic">אופטימיזציה</span>
+                                <span class="module-topic">קייס סטאדי</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- PHASE 6 -->
+        <div class="phase reveal">
+            <div class="phase-header">
+                <div class="phase-number">VI</div>
+                <div class="phase-info">
+                    <h3>צמיחה ותפעול — ניהול עסק אמיתי</h3>
+                    <p>הידע שהופך מוצר חי לעסק יציב ורווחי</p>
+                </div>
+            </div>
+            <div class="modules-grid">
+
+                <!-- Module 14 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">14</div>
+                        <div class="module-info">
+                            <h4>Product — ניהול מוצר</h4>
+                            <div class="module-meta">2 פרקים • 10 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״לבנות מוצר שלקוחות מתים עליו״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                אחרי שהשקתם — מתחיל המשחק האמיתי. תלמדו איך לנהל מוצר חי, איך לקבל פידבק מלקוחות ולהפוך אותו לפיצ'רים, ואיך לבנות Road Map שמוביל לצמיחה. מודול שהופך אתכם ממי שבנה מוצר — למי שמנהל עסק.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">ניהול מוצר</span>
+                                <span class="module-topic">Road Map</span>
+                                <span class="module-topic">פידבק לקוחות</span>
+                                <span class="module-topic">פיצ'רים</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 15 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">15</div>
+                        <div class="module-info">
+                            <h4>פיננסים בעסק שלך</h4>
+                            <div class="module-meta">4 פרקים • 16 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״לדעת את המספרים — ולשלוט בהם״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                כסף נכנס — אבל כמה באמת נשאר? תלמדו את הבסיס הפיננסי שכל יזם חייב לדעת — מונחים, מדדים, תזרים מזומנים, ואיך לקרוא את המספרים של העסק שלכם. בלי זה, אתם עיוורים. עם זה — אתם בשליטה מלאה.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">מונחים פיננסיים</span>
+                                <span class="module-topic">תזרים מזומנים</span>
+                                <span class="module-topic">מדדים</span>
+                                <span class="module-topic">ניהול כספים</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 16 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">16</div>
+                        <div class="module-info">
+                            <h4>משפטים וחוק</h4>
+                            <div class="module-meta">2 פרקים • 8 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״להגן על העסק שבניתם — חוקית״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                הצד שאף אחד לא מלמד — וכולם צריכים. תנאי שימוש, מדיניות פרטיות, הסכמי שותפות, ועוד. המודול הזה חוסך לכם כאב ראש (וכסף) שיכול לעלות לכם ביוקר בהמשך. כולל שיעור מיוחד עם עו״ד שמתמחה בטכנולוגיה.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">תנאי שימוש</span>
+                                <span class="module-topic">פרטיות</span>
+                                <span class="module-topic">הסכמים</span>
+                                <span class="module-topic">הגנה משפטית</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 17 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">17</div>
+                        <div class="module-info">
+                            <h4>בונוס — מרצה אורח</h4>
+                            <div class="module-meta">פרק בונוס</div>
+                        </div>
+                        <div class="module-hook">״נקודת מבט חדשה מיזם שעשה את זה״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                שיעור בונוס עם מרצה אורח שחולק את התהליך האמיתי שלו — הטעויות, ההצלחות, והתובנות שאי אפשר ללמוד מספרים. נקודת מבט נוספת שמרחיבה לכם את הראש ונותנת השראה מעשית.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">מרצה אורח</span>
+                                <span class="module-topic">סיפור אישי</span>
+                                <span class="module-topic">תובנות מהשטח</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Module 18 -->
+                <div class="module-card" onclick="toggleModule(this)">
+                    <div class="module-top">
+                        <div class="module-num">18</div>
+                        <div class="module-info">
+                            <h4>רשימות תפוצה ודיוור</h4>
+                            <div class="module-meta">3 פרקים • 16 שיעורים</div>
+                        </div>
+                        <div class="module-hook">״הערוץ שאף אחד לא יכול לקחת ממכם״</div>
+                        <div class="module-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                        </div>
+                    </div>
+                    <div class="module-detail">
+                        <div class="module-detail-inner">
+                            <p class="module-description">
+                                רשימת תפוצה היא הנכס הכי חזק של כל עסק דיגיטלי. תלמדו איך לבנות רשימה, איך לכתוב מיילים שנפתחים (ונקראים), ואיך לעבוד עם מערכת רב-מסר. כולל הדרכה מעשית מלאה על בניית אוטומציות דיוור שמוכרות בשבילכם — 24/7.
+                            </p>
+                            <div class="module-topics">
+                                <span class="module-topic">רשימות תפוצה</span>
+                                <span class="module-topic">דיוור</span>
+                                <span class="module-topic">רב-מסר</span>
+                                <span class="module-topic">אוטומציות</span>
+                                <span class="module-topic">Email Marketing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content reveal">
+            <h2>מוכנים להקים את ה-SaaS<br>הראשון שלכם?</h2>
+            <p>
+                19 מודולים. 375+ שיעורים. מנטורים צמודים. קהילה פעילה.
+                <br>כל מה שצריך כדי לצאת לדרך — במקום אחד.
+            </p>
+            <a href="#" class="cta-btn">
+                אני רוצה להצטרף
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </a>
+            <div class="cta-guarantee">ליווי צמוד לאורך כל הדרך • גישה מלאה לקהילה ולמנטורים</div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+    <div class="footer-logo">nCode.</div>
+    <p>Build. Launch. Scale.</p>
+</footer>
+
+<script>
+    // Module toggle
+    function toggleModule(card) {
+        const wasActive = card.classList.contains('active');
+
+        // Close all in same grid
+        const grid = card.closest('.modules-grid');
+        grid.querySelectorAll('.module-card').forEach(c => c.classList.remove('active'));
+
+        if (!wasActive) {
+            card.classList.add('active');
+        }
+    }
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
