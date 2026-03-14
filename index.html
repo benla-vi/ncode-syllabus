@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>nCode | Vibe Coding — מ-0 ל-SaaS רווחי</title>
+    <meta name="description" content="ההכשרה הדיגיטלית המלאה לבניית עסק SaaS רווחי. 19 מודולים, 375+ שיעורים, מנטורים צמודים וקהילה פעילה — מהרעיון הראשון ועד הלקוח המשלם.">
+    <!-- Open Graph — social sharing preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="nCode | Vibe Coding — מ-0 ל-SaaS רווחי">
+    <meta property="og:description" content="19 מודולים. 375+ שיעורים. 50+ שעות תוכן. מהרעיון הראשון ועד הלקוח המשלם — גם בלי רקע בתכנות.">
+    <meta property="og:image" content="images/site/og-cover.jpg">
+    <meta property="og:locale" content="he_IL">
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="nCode | Vibe Coding — מ-0 ל-SaaS רווחי">
+    <meta name="twitter:description" content="19 מודולים. 375+ שיעורים. 50+ שעות תוכן. מהרעיון הראשון ועד הלקוח המשלם — גם בלי רקע בתכנות.">
+    <meta name="twitter:image" content="images/site/og-cover.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -65,6 +77,25 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             cursor: none;
+        }
+
+        /* ==================== ACCESSIBILITY ==================== */
+        /* Show native cursor for users who prefer reduced motion / assistive tech */
+        @media (prefers-reduced-motion: reduce) {
+            body { cursor: auto; }
+            .cursor-dot, .cursor-ring { display: none !important; }
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+
+        /* Keyboard focus ring — only visible when tabbing, not on click */
+        :focus-visible {
+            outline: 2px solid var(--accent-purple);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        :focus:not(:focus-visible) {
+            outline: none;
         }
 
         .container {
@@ -685,7 +716,7 @@
 
         .phase-subtitle {
             font-size: 14px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
         }
 
         /* Journey cards */
@@ -742,7 +773,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             min-width: 42px;
-            opacity: 0.5;
+            opacity: 0.85;
             transition: opacity 0.3s ease;
         }
 
@@ -763,7 +794,7 @@
 
         .module-meta {
             font-size: 12px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             margin-bottom: 8px;
         }
 
@@ -771,8 +802,50 @@
             font-size: 14px;
             color: var(--accent-purple);
             font-weight: 400;
-            opacity: 0.7;
+            opacity: 0.9;
             font-style: italic;
+        }
+
+        .module-instructors {
+            display: flex;
+            gap: 14px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .module-instructor {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .module-instructor-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .module-instructor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .module-instructor-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
         }
 
         .module-toggle {
@@ -917,6 +990,137 @@
             width: 24px;
             height: 24px;
             color: var(--accent-purple);
+        }
+
+        /* ==================== INSTRUCTORS GRID ==================== */
+        .instructors-section {
+            margin-top: 48px;
+            padding-top: 40px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .instructors-header {
+            text-align: center;
+            margin-bottom: 32px;
+            direction: rtl;
+        }
+
+        .instructors-header h3 {
+            font-family: 'Heebo', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .instructors-header p {
+            font-family: 'Heebo', sans-serif;
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .instructors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px;
+            direction: rtl;
+        }
+
+        .instructor-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 24px 16px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .instructor-role {
+            flex: 1;
+        }
+
+        .instructor-card:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--glow-purple);
+            transform: translateY(-3px);
+        }
+
+        .instructor-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .instructor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            border-radius: 50%;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .instructor-name {
+            font-family: 'Heebo', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .instructor-role {
+            font-family: 'Heebo', sans-serif;
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .instructor-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .instructor-badge {
+            font-family: 'Heebo', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(139, 92, 246, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #c4b5fd;
+            white-space: nowrap;
+            line-height: 1.4;
+        }
+
+        .instructor-badge.gold {
+            background: rgba(234, 179, 8, 0.12);
+            border-color: rgba(234, 179, 8, 0.3);
+            color: #fcd34d;
         }
 
         /* ==================== CTA SECTION ==================== */
@@ -1086,6 +1290,273 @@
             opacity: 0.5;
         }
 
+        /* ==================== SUCCESS STORIES ==================== */
+        .success-section {
+            padding: 80px 0 60px;
+            background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+        }
+
+        .success-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, var(--accent-purple), transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .success-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+            direction: rtl;
+        }
+
+        .success-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 36px 28px 28px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .success-card:hover {
+            background: var(--glass-bg-hover);
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--glow-purple);
+            transform: translateY(-4px);
+        }
+
+        .success-visual {
+            font-family: 'Inter', sans-serif;
+            font-size: 44px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            line-height: 1;
+            direction: ltr;
+            text-align: center;
+        }
+
+        .success-card-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--accent-purple);
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .success-quote {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            flex: 1;
+            text-align: center;
+        }
+
+        .success-quote strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .success-attribution {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* ==================== TRANSFORMATION ==================== */
+        .transform-section {
+            padding: 80px 0 60px;
+            background: var(--bg-dark);
+            position: relative;
+        }
+
+        .transform-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+        }
+
+        .transform-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 24px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+            align-items: center;
+            direction: rtl;
+        }
+
+        .transform-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            backdrop-filter: blur(12px);
+            transition: all 0.4s var(--transition-smooth);
+        }
+
+        .transform-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .transform-before {
+            border-color: rgba(236,72,153,0.12);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .transform-before:hover {
+            box-shadow: 0 0 30px rgba(236,72,153,0.1);
+        }
+
+        .transform-after {
+            border-color: rgba(6,182,212,0.2);
+            background: rgba(6,182,212,0.02);
+            box-shadow: 0 0 40px rgba(6,182,212,0.05);
+        }
+
+        .transform-after:hover {
+            box-shadow: 0 0 50px rgba(6,182,212,0.15);
+        }
+
+        .transform-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .transform-before .transform-title { color: var(--text-muted); }
+        .transform-after .transform-title { color: var(--accent-cyan); }
+
+        .transform-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .transform-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .transform-before .transform-list li { color: var(--text-muted); }
+        .transform-after .transform-list li { color: var(--text-secondary); }
+
+        .transform-icon {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .transform-before .transform-icon {
+            background: rgba(236,72,153,0.08);
+            border: 1px solid rgba(236,72,153,0.15);
+            color: var(--accent-pink);
+            opacity: 0.6;
+        }
+
+        .transform-after .transform-icon {
+            background: rgba(6,182,212,0.1);
+            border: 1px solid rgba(6,182,212,0.2);
+            color: var(--accent-cyan);
+        }
+
+        .transform-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .transform-arrow-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple), var(--accent-cyan));
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .transform-arrow-line::after {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+            width: 10px;
+            height: 10px;
+            border-left: 2px solid var(--accent-cyan);
+            border-bottom: 2px solid var(--accent-cyan);
+        }
+
+        .transform-arrow-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-purple);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .transform-bottom-text {
+            text-align: center;
+            margin-top: 36px;
+            font-size: 17px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         /* ==================== REVEAL ANIMATIONS ==================== */
         .reveal {
             opacity: 0;
@@ -1140,6 +1611,38 @@
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
+
+            .instructors-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .success-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .transform-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .transform-arrow {
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .transform-arrow-line {
+                width: 2px;
+                height: 40px;
+                background: linear-gradient(180deg, var(--accent-pink), var(--accent-purple), var(--accent-cyan));
+            }
+
+            .transform-arrow-line::after {
+                left: 50%;
+                top: auto;
+                bottom: -6px;
+                transform: translateX(-50%) rotate(-45deg);
+            }
         }
 
         @media (max-width: 640px) {
@@ -1187,6 +1690,64 @@
 
             .journey-card, .hero-cta, .cta-btn {
                 cursor: auto;
+            }
+
+            .instructors-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .instructor-card {
+                padding: 18px 12px;
+            }
+
+            .instructor-avatar {
+                width: 56px;
+                height: 56px;
+                font-size: 16px;
+            }
+
+            .instructor-name {
+                font-size: 14px;
+            }
+
+            .instructor-role {
+                font-size: 12px;
+            }
+
+            .instructor-badges {
+                gap: 4px;
+            }
+
+            .instructor-badge {
+                font-size: 10px;
+                padding: 2px 8px;
+            }
+
+            .module-instructors {
+                gap: 10px;
+            }
+
+            .module-instructor-avatar {
+                width: 26px;
+                height: 26px;
+                font-size: 10px;
+            }
+
+            .module-instructor-name {
+                font-size: 12px;
+            }
+
+            .success-visual {
+                font-size: 36px;
+            }
+
+            .success-card {
+                padding: 28px 20px 24px;
+            }
+
+            .transform-title {
+                font-size: 20px;
             }
         }
 
@@ -1304,7 +1865,169 @@
                 <p>יזמים ואנשי מקצוע שמלמדים מניסיון אישי — לא מתוך ספר</p>
             </div>
         </div>
-        <!-- TODO: Instructor headshots will be added here -->
+        <div class="instructors-section">
+            <div class="instructors-header reveal">
+                <h3>נבחרת המרצים והיזמים</h3>
+                <p>ההכשרה וההרצאות המצולמות נבנו ומונחות על-ידי נבחרת המרצים והיזמים המובילים בתחומם בישראל. כל אחד מהם מביא ניסיון מוכח, תוצאות מהשטח וערך מעשי — לא תיאוריה.</p>
+            </div>
+            <div class="instructors-grid">
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/ben-lavia-new.jpg" alt="בן לביא"></div>
+                    <div class="instructor-name">בן לביא</div>
+                    <div class="instructor-role">ייסד ומכר את Kaps.co.il ואת Pers.co.il, מייסד 4 תוכנות נוספות, ויוצר ״פודקאסט הקול״ עם 5 מיליון האזנות</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge gold">2 אקזיטים</span>
+                        <span class="instructor-badge">5M+ האזנות</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/eran-galperin.jpg" alt="ערן גלפרין"></div>
+                    <div class="instructor-name">ערן גלפרין</div>
+                    <div class="instructor-role">מייסד Gymdesk — בוטסטרפ את החברה לבד ומכר אותה באקזיט של $32.5M. כיום משקיע ומנטור ליזמי SaaS</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge gold">אקזיט $32.5M</span>
+                        <span class="instructor-badge">בוטסטרפ ללא משקיעים</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/asaf-stern.png" alt="אסף שטרן"></div>
+                    <div class="instructor-name">אסף שטרן</div>
+                    <div class="instructor-role">המייסד של ״שלח מסר״ — פלטפורמת SaaS ישראלית לדיוור, SMS ודפי נחיתה שמשרתת אלפי עסקים בארץ ובעולם</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge">50,000+ משתמשים</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img src="images/instructors/yehuda-niv.jpg" alt="יהודה ניב"></div>
+                    <div class="instructor-name">יהודה ניב</div>
+                    <div class="instructor-role">מייסד Spines ובית ההוצאה הגדול בישראל — מהפכת ה-AI בעולם ההוצאה לאור</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge gold">גייס $22.5M</span>
+                        <span class="instructor-badge">8,000+ ספרים</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img src="images/instructors/yonatan-atias.jpg" alt="יונתן אטיאס"></div>
+                    <div class="instructor-name">יונתן אטיאס</div>
+                    <div class="instructor-role">יזם, משקיע ומייסד Sayollo — פלטפורמת פרסום ורכישות בתוך משחקי מובייל</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge gold">גייס $6M</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img src="images/instructors/idan-waller.webp" alt="עידן וולר"></div>
+                    <div class="instructor-name">עידן וולר</div>
+                    <div class="instructor-role">מייסד-שותף ב-BlueThrone — חברה שרוכשת ומגדילה אפליקציות מובייל, עם 30+ אפליקציות ו-35 עובדים ב-11 מדינות</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge gold">$20M+ מחזור שנתי</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img src="images/instructors/shalev-ifrah.jpg" alt="שלו יפרח"></div>
+                    <div class="instructor-name">שלו יפרח</div>
+                    <div class="instructor-role">יזם דיגיטלי ומייסד מכללת ריצ׳ר ושותף מייסד MegaPixel — SaaS בוטסטראפ בעולם המכירות</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge">10,000+ סטודנטים</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/lior-azulai.jpg" alt="ליאור אזולאי" style="transform: scale(1.2);"></div>
+                    <div class="instructor-name">ליאור אזולאי</div>
+                    <div class="instructor-role">יזם סדרתי בתחום הטכנולוגיה וה-SaaS</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge gold">$100K+ במנויים בחודש</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/daniel-goldman.jpg" alt="דניאל גולדמן"></div>
+                    <div class="instructor-name">דניאל גולדמן</div>
+                    <div class="instructor-role">שותף מייסד ב-Tadam — פלטפורמת AI שמייצרת קריאייטיבים ומודעות שיווקיות תוך 15 שניות</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge">5 ספרות במנויים חודשיים</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/eilon-grouper.png" alt="אילון גרופר"></div>
+                    <div class="instructor-name">אילון גרופר</div>
+                    <div class="instructor-role">יוצר תוכן AI מוביל בישראל עם מיליוני צפיות, מרצה ומנחה סדנאות AI לצד Google ו-Meta</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge">90K+ עוקבים</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/naor-shuan.jpg" alt="נאור שוען" style="object-position: center 15%;"></div>
+                    <div class="instructor-name">נאור שוען</div>
+                    <div class="instructor-role">יזם איקומרס שבנה מותג עם מעל $1M במכירות כבר בגיל 17, ומייסד מספר מותגי איקומרס וסאאס</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge gold">$1M+ בגיל 17</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/eilon-levi.jpg" alt="אילון לוי"></div>
+                    <div class="instructor-name">אילון לוי</div>
+                    <div class="instructor-role">שגריר רשמי של Bubble העולמית ומפתח נו-קוד מהבולטים בארץ</div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img src="images/instructors/oded-bedihi.jpg" alt="עודד בדיחי"></div>
+                    <div class="instructor-name">עודד בדיחי</div>
+                    <div class="instructor-role">מייסד סמארטלידס — סוכנות שיווק שייצרה ללקוחותיה הכנסות של 30M+ ₪ עם תשואה ממוצעת של 7x על פרסום</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge">ניהל תקציבים ₪4M+</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/baruch-hadad.jpg" alt="ברוך חדד"></div>
+                    <div class="instructor-name">ברוך חדד</div>
+                    <div class="instructor-role">מייסד ומנכ״ל Baruch Digital — סוכנות קמפיינים דיגיטליים מהמובילות בישראל</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge gold">קמפיינים בעשרות מיליוני ₪</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/ariel-shoshan.jpg" alt="אריאל שושן" style="transform: scale(1.3); transform-origin: center 15%;"></div>
+                    <div class="instructor-name">אריאל שושן</div>
+                    <div class="instructor-role">עו״ד המתמחה בדיני סייבר, פרטיות וקניין רוחני דיגיטלי, בוגר אוניברסיטת תל אביב בשיתוף UC Berkeley</div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/niv-israeli.jpg" alt="ניב ישראלי"></div>
+                    <div class="instructor-name">ניב ישראלי</div>
+                    <div class="instructor-role">מייסד סקייל רווחי, וקופירייטר מהמובילים בארץ</div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/david-haimi.jpg" alt="דוד אליהו חיימי"></div>
+                    <div class="instructor-name">דוד אליהו חיימי</div>
+                    <div class="instructor-role">מנכ״ל Infinity Finance — ליווי פיננסי מקצה לקצה ליזמים, ניהול נכסים של מעל מיליארד ₪</div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/zohar-vaanunu.jpg" alt="זוהר וענונו"></div>
+                    <div class="instructor-name">זוהר וענונו</div>
+                    <div class="instructor-role">מעורך וידאו ליזם SaaS במשרה מלאה</div>
+                    <div class="instructor-badges">
+                        <span class="instructor-badge gold">$10K+ במנויים</span>
+                    </div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/netanel-avrahami.jpg" alt="נתנאל אברהמי"></div>
+                    <div class="instructor-name">נתנאל אברהמי</div>
+                    <div class="instructor-role">ארכיטקט עסקי, מייסד 7 חברות וניהל תקציבים של מעל 100 מיליון ₪, מייסד HUMANS ו-HYPERZ</div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/gal-moran.jpg" alt="גל מורן"></div>
+                    <div class="instructor-name">גל מורן</div>
+                    <div class="instructor-role">שותף-מייסד ו-COO ב-Varolio — פלטפורמת AI לתקשורת ארגונית, בוגר הטכניון עם עשור בעולם הארגוני</div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/roi-sagron-linkedin.jpg" alt="רועי סגרון"></div>
+                    <div class="instructor-name">רועי סגרון</div>
+                    <div class="instructor-role">שותף-מייסד ו-CPO ב-Varolio — מומחה אסטרטגיית מוצר, לשעבר מנהל מוצר ב-Virgo ומנטור ליזמים צעירים</div>
+                </div>
+                <div class="instructor-card reveal">
+                    <div class="instructor-avatar"><img loading="lazy" src="images/instructors/shuval-zanzuri.jpg" alt="שובל זנזורי"></div>
+                    <div class="instructor-name">שובל זנזורי</div>
+                    <div class="instructor-role">מייסדת Shoval Studio — סטודיו למיתוג, עיצוב גרפי ובניית אתרים ב-Shopify ו-WordPress</div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -1372,6 +2095,9 @@
                                 <div class="module-num">01</div>
                                 <div class="module-info">
                                     <h4>מבוא להכשרה</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/ben-lavia-new.jpg" alt="בן לביא"></div><span class="module-instructor-name">בן לביא</span></div>
+                                    </div>
                                     <div class="module-meta">4 פרקים • 12 שיעורים</div>
                                     <div class="module-hook">״לפני שרצים — לומדים לחשוב נכון״</div>
                                 </div>
@@ -1399,6 +2125,10 @@
                                 <div class="module-num">02</div>
                                 <div class="module-info">
                                     <h4>מבוא ל-SaaS</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/ben-lavia-new.jpg" alt="בן לביא"></div><span class="module-instructor-name">בן לביא</span></div>
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/eran-galperin.jpg" alt="ערן גלפרין"></div><span class="module-instructor-name">ערן גלפרין</span></div>
+                                    </div>
                                     <div class="module-meta">4 פרקים • 14 שיעורים</div>
                                     <div class="module-hook">״להבין את המשחק לפני שנכנסים למגרש״</div>
                                 </div>
@@ -1438,6 +2168,11 @@
                                 <div class="module-num">03</div>
                                 <div class="module-info">
                                     <h4>רעיונאות ויציאה לדרך</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/ben-lavia-new.jpg" alt="בן לביא"></div><span class="module-instructor-name">בן לביא</span></div>
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/eran-galperin.jpg" alt="ערן גלפרין"></div><span class="module-instructor-name">ערן גלפרין</span></div>
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/lior-azulai.jpg" alt="ליאור אזולאי" style="transform: scale(1.2);"></div><span class="module-instructor-name">ליאור אזולאי</span></div>
+                                    </div>
                                     <div class="module-meta">8 פרקים • 32 שיעורים</div>
                                     <div class="module-hook">״הרעיון הנכון נמצא — רק צריך לדעת איפה לחפש״</div>
                                 </div>
@@ -1465,6 +2200,10 @@
                                 <div class="module-num">04</div>
                                 <div class="module-info">
                                     <h4>ולידציה וחקר שוק</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/ben-lavia-new.jpg" alt="בן לביא"></div><span class="module-instructor-name">בן לביא</span></div>
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/eran-galperin.jpg" alt="ערן גלפרין"></div><span class="module-instructor-name">ערן גלפרין</span></div>
+                                    </div>
                                     <div class="module-meta">7 פרקים • 28 שיעורים</div>
                                     <div class="module-hook">״אל תבנו מוצר שאף אחד לא רוצה לקנות״</div>
                                 </div>
@@ -1503,6 +2242,10 @@
                                 <div class="module-num">05</div>
                                 <div class="module-info">
                                     <h4>איפיון MVP</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/ben-lavia-new.jpg" alt="בן לביא"></div><span class="module-instructor-name">בן לביא</span></div>
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/daniel-goldman.jpg" alt="דניאל גולדמן"></div><span class="module-instructor-name">דניאל גולדמן</span></div>
+                                    </div>
                                     <div class="module-meta">2 פרקים • 10 שיעורים</div>
                                     <div class="module-hook">״לדעת בדיוק מה לבנות — ומה לא״</div>
                                 </div>
@@ -1528,6 +2271,9 @@
                                 <div class="module-num">06</div>
                                 <div class="module-info">
                                     <h4>פיתוח עם Lovable</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/daniel-goldman.jpg" alt="דניאל גולדמן"></div><span class="module-instructor-name">דניאל גולדמן</span></div>
+                                    </div>
                                     <div class="module-meta">5 פרקים • 24 שיעורים</div>
                                     <div class="module-hook">״מרעיון לאפליקציה עובדת — בלי שורת קוד״</div>
                                 </div>
@@ -1554,6 +2300,9 @@
                                 <div class="module-num">07</div>
                                 <div class="module-info">
                                     <h4>פיתוח עם Anti Gravity</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/daniel-goldman.jpg" alt="דניאל גולדמן"></div><span class="module-instructor-name">דניאל גולדמן</span></div>
+                                    </div>
                                     <div class="module-meta">9 פרקים • 42 שיעורים</div>
                                     <div class="module-hook">״הכלים של המקצוענים — נגישים גם לכם״</div>
                                 </div>
@@ -1594,6 +2343,9 @@
                                 <div class="module-num">08</div>
                                 <div class="module-info">
                                     <h4>תמחור והצעה</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/ben-lavia-new.jpg" alt="בן לביא"></div><span class="module-instructor-name">בן לביא</span></div>
+                                    </div>
                                     <div class="module-meta">3 פרקים • 14 שיעורים</div>
                                     <div class="module-hook">״הצעה שמרגיש טיפש לסרב לה״</div>
                                 </div>
@@ -1620,6 +2372,9 @@
                                 <div class="module-num">09</div>
                                 <div class="module-info">
                                     <h4>השקה, מיתוג ואסטרטגיה</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/ben-lavia-new.jpg" alt="בן לביא"></div><span class="module-instructor-name">בן לביא</span></div>
+                                    </div>
                                     <div class="module-meta">5 פרקים • 18 שיעורים</div>
                                     <div class="module-hook">״השקה מוצלחת היא לא מזל — היא תכנון״</div>
                                 </div>
@@ -1659,6 +2414,9 @@
                                 <div class="module-num">10</div>
                                 <div class="module-info">
                                     <h4>כתיבה שיווקית ודפי נחיתה</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/netanel-avrahami.jpg" alt="נתנאל אברהמי"></div><span class="module-instructor-name">נתנאל אברהמי</span></div>
+                                    </div>
                                     <div class="module-meta">3+ פרקים • 20 שיעורים</div>
                                     <div class="module-hook">״המילים שהופכות מבקרים ללקוחות משלמים״</div>
                                 </div>
@@ -1684,6 +2442,10 @@
                                 <div class="module-num">11</div>
                                 <div class="module-info">
                                     <h4>עולם השיווק</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img src="images/instructors/oded-bedihi.jpg" alt="עודד בדיחי"></div><span class="module-instructor-name">עודד בדיחי</span></div>
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/ben-lavia-new.jpg" alt="בן לביא"></div><span class="module-instructor-name">בן לביא</span></div>
+                                    </div>
                                     <div class="module-meta">6 פרקים • 28 שיעורים</div>
                                     <div class="module-hook">״להבין את כללי המשחק — ולשחק אותו טוב״</div>
                                 </div>
@@ -1693,7 +2455,7 @@
                             </div>
                             <div class="module-detail">
                                 <div class="module-detail-inner">
-                                    <p class="module-description">מודול שלם שמכסה את כל מה שצריך לדעת על שיווק דיגיטלי — מהצעת הערך ועד בניית משפכים שיווקיים. תבינו איך עובד שיווק אורגני וממומן, איך עובדים עם שותפויות (אפיליאציה) ומשפיענים, ואיך פונים ישירות לעסקים. כולל הרצאה מיוחדת של שלו יפרח על Baket עם הטבות בלעדיות לתלמידי nCode.</p>
+                                    <p class="module-description">מודול שלם שמכסה את כל מה שצריך לדעת על שיווק דיגיטלי — מהצעת הערך ועד בניית משפכים שיווקיים. תבינו איך עובד שיווק אורגני וממומן, איך עובדים עם שותפויות (אפיליאציה) ומשפיענים, ואיך פונים ישירות לעסקים. כולל הרצאה מיוחדת של שלו יפרח על Bucket עם הטבות בלעדיות לתלמידי nCode.</p>
                                     <div class="module-topics">
                                         <span class="module-topic">הצעת ערך</span>
                                         <span class="module-topic">משפכי שיווק</span>
@@ -1712,6 +2474,9 @@
                                 <div class="module-num">12</div>
                                 <div class="module-info">
                                     <h4>פסיכולוגיה צרכנית ושיווקית</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/niv-israeli.jpg" alt="ניב ישראלי"></div><span class="module-instructor-name">ניב ישראלי</span></div>
+                                    </div>
                                     <div class="module-meta">2 פרקים • 8 שיעורים</div>
                                     <div class="module-hook">״להבין למה אנשים קונים — ולמה לא״</div>
                                 </div>
@@ -1737,6 +2502,9 @@
                                 <div class="module-num">13</div>
                                 <div class="module-info">
                                     <h4>קמפיינים ממומנים</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/baruch-hadad.jpg" alt="ברוך חדד"></div><span class="module-instructor-name">ברוך חדד</span></div>
+                                    </div>
                                     <div class="module-meta">10 פרקים • 46 שיעורים</div>
                                     <div class="module-hook">״להפוך שקל לשניים — שוב ושוב ושוב״</div>
                                 </div>
@@ -1777,6 +2545,12 @@
                                 <div class="module-num">14</div>
                                 <div class="module-info">
                                     <h4>Product — ניהול מוצר</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/gal-moran.jpg" alt="גל מורן"></div><span class="module-instructor-name">גל מורן</span></div>
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/roi-sagron-linkedin.jpg" alt="רועי סגרון"></div><span class="module-instructor-name">רועי סגרון</span></div>
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/ben-lavia-new.jpg" alt="בן לביא"></div><span class="module-instructor-name">בן לביא</span></div>
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/daniel-goldman.jpg" alt="דניאל גולדמן"></div><span class="module-instructor-name">דניאל גולדמן</span></div>
+                                    </div>
                                     <div class="module-meta">2 פרקים • 10 שיעורים</div>
                                     <div class="module-hook">״לבנות מוצר שלקוחות מתים עליו״</div>
                                 </div>
@@ -1802,6 +2576,9 @@
                                 <div class="module-num">15</div>
                                 <div class="module-info">
                                     <h4>פיננסים בעסק שלך</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/david-haimi.jpg" alt="דוד אליהו חיימי"></div><span class="module-instructor-name">דוד אליהו חיימי</span></div>
+                                    </div>
                                     <div class="module-meta">4 פרקים • 16 שיעורים</div>
                                     <div class="module-hook">״לדעת את המספרים — ולשלוט בהם״</div>
                                 </div>
@@ -1827,6 +2604,9 @@
                                 <div class="module-num">16</div>
                                 <div class="module-info">
                                     <h4>משפטים וחוק</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/ariel-shoshan.jpg" alt="אריאל שושן" style="transform: scale(1.3); transform-origin: center 15%;"></div><span class="module-instructor-name">אריאל שושן</span></div>
+                                    </div>
                                     <div class="module-meta">2 פרקים • 8 שיעורים</div>
                                     <div class="module-hook">״להגן על העסק שבניתם — חוקית״</div>
                                 </div>
@@ -1853,6 +2633,9 @@
                                 <div class="module-num">17</div>
                                 <div class="module-info">
                                     <h4>בונוס — מרצה אורח</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/naor-shuan.jpg" alt="נאור שוען" style="object-position: center 15%;"></div><span class="module-instructor-name">נאור שוען</span></div>
+                                    </div>
                                     <div class="module-meta">פרק בונוס</div>
                                     <div class="module-hook">״נקודת מבט חדשה מיזם שעשה את זה״</div>
                                 </div>
@@ -1877,6 +2660,9 @@
                                 <div class="module-num">18</div>
                                 <div class="module-info">
                                     <h4>רשימות תפוצה ודיוור</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/asaf-stern.png" alt="אסף שטרן"></div><span class="module-instructor-name">אסף שטרן</span></div>
+                                    </div>
                                     <div class="module-meta">3 פרקים • 16 שיעורים</div>
                                     <div class="module-hook">״הערוץ שאף אחד לא יכול לקחת ממכם״</div>
                                 </div>
@@ -1903,6 +2689,9 @@
                                 <div class="module-num">19</div>
                                 <div class="module-info">
                                     <h4>סיכום ויציאה לדרך</h4>
+                                    <div class="module-instructors">
+                                        <div class="module-instructor"><div class="module-instructor-avatar"><img loading="lazy" src="images/instructors/ben-lavia-new.jpg" alt="בן לביא"></div><span class="module-instructor-name">בן לביא</span></div>
+                                    </div>
                                     <div class="module-meta">מודול סיום</div>
                                     <div class="module-hook">״הגעתם לכאן עם מוצר חי — עכשיו נוודא שהוא ממריא״</div>
                                 </div>
@@ -1932,6 +2721,107 @@
             </div>
 
         </div>
+    </div>
+</section>
+
+<!-- ==================== SUCCESS STORIES ==================== -->
+<section class="success-section">
+    <div class="success-blob"></div>
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-label">סיפורי הצלחה</div>
+            <h2>הם עשו את זה.<br>גם אתם יכולים.</h2>
+        </div>
+
+        <div class="success-grid">
+            <!-- Card 1 — Liran Shemesh -->
+            <div class="success-card reveal reveal-delay-1">
+                <div class="success-visual">500+</div>
+                <div class="success-card-name">לירן שמש — סטודנט nCode</div>
+                <div class="success-quote">
+                    "שמע, זאת <strong>הרגשה מטורפת</strong>. אני תמיד ידעתי והאמנתי שזה יצליח, אבל אף פעם לא עשיתי סכום כסף כזה ממשהו שאני בעצמי הקמתי — ולא מלעבוד בשביל מישהו."
+                </div>
+                <div class="success-attribution">500+ לקוחות משלמים</div>
+            </div>
+
+            <!-- Card 2 — Zohar Vanunu -->
+            <div class="success-card reveal reveal-delay-2">
+                <div class="success-visual">$7,854</div>
+                <div class="success-card-name">זוהר ואנונו — סטודנט nCode</div>
+                <div class="success-quote">
+                    מ-רעיון ראשוני <strong>למוצר SaaS חי עם לקוחות משלמים</strong> — בזכות השיטה, הכלים והמנטורים שליוו אותו לאורך כל הדרך.
+                </div>
+                <div class="success-attribution">הכנסות ממוצר SaaS שנבנה בהכשרה</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== TRANSFORMATION ==================== -->
+<section class="transform-section">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-label">הטרנספורמציה</div>
+            <h2>90 יום. מ-0 ל-SaaS רווחי.</h2>
+        </div>
+
+        <div class="transform-grid">
+            <!-- Before Card -->
+            <div class="transform-card transform-before reveal reveal-delay-1">
+                <div class="transform-title">היום</div>
+                <ul class="transform-list">
+                    <li>
+                        <span class="transform-icon">✕</span>
+                        <span>אין רקע טכנולוגי</span>
+                    </li>
+                    <li>
+                        <span class="transform-icon">✕</span>
+                        <span>רעיונות בלי ביצוע</span>
+                    </li>
+                    <li>
+                        <span class="transform-icon">✕</span>
+                        <span>תלות במפתחים</span>
+                    </li>
+                    <li>
+                        <span class="transform-icon">✕</span>
+                        <span>לא יודע.ת מאיפה להתחיל</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Arrow -->
+            <div class="transform-arrow reveal reveal-delay-2">
+                <div class="transform-arrow-line"></div>
+                <div class="transform-arrow-text">90 DAYS</div>
+            </div>
+
+            <!-- After Card -->
+            <div class="transform-card transform-after reveal reveal-delay-3">
+                <div class="transform-title">אחרי 90 יום</div>
+                <ul class="transform-list">
+                    <li>
+                        <span class="transform-icon">✓</span>
+                        <span>אפליקציית SaaS חיה</span>
+                    </li>
+                    <li>
+                        <span class="transform-icon">✓</span>
+                        <span>לקוחות משלמים</span>
+                    </li>
+                    <li>
+                        <span class="transform-icon">✓</span>
+                        <span>קמפיינים שרצים</span>
+                    </li>
+                    <li>
+                        <span class="transform-icon">✓</span>
+                        <span>עסק שמכניס כסף</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="transform-bottom-text reveal">
+            וקהילה שלמה שממשיכה ללוות אותך גם אחרי ההכשרה.
+        </p>
     </div>
 </section>
 
