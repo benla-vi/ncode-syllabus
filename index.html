@@ -620,6 +620,35 @@
             line-height: 1.7;
         }
 
+        /* Social proof strip — reused across sections */
+        .proof-strip {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 32px;
+        }
+        .proof-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-pill);
+            backdrop-filter: blur(12px);
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .proof-pill strong {
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+        .hero .proof-strip {
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 1.6s;
+        }
+
         /* Journey container */
         .journey {
             position: relative;
@@ -1790,13 +1819,18 @@
             <span class="gradient-text">המסלול המלא להקמת עסק במודל סאאס.</span>
         </h1>
         <p class="hero-subtitle">
-            19 מודולים. 375+ שיעורים. 50+ שעות תוכן.
-            מהרעיון הראשון ועד הלקוח המשלם הראשון — גם בלי רקע בתכנות.
+            19 מודולי ליבה. 375+ שיעורים. 50+ שעות תוכן.
+            מ-0 לרעיון, לפיתוח ולמוצר חי — ומהדולר הראשון בדרך למיליון. גם בלי רקע בתכנות.
         </p>
         <a href="#roadmap" class="hero-cta">
             גלה את המסלול המלא
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
         </a>
+        <div class="proof-strip">
+            <span class="proof-pill"><strong>600+</strong> לקוחות משלמים לבוגר</span>
+            <span class="proof-pill"><strong>$30K+</strong> בחודש לבוגר</span>
+            <span class="proof-pill"><strong>מיליוני $</strong> אקזיטים בנבחרת המרצים</span>
+        </div>
     </div>
 
     <div class="hero-scroll">
@@ -1809,7 +1843,7 @@
     <div class="dot-grid"></div>
     <div class="container">
         <div class="intro-inner reveal">
-            <h2>מסלול שלם שלוקח אותך מ-<span class="gradient-text">אפס</span><br>עד מוצר SaaS חי שמכניס כסף.</h2>
+            <h2>מ-<span class="gradient-text">אפס</span> לרעיון, לפיתוח ולמוצר חי<br>ומהדולר הראשון — בדרך למיליון.</h2>
             <p>
                 כל פרק בנוי כך שתצא ממנו עם משימה בידיים.
                 <br>לא תיאוריה ריקה — עשייה שמובילה לתוצאות.
@@ -1818,7 +1852,7 @@
             <div class="intro-stats">
                 <div class="intro-stat reveal reveal-delay-1">
                     <div class="intro-stat-num" data-target="19">0</div>
-                    <div class="intro-stat-label">מודולים</div>
+                    <div class="intro-stat-label">מודולי ליבה</div>
                 </div>
                 <div class="intro-stat reveal reveal-delay-2">
                     <div class="intro-stat-num" data-target="375" data-suffix="+">0</div>
@@ -1843,7 +1877,7 @@
         <div class="section-header reveal">
             <div class="section-label">ליווי צמוד לאורך כל הדרך</div>
             <h2>לא לומדים לבד.</h2>
-            <p>לאורך כל ההכשרה תלוו על ידי מנטורים מנוסים, קהילה פעילה של יזמים כמוכם, ומרצים שעשו את זה בעצמם.</p>
+            <p>לאורך כל ההכשרה תלוו על ידי מנטורים מנוסים — כולל מפגשי 1:1 בזום — קהילה פעילה של יזמים כמוכם, ומרצים שעשו את זה בעצמם.</p>
         </div>
         <div class="community-grid">
             <div class="community-card reveal">
@@ -1857,8 +1891,8 @@
                 <div class="community-card-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
                 </div>
-                <h3>מנטורים צמודים</h3>
-                <p>ליווי אישי ממנטורים שכבר בנו מוצרים מצליחים — מענה לשאלות, משוב על הפרויקט, והכוונה</p>
+                <h3>מנטורים צמודים — 1:1 בזום</h3>
+                <p>מפגשי אחד-על-אחד בזום עם מנטורים שכבר בנו מוצרים מצליחים — מענה לשאלות, משוב על הפרויקט שלכם והכוונה אישית צעד-אחר-צעד</p>
             </div>
             <div class="community-card reveal">
                 <div class="community-card-icon">
@@ -2006,7 +2040,7 @@
                     <div class="instructor-name">זוהר וענונו</div>
                     <div class="instructor-role">מעורך וידאו ליזם SaaS במשרה מלאה</div>
                     <div class="instructor-badges">
-                        <span class="instructor-badge gold">$10K+ במנויים</span>
+                        <span class="instructor-badge gold">$30K+ בחודש</span>
                     </div>
                 </div>
                 <div class="instructor-card reveal">
@@ -2040,7 +2074,11 @@
         <div class="section-header reveal">
             <div class="section-label">המסלול המלא</div>
             <h2>הדרך מרעיון ראשון<br>ללקוח משלם</h2>
-            <p>כל שלב בהכשרה בנוי על הקודם.</p>
+            <p>כל שלב בהכשרה בנוי על הקודם — אותו מסלול שבזכותו בוגרים כבר מנהלים מוצרים חיים עם לקוחות משלמים.</p>
+            <div class="proof-strip">
+                <span class="proof-pill"><strong>לירן שמש</strong> · 600+ לקוחות משלמים</span>
+                <span class="proof-pill"><strong>זוהר וענונו</strong> · $30K+ בחודש</span>
+            </div>
         </div>
 
         <div class="journey" id="journey">
@@ -2315,13 +2353,15 @@
                             </div>
                             <div class="module-detail">
                                 <div class="module-detail-inner">
-                                    <p class="module-description">המודול הכי עמוס — וגם הכי שווה. תלמדו את הכלים המקצועיים שמאפשרים לכם לבנות מוצר ברמה גבוהה, לפרסם אותו באינטרנט, לעקוב אחרי מה המשתמשים עושים בו, ולנהל את הפרויקט בצורה מסודרת. כולל גם בניית גרסת מובייל ולוח בקרה למנהלים. זה המודול שהופך אתכם ממתחילים ליזמים טכנולוגיים אמיתיים.</p>
+                                    <p class="module-description">המודול הכי עמוס — וגם הכי שווה. תלמדו לבנות מוצר ברמה גבוהה עם הכלים שהמקצוענים עובדים איתם — כולל עבודה עם סוכני AI לפיתוח כמו Claude Code ו-Cursor, וחיבור MCP שמחבר את הסוכן ישירות לכלים שלכם. תפרסמו את המוצר באינטרנט (Vercel), תעקבו אחרי מה שהמשתמשים עושים בו (PostHog), ותנהלו את הפרויקט בצורה מסודרת — כולל בניית גרסת מובייל ולוח בקרה למנהלים. זה המודול שהופך אתכם ממתחילים ליזמים טכנולוגיים אמיתיים.</p>
                                     <div class="module-topics">
                                         <span class="module-topic">ניהול קוד (Git)</span>
                                         <span class="module-topic">Anti Gravity</span>
-                                        <span class="module-topic">בינה מלאכותית לפיתוח</span>
-                                        <span class="module-topic">פרסום באינטרנט</span>
-                                        <span class="module-topic">אנליטיקס ומעקב</span>
+                                        <span class="module-topic">Claude Code</span>
+                                        <span class="module-topic">Cursor</span>
+                                        <span class="module-topic">MCP</span>
+                                        <span class="module-topic">פרסום (Vercel)</span>
+                                        <span class="module-topic">אנליטיקס (PostHog)</span>
                                         <span class="module-topic">גרסת מובייל</span>
                                         <span class="module-topic">לוח בקרה</span>
                                     </div>
@@ -2338,7 +2378,7 @@
                     <div class="phase-header">
                         <span class="phase-number">PHASE IV</span>
                         <h3 class="phase-title">מהמוצר לשוק — תמחור, השקה ומיתוג</h3>
-                        <p class="phase-subtitle">איך יוצאים לעולם ומתחילים למכור</p>
+                        <p class="phase-subtitle">איך יוצאים לעולם, מתחילים למכור, ומרוויחים את הדולר הראשון</p>
                     </div>
                     <div class="phase-cards">
                         <div class="journey-card">
@@ -2540,7 +2580,7 @@
                     <div class="phase-header">
                         <span class="phase-number">PHASE VI</span>
                         <h3 class="phase-title">צמיחה ותפעול — ניהול עסק אמיתי</h3>
-                        <p class="phase-subtitle">הידע שהופך מוצר חי לעסק יציב ורווחי</p>
+                        <p class="phase-subtitle">הידע שמגדיל מוצר חי — מהדולר הראשון בדרך למיליון</p>
                     </div>
                     <div class="phase-cards">
                         <div class="journey-card">
@@ -2753,7 +2793,7 @@
 
             <!-- END marker -->
             <div class="journey-marker">
-                <span class="journey-marker-label end">SaaS רווחי ובצמיחה</span>
+                <span class="journey-marker-label end">SaaS רווחי — בדרך למיליון</span>
             </div>
 
         </div>
@@ -2767,27 +2807,28 @@
         <div class="section-header reveal">
             <div class="section-label">סיפורי הצלחה</div>
             <h2>הם עשו את זה.<br>גם אתם יכולים.</h2>
+            <p>בוגרי nCode כבר מפעילים מוצרי SaaS חיים עם לקוחות משלמים — והנבחרת שמלמדת אתכם עשתה את זה בעצמה, באקזיטים ובמוצרים של מיליוני דולרים.</p>
         </div>
 
         <div class="success-grid">
             <!-- Card 1 — Liran Shemesh -->
             <div class="success-card reveal reveal-delay-1">
-                <div class="success-visual">500+</div>
+                <div class="success-visual">600+</div>
                 <div class="success-card-name">לירן שמש — סטודנט nCode</div>
                 <div class="success-quote">
                     "שמע, זאת <strong>הרגשה מטורפת</strong>. אני תמיד ידעתי והאמנתי שזה יצליח, אבל אף פעם לא עשיתי סכום כסף כזה ממשהו שאני בעצמי הקמתי — ולא מלעבוד בשביל מישהו."
                 </div>
-                <div class="success-attribution">500+ לקוחות משלמים</div>
+                <div class="success-attribution">600+ לקוחות משלמים</div>
             </div>
 
             <!-- Card 2 — Zohar Vanunu -->
             <div class="success-card reveal reveal-delay-2">
-                <div class="success-visual">$10K+</div>
+                <div class="success-visual">$30K+</div>
                 <div class="success-card-name">זוהר ואנונו — סטודנט nCode</div>
                 <div class="success-quote">
                     מ-רעיון ראשוני <strong>למוצר SaaS חי עם לקוחות משלמים</strong> — בזכות השיטה, הכלים והמנטורים שליוו אותו לאורך כל הדרך.
                 </div>
-                <div class="success-attribution">$10K+ במנויים ממוצר SaaS שנבנה בהכשרה</div>
+                <div class="success-attribution">$30K+ בחודש ממוצר SaaS שנבנה בהכשרה</div>
             </div>
         </div>
     </div>
@@ -2872,14 +2913,14 @@
         <div class="cta-content reveal">
             <h2>מוכנים להקים את ה-SaaS<br><span class="gradient-text">הראשון שלכם?</span></h2>
             <p>
-                19 מודולים. 375+ שיעורים. מנטורים צמודים. קהילה פעילה. לייבים שבועיים.
+                19 מודולי ליבה. 375+ שיעורים. מפגשי 1:1 בזום עם מנטורים. קהילה פעילה. לייבים שבועיים.
                 <br>כל מה שצריך כדי לצאת לדרך — במקום אחד.
             </p>
             <a href="https://nCode.co.il" target="_blank" class="cta-btn" id="ctaBtn">
                 אני רוצה להצטרף
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             </a>
-            <div class="cta-guarantee">ליווי צמוד לאורך כל הדרך • גישה מלאה לקהילה ולמנטורים</div>
+            <div class="cta-guarantee">ליווי צמוד לאורך כל הדרך • מפגשי 1:1 בזום • גישה מלאה לקהילה ולמנטורים</div>
         </div>
     </div>
 </section>
