@@ -32,19 +32,37 @@ export ANTHROPIC_API_KEY=sk-ant-...
 
 ## שלב 0 (חשוב!): למידת הסגנון
 
-המערכת לומדת לכתוב כמוך וכמו טל מתמלולים. מה שצריך ממך:
+המערכת לומדת לכתוב כמוך וכמו טל מתמלולים. הסביבה הזאת (הריצה בענן) חסומה
+לגישה לאינסטגרם/טיקטוק ולהורדת מודלים — לכן התמלול חייב לרוץ **במחשב שלך**.
 
-1. **הסרטון שלך עם 250K צפיות** — תמלל ושים ב-`knowledge/transcripts/ben/`
-2. **5-10 סרטונים ויראליים של טל** — תמלל ושים ב-`knowledge/transcripts/tal/`
-3. **שני סרטוני המכירה מהוואטסאפ** — תמלל ושים ב-`knowledge/transcripts/ads/`
+**דרך מהירה: `pipeline/local_transcribe.py`** — סקריפט שמוריד + מתמלל בפקודה אחת
+(רץ **אצלך**, לא כאן):
 
-תמלול מהיר מקובץ וידאו:
 ```bash
-pip install openai-whisper
-whisper video.mp4 --language he --model large-v3 --output_format txt
+pip install yt-dlp openai-whisper
+
+# הסרטון שלך (250K צפיות)
+python pipeline/local_transcribe.py --category ben \
+    --url "https://www.instagram.com/reels/DPlQ-5tiIY2/"
+
+# כמה סרטונים של טל
+python pipeline/local_transcribe.py --category tal \
+    --url "https://www.instagram.com/reel/XXXXX/" \
+    --url "https://www.instagram.com/reel/YYYYY/"
+
+# סרטוני המכירה מהוואטסאפ (קובץ מקומי, לא URL)
+python pipeline/local_transcribe.py --category ads --file ~/Downloads/tal-ad-1.mp4
+python pipeline/local_transcribe.py --category ads --file ~/Downloads/tal-ad-2.mp4
 ```
 
-ואז:
+זה שומר קבצי `.txt` ישר ב-`knowledge/transcripts/<category>/` — בדיוק במבנה
+שהמערכת מצפה לו. אחרי שיש קבצים, תעלה/י את התוכן שלהם לצ'אט (או Push לגיט),
+ואז תריצי כאן:
+
+**דרך חלופית ללא התקנות:** מעתיקים את הכתוביות האוטומטיות של הריל/טיקטוק
+(כפתור CC בסרטון) ומדביקים לי ישירות בצ'אט — אני אשמור בקובץ הנכון.
+
+ואז, בכל מקרה:
 ```bash
 python pipeline/ingest_style.py
 ```
