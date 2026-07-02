@@ -22,8 +22,12 @@ def scout(cfg, system):
         x_accounts=", ".join("@" + a for a in cfg["news"]["x_accounts"]),
         israeli_sources=", ".join(cfg["news"]["israeli_sources"]),
         topics="\n".join("- " + t for t in cfg["news"]["topics"]),
+        creator_name=cfg["creator"]["name"],
+        inspiration_pages="; ".join(
+            f'{pg["handle"]} — {pg["url"]}' for pg in cfg["news"].get("inspiration_pages", [])
+        ),
     )
-    return extract_json(ask_claude(cfg, system, prompt, web_search=True))
+    return extract_json(ask_claude(cfg, system, prompt, web_search=True, agent="scout"))
 
 
 def score(cfg, system, stories):
@@ -35,7 +39,7 @@ def score(cfg, system, stories):
         creator_name=cfg["creator"]["name"],
     )
     user = prompt + "\n\n## הסיפורים\n```json\n" + json.dumps(stories, ensure_ascii=False, indent=2) + "\n```"
-    return extract_json(ask_claude(cfg, system, user))
+    return extract_json(ask_claude(cfg, system, user, agent="scorer"))
 
 
 def write_script(cfg, system, story, scorer_notes):
@@ -50,13 +54,13 @@ def write_script(cfg, system, story, scorer_notes):
             + "\n\n## הסיפור\n```json\n" + json.dumps(story, ensure_ascii=False, indent=2) + "\n```"
             + "\n\n## הערות השופט\n```json\n" + json.dumps(scorer_notes, ensure_ascii=False, indent=2) + "\n```"
             + "\n\n## הפאנלים הזמינים\n```json\n" + json.dumps(cfg["funnels"], ensure_ascii=False, indent=2) + "\n```")
-    return extract_json(ask_claude(cfg, system, user))
+    return extract_json(ask_claude(cfg, system, user, agent="scriptwriter"))
 
 
 def critique(cfg, system, script):
     prompt = load_prompt("05-critic.md", creator_name=cfg["creator"]["name"])
     user = prompt + "\n\n## התסריט לביקורת\n```json\n" + json.dumps(script, ensure_ascii=False, indent=2) + "\n```"
-    return extract_json(ask_claude(cfg, system, user))
+    return extract_json(ask_claude(cfg, system, user, agent="critic"))
 
 
 def render_brief(scripts, ranking_info, out_dir):

@@ -49,11 +49,17 @@ def load_style_guide(which: str = "organic") -> str:
     return "(עדיין לא נוצר מדריך סגנון — ראה הוראות ב-README)"
 
 
+def model_for(cfg: dict, agent: str) -> str:
+    """בוחר מודל לפי הסוכן: זול לאיסוף/דירוג, חזק לכתיבה. ראה config.yaml → model."""
+    m = cfg["model"]
+    return m.get("per_agent", {}).get(agent) or m.get("default") or m.get("id", "claude-sonnet-5")
+
+
 def ask_claude(cfg: dict, system: str, user: str, web_search: bool = False,
-               max_tokens: int = 32000) -> str:
+               max_tokens: int = 32000, agent: str = "") -> str:
     """קריאה לקלוד עם סטרימינג. מחזיר את הטקסט המלא."""
     kwargs = dict(
-        model=cfg["model"]["id"],
+        model=model_for(cfg, agent),
         max_tokens=max_tokens,
         thinking={"type": "adaptive"},
         output_config={"effort": cfg["model"].get("effort", "high")},

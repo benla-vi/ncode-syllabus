@@ -36,7 +36,7 @@ def build(cfg, system, which: str, folders: list[str], extra: str):
     print(f"🧬  ממדל סגנון '{which}' מתוך {corpus.count('### תמלול')} תמלולים...")
     prompt = load_prompt("06-style-modeler.md", creator_name=cfg["creator"]["name"])
     user = prompt + f"\n\n{extra}\n\n## התמלולים\n\n{corpus}"
-    guide = ask_claude(cfg, system, user, max_tokens=48000)
+    guide = ask_claude(cfg, system, user, max_tokens=48000, agent="style_modeler")
     out = KNOWLEDGE / "style" / f"style-{which}.md"
     out.write_text(guide, encoding="utf-8")
     print(f"✅  נשמר: {out}")

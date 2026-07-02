@@ -39,7 +39,7 @@ def main():
     user = prompt + "\n\n## ההצעה\n" + offer
 
     print(f"📢  כותב {args.num} קריאייטיבים לממומן...")
-    result = extract_json(ask_claude(cfg, system, user))
+    result = extract_json(ask_claude(cfg, system, user, agent="ads"))
 
     out_dir = OUTPUT / datetime.date.today().isoformat()
     out_dir.mkdir(parents=True, exist_ok=True)
