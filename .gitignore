@@ -1,3 +1,7 @@
 .DS_Store
 *.log
 docs/*.pdf
+
+# viral-engine
+viral-engine/output/*
+!viral-engine/output/.gitkeep
