@@ -91,6 +91,47 @@ def render(date_str: str) -> Path:
     return out
 
 
+def render_menu(date_str: str) -> Path:
+    """תפריט בחירת הסיפורים כ-HTML מוכן לגוגל דוקס."""
+    day = OUTPUT / date_str
+    stories = json.loads((day / "01-stories.json").read_text(encoding="utf-8"))
+    ranking = {}
+    rp = day / "02-ranking.json"
+    if rp.exists():
+        ranking = json.loads(rp.read_text(encoding="utf-8"))
+    by_id = {r["id"]: r for r in ranking.get("ranking", [])}
+    order = [r["id"] for r in ranking.get("ranking", [])] or [st["id"] for st in stories]
+    order += [st["id"] for st in stories if st["id"] not in order]
+    st_by_id = {st["id"]: st for st in stories}
+    rec = set(ranking.get("recommended_ids") or ranking.get("selected_ids") or [])
+
+    h = [f'<div dir="rtl"><h1>◈ תפריט סיפורים — {esc(date_str)}</h1>',
+         '<p><b>איך זה עובד:</b> אלה כל הסיפורים שהמחקר של היום מצא, ממוינים לפי ציון. '
+         'שום דבר לא נפסל — ⭐ זו רק המלצת המערכת. סמן/כתוב לי אילו מספרים אתה בוחר '
+         '(למשל: "3, 10, 5") ורק הם יהפכו לתסריטים מלאים.</p>']
+    for sid in order:
+        st, rk = st_by_id.get(sid, {}), by_id.get(sid, {})
+        star = " ⭐" if sid in rec else ""
+        h.append(f'<h2>{sid}. {esc(st.get("headline_he"))}{star}</h2>')
+        h.append(f'<p><b>ציון:</b> {esc(rk.get("total_score","—"))}/100 &nbsp;|&nbsp; '
+                 f'<b>טריות:</b> {esc(st.get("freshness"))} &nbsp;|&nbsp; '
+                 f'<b>כוסה בעברית:</b> {esc(st.get("il_coverage"))}</p>')
+        h.append(f'<p>{esc(st.get("story"))}</p>')
+        h.append(f'<p><b>למה זה יעבוד:</b> {esc(st.get("why_viral"))}</p>')
+        if rk.get("verdict"):
+            h.append(f'<p><b>שורה תחתונה:</b> {esc(rk.get("verdict"))}</p>')
+        if rk.get("angle"):
+            h.append(f'<p><b>הזווית המוצעת:</b> {esc(rk.get("angle"))}<br><b>מתנה מוצעת:</b> {esc(rk.get("suggested_gift"))}</p>')
+    h.append("</div>")
+    out = day / "menu.html"
+    out.write_text("\n".join(h), encoding="utf-8")
+    return out
+
+
 if __name__ == "__main__":
-    date_str = sys.argv[1] if len(sys.argv) > 1 else datetime.date.today().isoformat()
-    print(render(date_str))
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    date_str = args[0] if args else datetime.date.today().isoformat()
+    if "--menu" in sys.argv:
+        print(render_menu(date_str))
+    else:
+        print(render(date_str))

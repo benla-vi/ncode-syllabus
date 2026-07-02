@@ -1,9 +1,15 @@
-"""הריצה היומית: סקאוט חדשות → דירוג ויראליות → תסריטים → ביקורת → בריף מוכן.
+"""הריצה היומית — שני שלבים, עם בן כפילטר באמצע:
 
-שימוש:
-    export ANTHROPIC_API_KEY=sk-ant-...
-    python pipeline/run_daily.py
-    python pipeline/run_daily.py --story "טקסט חופשי של סיפור שמצאת בעצמך"
+שלב 1 (מחקר):   python pipeline/run_daily.py
+                → סקאוט + דירוג → תפריט בחירה (menu.md) עם כל הכותרות והציונים.
+                שום דבר לא נפסל — בן בוחר.
+
+שלב 2 (כתיבה):  python pipeline/run_daily.py --pick 3,10,5
+                → תסריטים + ביקורת + בריף רק לסיפורים שנבחרו.
+
+מצבים נוספים:
+    --auto                 הכל בריצה אחת (הסוכן בוחר לפי ההמלצות) — למי שממהר
+    --story "טקסט חופשי"   תסריט לסיפור שהבאת בעצמך, בלי סקאוט
 """
 import argparse
 import datetime
@@ -63,6 +69,30 @@ def critique(cfg, system, script):
     return extract_json(ask_claude(cfg, system, user, agent="critic"))
 
 
+def render_menu(stories, ranking, out_dir):
+    """תפריט הבחירה של בן: כל הסיפורים + ציונים + המלצות. שום דבר לא נפסל."""
+    by_id = {r["id"]: r for r in ranking.get("ranking", [])}
+    order = [r["id"] for r in ranking.get("ranking", [])] or [s["id"] for s in stories]
+    st_by_id = {s["id"]: s for s in stories}
+    rec = set(ranking.get("recommended_ids") or ranking.get("selected_ids") or [])
+
+    lines = [f"# תפריט סיפורים — {datetime.date.today().isoformat()}", "",
+             "בחר את הסיפורים שמעניינים אותך והרץ: `python pipeline/run_daily.py --pick <מספרים>`", ""]
+    for sid in order:
+        st, rk = st_by_id.get(sid, {}), by_id.get(sid, {})
+        star = " ⭐ מומלץ" if sid in rec else ""
+        lines += [f"## {sid}. {st.get('headline_he','')}{star}",
+                  f"**ציון:** {rk.get('total_score','—')}/100 | **טריות:** {st.get('freshness','')} | **כוסה בעברית:** {st.get('il_coverage','')}", "",
+                  st.get("story",""), "",
+                  f"**למה זה יעבוד:** {st.get('why_viral','')}"]
+        if rk.get("verdict"):
+            lines += [f"**שורה תחתונה:** {rk['verdict']}"]
+        if rk.get("angle"):
+            lines += [f"**הזווית המוצעת:** {rk['angle']} | **מתנה:** {rk.get('suggested_gift','')}"]
+        lines += [""]
+    (out_dir / "menu.md").write_text("\n".join(lines), encoding="utf-8")
+
+
 def render_brief(scripts, ranking_info, out_dir):
     lines = [f"# בריף תוכן יומי — {datetime.date.today().isoformat()}", ""]
     for i, s in enumerate(scripts, 1):
@@ -96,6 +126,8 @@ def render_brief(scripts, ranking_info, out_dir):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--story", help="דלג על הסקאוט וכתוב תסריט לסיפור שתספק ידנית")
+    parser.add_argument("--pick", help="שלב 2: מספרי הסיפורים שבחרת, מופרדים בפסיק (למשל: 3,10,5)")
+    parser.add_argument("--auto", action="store_true", help="ריצה מלאה בלי עצירה — הסוכן בוחר לפי ההמלצות")
     args = parser.parse_args()
 
     cfg = load_config()
@@ -103,19 +135,43 @@ def main():
     out_dir = OUTPUT / datetime.date.today().isoformat()
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    # ---- מצב סיפור ידני ----
     if args.story:
         stories = [{"id": 1, "headline_he": "סיפור ידני", "story": args.story,
                     "why_viral": "", "facts": [], "sources": [], "evergreen": True}]
         selected = [{"id": 1, "angle": "", "suggested_gift": "", "notes": ""}]
-    else:
-        stories = scout(cfg, system)
-        (out_dir / "01-stories.json").write_text(json.dumps(stories, ensure_ascii=False, indent=2), encoding="utf-8")
-        ranking = score(cfg, system, stories)
-        (out_dir / "02-ranking.json").write_text(json.dumps(ranking, ensure_ascii=False, indent=2), encoding="utf-8")
-        by_id = {s["id"]: s for s in stories}
-        selected = [r for r in ranking["ranking"] if r["id"] in ranking["selected_ids"]]
-        stories = [by_id[r["id"]] for r in selected]
+        return write_and_brief(cfg, system, stories, selected, out_dir)
 
+    # ---- שלב 2: בן בחר ----
+    if args.pick:
+        stories = json.loads((out_dir / "01-stories.json").read_text(encoding="utf-8"))
+        ranking = json.loads((out_dir / "02-ranking.json").read_text(encoding="utf-8"))
+        picked = [int(x) for x in args.pick.replace(" ", "").split(",")]
+        by_id = {s["id"]: s for s in stories}
+        rk_by_id = {r["id"]: r for r in ranking.get("ranking", [])}
+        sel_stories = [by_id[i] for i in picked]
+        selected = [rk_by_id.get(i, {"id": i, "angle": "", "suggested_gift": "", "notes": ""}) for i in picked]
+        return write_and_brief(cfg, system, sel_stories, selected, out_dir)
+
+    # ---- שלב 1: מחקר + תפריט ----
+    stories = scout(cfg, system)
+    (out_dir / "01-stories.json").write_text(json.dumps(stories, ensure_ascii=False, indent=2), encoding="utf-8")
+    ranking = score(cfg, system, stories)
+    (out_dir / "02-ranking.json").write_text(json.dumps(ranking, ensure_ascii=False, indent=2), encoding="utf-8")
+    render_menu(stories, ranking, out_dir)
+    print(f"\n📋  התפריט מוכן: {out_dir / 'menu.md'}")
+
+    if args.auto:
+        picked = ranking.get("recommended_ids") or ranking.get("selected_ids") or []
+        by_id = {s["id"]: s for s in stories}
+        rk_by_id = {r["id"]: r for r in ranking.get("ranking", [])}
+        return write_and_brief(cfg, system, [by_id[i] for i in picked],
+                               [rk_by_id[i] for i in picked], out_dir)
+
+    print("👉  עכשיו תורך: בחר מספרים והרץ  python pipeline/run_daily.py --pick 3,10,5")
+
+
+def write_and_brief(cfg, system, stories, selected, out_dir):
     final_scripts = []
     for i, (story, notes) in enumerate(zip(stories, selected), 1):
         print(f"✍️   סוכן 3: כותב תסריט {i}/{len(stories)}: {story.get('headline_he','')[:60]}")
