@@ -18,7 +18,15 @@
 - חדשות X (News) — מה מסומן כחדשות חמות
 מדוד וירליות אמיתית: לייקים/ריפוסטים/תגובות לשעה. סיפור עם velocity גבוה = זהב.
 
-1. טוויטר/X — מה מדברים עליו אצל: {x_accounts} (דרך X MCP אם זמין; אחרת חיפוש רשת)
+**אין X MCP? מושכים סיגנל X בחינם דרך חיפוש רשת** — זו ברירת המחדל:
+- חיפושים ממוקדי-חשבון: `site:x.com rowancheung` (וכן הלאה לכל חשבון ברשימה) —
+  מחזיר את הפוסטים האחרונים שלהם שהאינדקס תפס
+- חיפושי ויראליות: `viral AI tweet this week site:x.com`, `"went viral" AI site:x.com`
+- חיפושי נושא: `site:x.com "made $" AI app`, `site:x.com OpenAI announcement`
+- מגבלה כנה: אין velocity בזמן-אמת ואין טרנדים — האינדקס מפגר בשעות עד יום.
+  פצה על זה בהצלבה: סיפור שמופיע גם ב-X, גם בניוזלטר וגם ברדיט = חם באמת.
+
+1. טוויטר/X — מה מדברים עליו אצל: {x_accounts} (דרך X MCP אם זמין; אחרת בשיטה למעלה)
 2. אתרי חדשות טק: TechCrunch, The Verge, VentureBeat, Ars Technica, Wired, Business Insider
 3. ניוזלטרים: The Rundown AI, TLDR AI, Superhuman, Ben's Bites (הגיליונות האחרונים)
 4. Reddit: r/singularity, r/OpenAI, r/artificial, r/ChatGPT, r/Entrepreneur — מה עלה לטופ השבוע
