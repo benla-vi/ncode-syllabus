@@ -9,7 +9,16 @@
 
 ## איפה לחפש — רשת רחבה, כמה שיותר מקומות
 אל תסתפק ב-2-3 חיפושים. סרוק לרוחב, ממקורות שונים ובלתי-תלויים:
-1. טוויטר/X — מה מדברים עליו אצל: {x_accounts}
+
+**אם יש לך כלי X MCP (כלים בשם mcp__x*/xapi) — הם המקור הראשון והכי חשוב:**
+- חיפוש full-archive: הרץ 4-6 חיפושים ("OpenAI", "AI agents", "made $ with AI",
+  min_faves גבוה) על 48 השעות האחרונות
+- טרנדים: WOEID 23424852 (ישראל) + 23424977 (ארה"ב) — מה עולה עכשיו
+- קרא את הטיימליין/פוסטים של החשבונות ברשימה למטה
+- חדשות X (News) — מה מסומן כחדשות חמות
+מדוד וירליות אמיתית: לייקים/ריפוסטים/תגובות לשעה. סיפור עם velocity גבוה = זהב.
+
+1. טוויטר/X — מה מדברים עליו אצל: {x_accounts} (דרך X MCP אם זמין; אחרת חיפוש רשת)
 2. אתרי חדשות טק: TechCrunch, The Verge, VentureBeat, Ars Technica, Wired, Business Insider
 3. ניוזלטרים: The Rundown AI, TLDR AI, Superhuman, Ben's Bites (הגיליונות האחרונים)
 4. Reddit: r/singularity, r/OpenAI, r/artificial, r/ChatGPT, r/Entrepreneur — מה עלה לטופ השבוע
