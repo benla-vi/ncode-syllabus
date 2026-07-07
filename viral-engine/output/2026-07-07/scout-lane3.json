@@ -1,0 +1,124 @@
+[
+  {
+    "id": 21,
+    "headline_he": "נהג טוק-טוק מבנגלור הפך ל-ChatGPT יומיומי - וקיבל תגובה מ-OpenAI בקנאדה",
+    "story": "וידאו ויראלי מבנגלורו הראה נהג ריקשה (auto-rickshaw) מסביר איך הוא משתמש ב-ChatGPT כל יום: לשפר את האנגלית שלו, להבין נוסעים מרקעים שונים, וגם לשאול שאלות על אסטרולוגיה הודית (KP Astrology). הפוסט/וידאו התפשט ברשתות, ואז חשבון OpenAI הרשמי הגיב בתגובה משעשעת בשילוב קנאדה-אנגלית: 'Pookie uncle-ge help madakke always happy'. הסיפור עורר גל של תגובות על AI שמגיע ל'אנשים רגילים' ולא רק להיי-טק.",
+    "why_viral": "זה בדיוק הסיפור ההופכי ל'AI זה רק למתכנתים': בן אדם בלי רקע טכני, בעבודת יד, משתמש בצ'אטבוט בחינם כדי לשפר שפה ולתקשר טוב יותר עם לקוחות - וענקית טכנולוגיה עונה לו אישית. מעולה כפתיח לסרטון על 'לא צריך להיות מתכנת כדי ש-AI ישנה לך את החיים', עם זווית רגשית-הומנית שמנוגדת לכותרות הפחד מ-AI.",
+    "facts": [
+      "הנהג משתמש ב-ChatGPT ללימוד אנגלית, שיפור תקשורת עם נוסעים, ומענה על שאלות כלליות",
+      "הפוסט/וידאו פורסם על ידי יוצר תוכן באינסטגרם ועורר תגובות המוניות באהדה",
+      "חשבון OpenAI הרשמי הגיב באופן פומבי בתגובה משולבת קנאדה-אנגלית",
+      "הסיפור סוקר בכמה כלי תקשורת הודיים בין ה-27 ביוני ל-3 ביולי 2026"
+    ],
+    "sources": [
+      {"title": "'ChatGPT changed my life': Bengaluru auto driver's viral post earns a special OpenAI response - BusinessToday", "url": "https://www.businesstoday.in/latest/trends/story/chatgpt-changed-my-life-bengaluru-auto-drivers-viral-post-earns-a-special-openai-response-540515-2026-07-03"},
+      {"title": "Bengaluru auto driver explains how he uses ChatGPT every day. OpenAI responds with a playful Kannada reply - India TV News", "url": "https://www.indiatvnews.com/trending/offbeat/bengaluru-auto-driver-explains-how-he-uses-chatgpt-every-day-openai-responds-with-a-playful-kannada-reply-2026-06-27-1046355"},
+      {"title": "VIRAL VIDEO | Bengaluru Auto Driver's Daily ChatGPT Routine Wins Hearts; OpenAI Responds In Kannada - Asianet Newsable", "url": "https://newsable.asianetnews.com/karnataka-news/viral-video-bengaluru-auto-driver-daily-chatgpt-routine-wins-hearts-openai-responds-in-kannada-articleshow-zu126c6"}
+    ],
+    "evergreen": false,
+    "freshness": "השבוע האחרון - 27.6-3.7.2026, עדיין מסתובב ברשת",
+    "il_coverage": "לא סוקר בישראל נכון לעכשיו - הזדמנות בלעדית"
+  },
+  {
+    "id": 22,
+    "headline_he": "צוקרברג מודה: 'סוכני ה-AI לא התקדמו כמו שציפינו' - אחרי 145 מיליארד דולר ו-8,000 פיטורים",
+    "story": "בטאון-הול פנימי ב-2 ביולי 2026, מארק צוקרברג אמר לעובדי מטא שקצב ההתקדמות של סוכני AI 'לא ממש האיץ' בארבעת החודשים האחרונים, וההימור המבני של החברה 'עדיין לא הבשיל'. זה מגיע אחרי שמטא פיטרה כ-8,000 עובדים (כ-10% מכוח האדם) והעבירה עוד 7,000 לקבוצות AI כחלק מ'Agent Transformation', וההימור כלל עד 145 מיליארד דולר בהשקעות תשתית השנה. צוקרברג ציין שבתחילת השנה הצוותים היו 'אופטימיים מאוד' לגבי כלים כמו Claude Code, אך התוצאות בפועל עדיין לא הגיעו.",
+    "why_viral": "זה סיפור 'ריאליטי צ'ק' ענק לקהל שחי בהייפ של AI Agents: אם אפילו מטא, עם כל הכסף והכוח אדם בעולם, מודה שסוכני AI עוד לא באמת עובדים כמו שהובטח - זה נותן לגיטימציה לביזאופרים שמתוסכלים מזה שהאוטומציות שלהם לא 'קוסמות' מעצמן. זווית מצוינת ל'אל תאמינו לכל דמו' + 'זה בסדר שזה לוקח זמן'.",
+    "facts": [
+      "הצהרה בטאון-הול פנימי ב-2.7.2026",
+      "צוקרברג: מסלול ההתפתחות של סוכנים ב-4 החודשים האחרונים 'לא ממש האיץ'",
+      "מטא פיטרה כ-8,000 עובדים והעבירה 7,000 נוספים לצוותי AI",
+      "השקעת תשתית של עד 145 מיליארד דולר השנה",
+      "צוקרברג עדיין מצפה לתוצאות משמעותיות תוך 3-6 חודשים"
+    ],
+    "sources": [
+      {"title": "Mark Zuckerberg tells staff that AI agents haven't progressed as quickly as he'd hoped - TechCrunch", "url": "https://techcrunch.com/2026/07/02/mark-zuckerberg-tells-staff-that-ai-agents-havent-progressed-as-quickly-as-hed-hoped/"},
+      {"title": "Exclusive-Meta's Zuckerberg says AI agent tech progressing slower than expected - Yahoo Finance / Reuters", "url": "https://finance.yahoo.com/technology/ai/articles/exclusive-zuckerberg-says-ai-agent-201123441.html"},
+      {"title": "Zuckerberg Admits Meta's AI Development 'Hasn't Accelerated' Despite Billions Invested and 8,000 Job Cuts - Inkl", "url": "https://www.inkl.com/news/zuckerberg-admits-metas-ai-development-hasnt-accelerated-despite-billions-invested-and-8-000-job-cuts"}
+    ],
+    "evergreen": false,
+    "freshness": "ממש חדש - 2-3.7.2026",
+    "il_coverage": "לא סוקר בעברית עדיין"
+  },
+  {
+    "id": 23,
+    "headline_he": "אשת שיווק בלי שורת קוד אחת בונה בוטים מותאמים אישית למנהלים ב-500-1,500 דולר לבוט",
+    "story": "סיפור הצלחה שעלה בפודקאסט Side Hustle School (פרק 3075): אשת מקצוע בתחום השיווק, ללא שום רקע טכני, זיהתה שמנהלים עסוקים חוזרים כל שבוע על אותן משימות כתיבה (פוסטים ב-LinkedIn, סיכומי ישיבות, דוחות שבועיים). היא בונה להם GPT מותאם אישית באמצעות GPT Builder של OpenAI וכלי no-code, מאומן על הטון והסגנון של הלקוח - תוך שעות בודדות. היא גובה 500-1,500 דולר לבוט, פלוס מנוי חודשי אופציונלי לעדכונים. היא עברה את ה-1,000 דולר הראשונים תוך חודשים בודדים.",
+    "why_viral": "זה בדיוק הפורמט שהקהל של בן מחפש: לא 'תיאוריה', אלא מודל עסקי קונקרטי, ללא קוד, עם מחיר ברור ולקוח ברור (מנהלים עסוקים). קל להפוך לריל 'תבנית עסקית שאפשר להעתיק החל מהיום' - מוצר-שירות ממוקד במקום 'עוד אפליקציה'.",
+    "facts": [
+      "המקור: פרק 3075 של פודקאסט Side Hustle School (2026)",
+      "כלי עבודה: GPT Builder של OpenAI + כלי no-code נוספים",
+      "תמחור: 500-1,500 דולר לבוט, בונוס - מנוי חודשי לעדכונים",
+      "זמן בנייה: כמה שעות לכל בוט",
+      "פילוח לקוחות: מנהלים/מקצוענים עסוקים עם משימות כתיבה חוזרות"
+    ],
+    "sources": [
+      {"title": "AI Side Hustles: How Real People Are Making Money with AI in 2026 - Side Hustle School", "url": "https://sidehustleschool.com/guides/ai-side-hustles/"},
+      {"title": "Why Custom GPT Bots and AI Workflow Templates Are Quietly Becoming $500-$1,500/Month Side Hustles - Money Cornucopia", "url": "https://moneycornucopia.com/custom-gpt-side-hustles/"}
+    ],
+    "evergreen": true,
+    "freshness": "פרק עדכני מ-2026, המודל רלוונטי כרגע",
+    "il_coverage": "לא סוקר בישראל - זווית טובה לתרגום למודל עסקי מקומי"
+  },
+  {
+    "id": 24,
+    "headline_he": "'בניתי אפליקציה עם AI ואף אחד לא ידע שהיא קיימת' - איך הכנסתי 35,677 דולר בפועל דרך AI",
+    "story": "טראוויס ניקולסון, בלוגר Side-Hustle ב-Medium, תיעד שנה שלמה של ניסויים: הוא בנה אפליקציה עם AI, מכר אתרים, מכר אוטומציה לעסקים קטנים - כל אלה כמעט לא הובילו לשום דבר, כי כמו שהוא אומר: 'ה-AI בנה לי את המוצר מהר יותר משיכולתי לבד, אבל אף אחד לא ידע שהוא קיים - AI לא נותן לך הפצה'. מה שכן עבד: לקחת בעיה אחת, ספציפית, מציקה, של קהל אחד ספציפי, ולארוז אותה כמוצר דיגיטלי פשוט בגמרואד (Gumroad). הגישה הזו הכניסה לו בסך הכל 35,677 דולר במגוון מוצרים.",
+    "why_viral": "הסיפור הזה שובר את המיתוס הכי מסוכן לביזאופרים - 'תבנה אפליקציה עם AI ותתעשר'. המסר האמיתי - הפצה חשובה יותר מבנייה - הוא בדיוק העצה שהקהל צריך לשמוע לפני שהם שורפים חודש על אפליקציה שאף אחד לא יידע עליה. חשוב לציין: מדובר בדיווח עצמי בבלוג אישי (Medium) ולא בכתבה עיתונאית מאומתת - כדאי להציג כ'לקח' ולא כ'עובדה מאומתת'.",
+    "facts": [
+      "המקור: בלוג אישי של טראוויס ניקולסון ב-Medium, יוני 2026",
+      "ניסה: אפליקציה עם AI, מכירת אתרים, אוטומציה לעסקים קטנים - כולם נכשלו",
+      "מה שעבד: מוצר דיגיטלי ממוקד-בעיה בגמרואד",
+      "סה'כ הכנסות מדווחות: 35,677 דולר",
+      "לניקולסון היסטוריית פוסטים דומים (15,000$ ב-2025, 2,000-3,000$/חודש) - תבנית תוכן חוזרת, לא כתבה מאומתת"
+    ],
+    "sources": [
+      {"title": "I Tested 5 AI Side Hustles. This One Made Me $35,677 - Travis Nicholson, Medium", "url": "https://travisnicholson.medium.com/i-tested-5-ai-side-hustles-this-one-made-me-35-677-fbe89ea3f195"},
+      {"title": "How I made $15,000 Selling Digital Products on Gumroad in 2025 - Travis Nicholson, Medium", "url": "https://travisnicholson.medium.com/how-i-made-15-000-selling-digital-products-on-gumroad-in-2025-a516c52c5966"}
+    ],
+    "evergreen": true,
+    "freshness": "פורסם יוני 2026, מדד עדיין נכון",
+    "il_coverage": "אין"
+  },
+  {
+    "id": 25,
+    "headline_he": "אזהרה: הפיד מוצף בפוסטים מזויפים של 'הרווחתי 121,000 דולר תוך 72 שעות עם AI'",
+    "story": "יש ז'אנר שלם שמציף כרגע את Medium ואת הפיד: פוסטים בתבנית קבועה - 'הרווחתי X דולר תוך Y שעות עם AI wrapper בלי לכתוב שורת קוד', עם צילומי מסך של חשבון בנק. דוגמה בולטת: כותב בשם Anuj פרסם גם 'הרווחתי 121,000$ ב-72 שעות' וגם 'הרווחתי 47,000$ ב-90 יום' - אותה תבנית בדיוק, מוצרים שונים. עשרות כותבים אחרים מפרסמים גרסאות זהות ('905$ ב-72 שעות', '127,000$ מ-5 פרומפטים', '1,806$ ב-6 ימים'). כותבת אחת אף כתבה מאמר ביקורתי שחושף את התופעה: 'תוכן כזה מופיע בפיד שלך לבוש בפונטים נקיים ושפה שאפתנית'.",
+    "why_viral": "בדיוק הסוג של 'תוכן שנראה ויראלי' שביזאופרים נתקלים בו כל יום ונשאבים אליו - וזו הזדמנות מושלמת לריל ששם ראי מול התופעה: 'ככה מזהים פוסט AI-מאני מזויף'. זה תוכן חינוכי-ביקורתי שממצב את בן כמישהו שמגן על הקהל שלו מסקאמים, לא רק מדווח על הייפ.",
+    "facts": [
+      "כותב 'Anuj' פרסם לפחות שני פוסטים בתבנית זהה עם סכומים שונים (121,000$/72 שעות; 47,000$/90 יום)",
+      "עשרות פוסטים דומים ב-Medium בפורמט 'X$ תוך Y שעות/ימים עם AI'",
+      "מאמר ביקורתי נפרד (אפריל 2026) מזהה את התבנית כתופעה חוזרת ומזהיר ממנה",
+      "אין אימות עיתונאי עצמאי לאף אחת מטענות ההכנסה"
+    ],
+    "sources": [
+      {"title": "I Made $121,000 in 72 Hours Building an AI Wrapper - Anuj, Medium", "url": "https://medium.com/@bhallaanuj69/i-made-121-000-in-72-hours-building-an-ai-wrapper-without-writing-a-single-line-of-code-27b348950d31"},
+      {"title": "I Made $47,000 in 90 Days Selling AI Automation - Anuj, Medium", "url": "https://medium.com/@bhallaanuj69/i-made-47-000-in-90-days-selling-ai-automation-heres-my-exact-system-2d296f9db0e0"},
+      {"title": "I Tried Selling AI Prompts for 7 Days - Chizurum Chidimma Enyinnaya, Medium (ביקורת על התופעה)", "url": "https://medium.com/the-content-ledger/i-tried-selling-ai-prompts-for-7-days-heres-exactly-how-much-i-made-2c2b57dbeb88"}
+    ],
+    "evergreen": true,
+    "freshness": "תופעה מתמשכת, דוגמאות מ-2026",
+    "il_coverage": "אין - זווית ייחודית לחלוטין"
+  },
+  {
+    "id": 26,
+    "headline_he": "אפליקציות 'חברה/חבר AI' חושפות מאות מיליוני צ'אטים אינטימיים - וסין סוגרת אותן תוך שבוע",
+    "story": "מחקרי אבטחה חוזרים ונשנים מגלים ש-17 אפליקציות AI companion (חבר/ה וירטואלי/ת) בגוגל פליי, עם יותר מ-150 מיליון הורדות במצטבר, מכילות 14 פרצות קריטיות ו-311 פרצות ברמת סיכון גבוהה - האקרים יכולים לקרוא צ'אטים אינטימיים מזוהים עם משתמשים אמיתיים. עוד לפני זה, אפליקציות כמו Chattee Chat ו-GiMe Chat דלפו עם 43 מיליון הודעות, ואפליקציה נוספת חשפה 300 מיליון הודעות מ-25 מיליון משתמשים. עכשיו, ב-15 ביולי 2026 (בעוד כשבוע), נכנס לתוקף בסין חוק חדש שמחייב אפליקציות AI עם 'אישיות אנושית מדומה' ליישם מנגנוני מניעת התמכרות והתראות שימוש - מה שגורם לדואבאו (Doubao) של בייטדאנס, עם 345 מיליון משתמשים פעילים חודשיים, להוריד את פיצ'רי הסוכן האנושי-דמוי שלה.",
+    "why_viral": "שילוב של שני חוטים ויראליים חזקים: (1) הפחד/הסקרנות סביב 'חברות AI' שממכרות ומדליפות סודות, ו-(2) ממשלה גדולה שבפועל אוכפת חוק נגד תופעת ההתמכרות ל-AI - נדיר לראות רגולציה שנכנסת לתוקף כל כך מהר ומשפיעה על מאות מיליוני משתמשים. זווית טובה ל'האם גם פה זה יגיע' + אזהרת פרטיות לקהל שמשתמש בכלי AI אישיים.",
+    "facts": [
+      "150 מיליון+ הורדות מצטברות של 17 אפליקציות עם 14 פרצות קריטיות ו-311 בסיכון גבוה",
+      "דלף קודם: Chattee Chat + GiMe Chat - 43 מיליון הודעות, 600,000 תמונות/סרטונים, 400,000 משתמשים",
+      "דלף נוסף: 300 מיליון הודעות מ-25 מיליון משתמשים (פברואר 2026)",
+      "חוק סיני חדש נכנס לתוקף ב-15.7.2026, מחייב אנטי-התמכרות ומנגנוני יציאה מיידית",
+      "דואבאו (בייטדאנס) - 345 מיליון משתמשים פעילים חודשיים - מסירה פיצ'רי סוכן דמוי-אנוש"
+    ],
+    "sources": [
+      {"title": "Over 150 Million Users Exposed by Flaws in AI Girlfriend Apps - TechPana", "url": "https://techpana.com/2026/155823/over-150-million-users-exposed-by-flaws-in-ai-girlfriend-apps"},
+      {"title": "AI girlfriend apps expose intimate chats to hackers - Cybernews", "url": "https://cybernews.com/ai-news/ai-girlfriend-apps-data-leak-risk/"},
+      {"title": "AI News Today July 6 2026: 15 Biggest Stories - BuildFastWithAI (על חוק הבינה המלאכותית הסיני ודואבאו)", "url": "https://www.buildfastwithai.com/blogs/ai-news-today-july-6-2026"}
+    ],
+    "evergreen": false,
+    "freshness": "החוק נכנס לתוקף ב-15.7.2026 - חדש וקרוב, המחקרים על הפרצות ממרץ 2026",
+    "il_coverage": "אין"
+  }
+]
