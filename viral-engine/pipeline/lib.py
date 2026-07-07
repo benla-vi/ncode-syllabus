@@ -2,6 +2,7 @@
 import json
 import re
 from pathlib import Path
+from string import Template
 
 import yaml
 from anthropic import Anthropic
@@ -20,14 +21,19 @@ def load_config() -> dict:
 
 
 def load_prompt(name: str, **fmt) -> str:
-    """טוען קובץ פרומפט וממלא משתני {placeholder}. משתנה חסר נשאר כמו שהוא."""
+    """טוען קובץ פרומפט וממלא משתני ${placeholder}. משתנה חסר נשאר כמו שהוא.
+
+    משתמש ב-string.Template במקום str.format_map כדי לא להתנגש עם בלוקי
+    JSON לדוגמה שמכילים סוגריים מסולסלים בתוך הפרומפטים.
+    """
     text = (PROMPTS / name).read_text(encoding="utf-8")
+    return Template(text).safe_substitute({k: str(v) for k, v in fmt.items()})
 
-    class _Safe(dict):
-        def __missing__(self, key):
-            return "{" + key + "}"
 
-    return text.format_map(_Safe(**{k: str(v) for k, v in fmt.items()}))
+def load_knowledge(rel: str, fallback: str = "") -> str:
+    """טוען קובץ ידע יחסי לתיקיית knowledge/. מחזיר fallback אם הקובץ לא קיים."""
+    p = KNOWLEDGE / rel
+    return p.read_text(encoding="utf-8") if p.exists() else fallback
 
 
 def system_prompt(cfg: dict) -> str:

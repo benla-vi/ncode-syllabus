@@ -6,6 +6,7 @@
 import datetime
 import html
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -24,17 +25,21 @@ def esc(s):
     return html.escape(t)
 
 
+def _script_sort_key(p: Path):
+    m = re.search(r"\d+", p.stem)
+    return int(m.group()) if m else 0
+
+
 def render(date_str: str) -> Path:
     day = OUTPUT / date_str
-    scripts = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(day.glob("script-*.json"))]
+    scripts = [json.loads(p.read_text(encoding="utf-8"))
+               for p in sorted(day.glob("script-*.json"), key=_script_sort_key)]
     ranking = {}
     rp = day / "02-ranking.json"
     if rp.exists():
         ranking = json.loads(rp.read_text(encoding="utf-8"))
 
     h = [f'<div dir="rtl"><h1>▶ בריף תוכן יומי — {esc(date_str)}</h1>']
-    if ranking.get("rejected_summary"):
-        h.append(f'<p><b>למה נפסלו השאר:</b> {esc(ranking["rejected_summary"])}</p>')
 
     for i, s in enumerate(scripts, 1):
         h.append(f'<h1>סרטון {i}: {esc(s.get("title"))}</h1>')
@@ -42,18 +47,29 @@ def render(date_str: str) -> Path:
                  f'<b>מילת תגובה:</b> {esc(s.get("comment_word"))} &nbsp;|&nbsp; '
                  f'<b>מתנה:</b> {esc(s.get("gift",{}).get("name"))}</p>')
 
-        h.append("<h2>הוקים (בחר אחד)</h2><ul>")
+        h.append("<h2>הוקים (בחר אחד)</h2>")
         for hk in s.get("hooks", []):
-            h.append(f'<li><b>[{esc(hk.get("type"))}]</b> {esc(hk.get("text"))}</li>')
-        h.append("</ul>")
+            if "text" in hk:
+                # תאימות לאחור — סכימה ישנה: {"type": "...", "text": "..."}
+                h.append(f'<p><b>[{esc(hk.get("type"))}]</b> {esc(hk.get("text"))}</p>')
+                continue
+            h.append(f'<p><b>{esc(hk.get("family"))}</b></p><ul>')
+            options = hk.get("options", [])
+            for j, opt in enumerate(options):
+                suffix = " — ← מומלץ" if j == 0 else ""
+                h.append(f'<li>{esc(opt)}{suffix}</li>')
+            h.append("</ul>")
+            if hk.get("loop"):
+                h.append(f'<p><b>לופ:</b> {esc(hk["loop"])}</p>')
 
         h.append("<h2>התסריט</h2>")
         h.append('<table border="1" cellpadding="6" style="border-collapse:collapse">'
-                 "<tr><th>זמן</th><th>ביט</th><th>מה אומרים</th><th>איך מגישים</th><th>מה על המסך</th></tr>")
+                 "<tr><th>זמן</th><th>ביט</th><th>מה אומרים</th><th>איך מגישים</th><th>מה על המסך</th>"
+                 "<th>מה מחזיק לביט הבא</th></tr>")
         for b in s.get("script", []):
             h.append(f'<tr><td>{esc(b.get("sec"))}</td><td>{esc(b.get("beat"))}</td>'
                      f'<td>{esc(b.get("text"))}</td><td>{esc(b.get("delivery"))}</td>'
-                     f'<td>{esc(b.get("visual"))}</td></tr>')
+                     f'<td>{esc(b.get("visual"))}</td><td>{esc(b.get("retention",""))}</td></tr>')
         h.append("</table>")
 
         h.append("<h2>הודעת DM (ManyChat)</h2>")

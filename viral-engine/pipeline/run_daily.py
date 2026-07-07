@@ -14,6 +14,7 @@
 import argparse
 import datetime
 import json
+import re
 import sys
 
 from lib import OUTPUT, ask_claude, extract_json, load_config, load_prompt, load_style_guide, system_prompt
@@ -73,6 +74,7 @@ def render_menu(stories, ranking, out_dir):
     """תפריט הבחירה של בן: כל הסיפורים + ציונים + המלצות. שום דבר לא נפסל."""
     by_id = {r["id"]: r for r in ranking.get("ranking", [])}
     order = [r["id"] for r in ranking.get("ranking", [])] or [s["id"] for s in stories]
+    order += [s["id"] for s in stories if s["id"] not in order]
     st_by_id = {s["id"]: s for s in stories}
     rec = set(ranking.get("recommended_ids") or ranking.get("selected_ids") or [])
 
@@ -93,7 +95,7 @@ def render_menu(stories, ranking, out_dir):
     (out_dir / "menu.md").write_text("\n".join(lines), encoding="utf-8")
 
 
-def render_brief(scripts, ranking_info, out_dir):
+def render_brief(scripts, out_dir):
     lines = [f"# בריף תוכן יומי — {datetime.date.today().isoformat()}", ""]
     for i, s in enumerate(scripts, 1):
         lines += [f"---\n\n## סרטון {i}: {s.get('title', '')}", ""]
@@ -102,10 +104,22 @@ def render_brief(scripts, ranking_info, out_dir):
                   f"**מתנה:** {s.get('gift', {}).get('name', '')}", ""]
         lines += ["### הוקים (בחר אחד)"]
         for h in s.get("hooks", []):
-            lines += [f"- **[{h.get('type','')}]** {h.get('text','')}"]
-        lines += ["", "### התסריט", "", "| זמן | ביט | טקסט | הגשה | ויז'ואל |", "|---|---|---|---|---|"]
+            if "text" in h:
+                # תאימות לאחור — סכימה ישנה: {"type": "...", "text": "..."}
+                lines += [f"- **[{h.get('type','')}]** {h.get('text','')}"]
+                continue
+            lines += [f"**{h.get('family','')}**"]
+            for j, opt in enumerate(h.get("options", [])):
+                suffix = " ← מומלץ" if j == 0 else ""
+                lines += [f"- {opt}{suffix}"]
+            if h.get("loop"):
+                lines += [f"- לופ: {h['loop']}"]
+        lines += ["", "### התסריט", "",
+                  "| זמן | ביט | טקסט | הגשה | ויז'ואל | מה מחזיק לביט הבא |",
+                  "|---|---|---|---|---|---|"]
         for b in s.get("script", []):
-            lines += [f"| {b.get('sec','')} | {b.get('beat','')} | {b.get('text','')} | {b.get('delivery','')} | {b.get('visual','')} |"]
+            lines += [f"| {b.get('sec','')} | {b.get('beat','')} | {b.get('text','')} | "
+                      f"{b.get('delivery','')} | {b.get('visual','')} | {b.get('retention','')} |"]
         lines += ["", f"### הודעת DM (ManyChat)", "", "```", s.get("dm_message", ""), "```", ""]
         lines += [f"**המשך פאנל:** {s.get('funnel_next_step','')}", ""]
         lines += ["### קפשן", "", "```", s.get("caption", ""), "```", ""]
