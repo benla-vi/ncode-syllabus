@@ -68,6 +68,8 @@ def write_script(cfg, system, story, scorer_notes):
         style_guide=load_style_guide("organic"),
         comment_triggers=", ".join(cfg["comment_triggers"]),
         lead_magnets="\n".join(f"- {m['name']}: {m['what']}" for m in cfg["lead_magnets"]),
+        audience_context=load_knowledge("audience/ai-goldrush.md", "(פרופיל קהל טרם נוצר)"),
+        brand_context=load_knowledge("brand/ncode.md", "(קובץ מותג טרם נוצר)"),
     )
     user = (prompt
             + "\n\n## הסיפור\n```json\n" + json.dumps(story, ensure_ascii=False, indent=2) + "\n```"
@@ -77,7 +79,11 @@ def write_script(cfg, system, story, scorer_notes):
 
 
 def critique(cfg, system, script):
-    prompt = load_prompt("05-critic.md", creator_name=cfg["creator"]["name"])
+    prompt = load_prompt(
+        "05-critic.md",
+        creator_name=cfg["creator"]["name"],
+        audience_context=load_knowledge("audience/ai-goldrush.md", "(פרופיל קהל טרם נוצר)"),
+    )
     user = prompt + "\n\n## התסריט לביקורת\n```json\n" + json.dumps(script, ensure_ascii=False, indent=2) + "\n```"
     return extract_json(ask_claude(cfg, system, user, agent="critic"))
 

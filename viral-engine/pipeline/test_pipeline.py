@@ -45,6 +45,8 @@ def test_load_prompt_all():
         lead_magnets="- חבילת פרומפטים: 50 פרומפטים",
         num_ads=5,
         ads_style_guide="(מדריך מכירה לדוגמה)",
+        audience_context="[קהל]",
+        brand_context="[מותג]",
     )
 
     files_and_markers = {
@@ -68,9 +70,15 @@ def test_load_prompt_all():
             continue
         check(f"load_prompt({name}) לא קורס", ok)
         check(f"load_prompt({name}): אין placeholder שלא הוחלף", "${" not in out)
+        check(f"load_prompt({name}): אין ${{audience_context}} שיורי", "${audience_context}" not in out)
+        check(f"load_prompt({name}): אין ${{brand_context}} שיורי", "${brand_context}" not in out)
         raw_source = (lib.PROMPTS / name).read_text(encoding="utf-8")
         if "creator_name" in raw_source:
             check(f"load_prompt({name}): ${{creator_name}} הוחלף", "בן לביא" in out)
+        if "audience_context" in raw_source:
+            check(f"load_prompt({name}): ${{audience_context}} הוחלף", "[קהל]" in out)
+        if "brand_context" in raw_source:
+            check(f"load_prompt({name}): ${{brand_context}} הוחלף", "[מותג]" in out)
         for m in markers:
             check(f"load_prompt({name}): בלוק JSON לדוגמה נשאר שלם ({m})", m in out, f"'{m}' לא נמצא בפלט")
 
