@@ -17,7 +17,16 @@ import json
 import re
 import sys
 
-from lib import OUTPUT, ask_claude, extract_json, load_config, load_prompt, load_style_guide, system_prompt
+from lib import (
+    OUTPUT,
+    ask_claude,
+    extract_json,
+    load_config,
+    load_knowledge,
+    load_prompt,
+    load_style_guide,
+    system_prompt,
+)
 
 
 def scout(cfg, system):
@@ -33,6 +42,8 @@ def scout(cfg, system):
         inspiration_pages="; ".join(
             f'{pg["handle"]} — {pg["url"]}' for pg in cfg["news"].get("inspiration_pages", [])
         ),
+        audience_context=load_knowledge("audience/ai-goldrush.md", "(פרופיל קהל טרם נוצר)"),
+        brand_context=load_knowledge("brand/ncode.md", "(קובץ מותג טרם נוצר)"),
     )
     return extract_json(ask_claude(cfg, system, prompt, web_search=True, agent="scout"))
 
@@ -44,6 +55,7 @@ def score(cfg, system, stories):
         candidate_stories=len(stories),
         top_stories=cfg["daily"]["top_stories"],
         creator_name=cfg["creator"]["name"],
+        audience_context=load_knowledge("audience/ai-goldrush.md", "(פרופיל קהל טרם נוצר)"),
     )
     user = prompt + "\n\n## הסיפורים\n```json\n" + json.dumps(stories, ensure_ascii=False, indent=2) + "\n```"
     return extract_json(ask_claude(cfg, system, user, agent="scorer"))
