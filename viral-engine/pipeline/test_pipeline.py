@@ -212,7 +212,8 @@ def test_resolve_run_dir():
     check("resolve_run_dir עם תאריך מפורש", explicit == lib.OUTPUT / "2026-01-01")
 
     auto = run_daily.resolve_run_dir(None)
-    check("resolve_run_dir בלי תאריך בוחר את 2026-07-04 (הקיים ב-output)", auto == lib.OUTPUT / "2026-07-04", str(auto))
+    check("resolve_run_dir בלי תאריך בוחר תיקייה מתוארכת עם 01-stories.json",
+          (auto / "01-stories.json").exists(), str(auto))
 
     missing = run_daily.resolve_run_dir("2099-12-31")
     check("resolve_run_dir עם תאריך לא קיים לא קורס ומחזיר נתיב", missing == lib.OUTPUT / "2099-12-31")

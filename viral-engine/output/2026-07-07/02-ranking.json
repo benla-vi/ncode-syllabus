@@ -235,5 +235,6 @@
       "notes": "דורש יותר מ-10 שניות רקע להבין את הסיטואציה - אם בכל זאת נבחר, לפשט דרסטית ולוותר על פרטי הבקשה המשפטית."
     }
   ],
-  "recommended_ids": [14, 15, 16]
+  "recommended_ids": [16, 25, 26],
+  "recommendation_lens": "app-building convergence (feedback 7.7)"
 }
