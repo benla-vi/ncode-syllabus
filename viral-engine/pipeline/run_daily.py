@@ -137,20 +137,36 @@ def render_brief(scripts, out_dir):
     (out_dir / "brief.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def resolve_run_dir(date_arg=None):
+    """מאתר את תיקיית הריצה: תאריך מפורש → OUTPUT/תאריך; אחרת התיקייה המתוארכת
+    (פורמט YYYY-MM-DD) האחרונה תחת OUTPUT שמכילה 01-stories.json; אם אין — OUTPUT/היום."""
+    if date_arg:
+        return OUTPUT / date_arg
+    candidates = []
+    if OUTPUT.exists():
+        for p in OUTPUT.iterdir():
+            if p.is_dir() and re.fullmatch(r"\d{4}-\d{2}-\d{2}", p.name) and (p / "01-stories.json").exists():
+                candidates.append(p.name)
+    if candidates:
+        return OUTPUT / max(candidates)
+    return OUTPUT / datetime.date.today().isoformat()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--story", help="דלג על הסקאוט וכתוב תסריט לסיפור שתספק ידנית")
     parser.add_argument("--pick", help="שלב 2: מספרי הסיפורים שבחרת, מופרדים בפסיק (למשל: 3,10,5)")
     parser.add_argument("--auto", action="store_true", help="ריצה מלאה בלי עצירה — הסוכן בוחר לפי ההמלצות")
+    parser.add_argument("--date", help="תאריך ריצה קיים (YYYY-MM-DD) לשימוש עם --pick / --auto, במקום היום")
     args = parser.parse_args()
 
     cfg = load_config()
     system = system_prompt(cfg)
-    out_dir = OUTPUT / datetime.date.today().isoformat()
-    out_dir.mkdir(parents=True, exist_ok=True)
 
     # ---- מצב סיפור ידני ----
     if args.story:
+        out_dir = OUTPUT / (args.date or datetime.date.today().isoformat())
+        out_dir.mkdir(parents=True, exist_ok=True)
         stories = [{"id": 1, "headline_he": "סיפור ידני", "story": args.story,
                     "why_viral": "", "facts": [], "sources": [], "evergreen": True}]
         selected = [{"id": 1, "angle": "", "suggested_gift": "", "notes": ""}]
@@ -158,16 +174,38 @@ def main():
 
     # ---- שלב 2: בן בחר ----
     if args.pick:
-        stories = json.loads((out_dir / "01-stories.json").read_text(encoding="utf-8"))
-        ranking = json.loads((out_dir / "02-ranking.json").read_text(encoding="utf-8"))
-        picked = [int(x) for x in args.pick.replace(" ", "").split(",")]
+        out_dir = resolve_run_dir(args.date)
+        stories_path = out_dir / "01-stories.json"
+        if not stories_path.exists():
+            print(f"❌  לא נמצא קובץ סיפורים ({stories_path}). הרץ קודם בלי --pick כדי לייצר תפריט.")
+            sys.exit(1)
+        stories = json.loads(stories_path.read_text(encoding="utf-8"))
+        ranking_path = out_dir / "02-ranking.json"
+        ranking = json.loads(ranking_path.read_text(encoding="utf-8")) if ranking_path.exists() else {"ranking": []}
         by_id = {s["id"]: s for s in stories}
+
+        try:
+            picked = [int(x) for x in args.pick.replace(" ", "").split(",")]
+        except ValueError:
+            print(f"❌  --pick חייב להכיל רק מספרים מופרדים בפסיק (קיבלתי: '{args.pick}').")
+            print("   ה-ids הזמינים: " + ", ".join(str(i) for i in sorted(by_id)))
+            sys.exit(1)
+
+        missing = [i for i in picked if i not in by_id]
+        if missing:
+            print(f"❌  אין סיפור עם ה-id: {', '.join(str(i) for i in missing)}.")
+            print("   ה-ids הזמינים: " + ", ".join(str(i) for i in sorted(by_id)))
+            sys.exit(1)
+
         rk_by_id = {r["id"]: r for r in ranking.get("ranking", [])}
         sel_stories = [by_id[i] for i in picked]
         selected = [rk_by_id.get(i, {"id": i, "angle": "", "suggested_gift": "", "notes": ""}) for i in picked]
         return write_and_brief(cfg, system, sel_stories, selected, out_dir)
 
-    # ---- שלב 1: מחקר + תפריט ----
+    # ---- שלב 1: מחקר + תפריט (כולל --auto) — סקאוט טרי תמיד כותב לתיקיית היום (או לתאריך שסופק) ----
+    out_dir = OUTPUT / (args.date or datetime.date.today().isoformat())
+    out_dir.mkdir(parents=True, exist_ok=True)
+
     stories = scout(cfg, system)
     (out_dir / "01-stories.json").write_text(json.dumps(stories, ensure_ascii=False, indent=2), encoding="utf-8")
     ranking = score(cfg, system, stories)
@@ -176,9 +214,13 @@ def main():
     print(f"\n📋  התפריט מוכן: {out_dir / 'menu.md'}")
 
     if args.auto:
-        picked = ranking.get("recommended_ids") or ranking.get("selected_ids") or []
+        recommended = ranking.get("recommended_ids") or ranking.get("selected_ids") or []
         by_id = {s["id"]: s for s in stories}
         rk_by_id = {r["id"]: r for r in ranking.get("ranking", [])}
+        picked = [i for i in recommended if i in by_id and i in rk_by_id]
+        if not picked:
+            print("❌  --auto: אף אחד מהמומלצים לא קיים גם בסיפורים וגם בדירוג. בדוק את פלט הסקאוט/השופט.")
+            sys.exit(1)
         return write_and_brief(cfg, system, [by_id[i] for i in picked],
                                [rk_by_id[i] for i in picked], out_dir)
 
@@ -193,9 +235,9 @@ def write_and_brief(cfg, system, stories, selected, out_dir):
         print(f"🧐  סוכן 4: ביקורת ושיפור תסריט {i}...")
         final = critique(cfg, system, draft)
         final_scripts.append(final)
-        (out_dir / f"script-{i}.json").write_text(json.dumps(final, ensure_ascii=False, indent=2), encoding="utf-8")
+        (out_dir / f"script-{i:02d}.json").write_text(json.dumps(final, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    render_brief(final_scripts, selected, out_dir)
+    render_brief(final_scripts, out_dir)
     print(f"\n✅  מוכן! הבריף המלא: {out_dir / 'brief.md'}")
 
 

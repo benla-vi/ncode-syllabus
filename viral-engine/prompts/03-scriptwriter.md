@@ -63,10 +63,11 @@ JSON בלבד:
   ],
   "script": [
     {"beat": "hook", "sec": "0-4", "text": "...", "delivery": "איך להגיד את זה (קצב, הדגשה)", "visual": "מה על המסך (ברול/טקסט/קאט)", "retention": "מה מחזיק את הצופה לביט הבא (לופ שנפתח / שאלה / הסלמה)"},
-    {"beat": "tension", "sec": "3-10", "text": "...", "delivery": "...", "visual": "..."},
-    {"beat": "story", "sec": "10-30", "text": "...", "delivery": "...", "visual": "..."},
-    {"beat": "value", "sec": "30-40", "text": "...", "delivery": "...", "visual": "..."},
-    {"beat": "cta", "sec": "40-50", "text": "...", "delivery": "...", "visual": "..."}
+    {"beat": "tension", "sec": "3-10", "text": "...", "delivery": "...", "visual": "...", "retention": "..."},
+    {"beat": "story", "sec": "10-30", "text": "...", "delivery": "...", "visual": "...", "retention": "..."},
+    {"beat": "value", "sec": "30-40", "text": "...", "delivery": "...", "visual": "...", "retention": "..."},
+    {"beat": "loop_close", "sec": "38-45", "text": "ועכשיו מה שהבטחתי לכם: ...", "delivery": "...", "visual": "...", "retention": "הפאיוף — הסיבה שנשארו"},
+    {"beat": "cta", "sec": "40-50", "text": "...", "delivery": "...", "visual": "...", "retention": "..."}
   ],
   "comment_word": "המילה לתגובה",
   "gift": {"name": "שם המתנה", "what": "מה בדיוק שולחים ב-DM"},
