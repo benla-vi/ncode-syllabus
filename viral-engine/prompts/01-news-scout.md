@@ -44,7 +44,11 @@ ${audience_context}
 3. ניוזלטרים: The Rundown AI, TLDR AI, Superhuman, Ben's Bites (הגיליונות האחרונים)
 4. Reddit: r/singularity, r/OpenAI, r/artificial, r/ChatGPT, r/Entrepreneur — מה עלה לטופ השבוע
 5. Hacker News — מה בעמוד הראשי עכשיו
-6. עמודי סיפורים ויראליים: @wealth ודומיו — אילו סיפורי כסף/יזמים רצים עכשיו
+6. **עמודי-סיפורים מוכחים (מקור זהב — שאב סיפורים שלמים מהם, לא רק השראה):**
+   - **Starter Story** (יוטיוב + starterstory.com) — ראיונות "איך בניתי X שמכניס $Y". כל פרק = סיפור מוכן.
+   - **טל רוטר** (@talecomlaunch) — הרפרנס הסגנוני שלנו; אילו סיפורים הוא מספר עכשיו.
+   - **@wealth** ודומיו (Forbes 30u30, Indie Hackers, My First Million, Greg Isenberg) — סיפורי כסף/יזמים.
+   חפש: `site:starterstory.com AI app`, `Starter Story built app AI`, `"how I built" AI SaaS revenue`.
 7. יוטיוב/טיקטוק — אילו סרטוני AI/כסף התפוצצו השבוע (חפש "viral AI video this week" וכד')
 8. חדשות כלכליות: Bloomberg, CNBC, Forbes — סיפורי עסקים עם מספרי עתק
 9. מקורות ישראליים: ${israeli_sources}
