@@ -95,6 +95,14 @@ def build_task_payloads(stories: list, ranking: dict, date: str) -> list[dict]:
             lines.append(scores_line)
         lines.append("")
 
+        outlier = story.get("source_outlier") or {}
+        if outlier:
+            lines += [
+                f"🧬 פורמט מוכח: '{outlier.get('original_hook', '')}' "
+                f"({outlier.get('page', '')}, {outlier.get('views', '')})",
+                "",
+            ]
+
         if rk.get("verdict"):
             lines += ["### שורה תחתונה", rk["verdict"], ""]
         if rk.get("angle"):

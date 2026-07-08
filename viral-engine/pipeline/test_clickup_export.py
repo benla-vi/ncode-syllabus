@@ -89,6 +89,29 @@ class TestBuildTaskPayloads(unittest.TestCase):
         self.assertIn("viral-engine", payload["tags"])
         self.assertIn(f"run_key: {key}", payload["markdown_description"])
 
+    def test_story_with_source_outlier_shows_proven_format(self):
+        stories = self.stories + [{
+            "id": 998, "headline_he": "סיפור עם פורמט מוכח", "story": "טקסט",
+            "why_viral": "", "facts": [], "sources": [], "evergreen": False,
+            "freshness": "", "il_coverage": "",
+            "source_outlier": {
+                "page": "Starter Story",
+                "views": "2.1M",
+                "engagement": "85K לייקים",
+                "original_hook": "How he built a $1M app in 30 days",
+                "stretch_suggestion": "גרסה ישראלית — בוני אפליקציות בלי קוד",
+            },
+        }]
+        payloads = build_task_payloads(stories, self.ranking, REAL_DATE)
+        payload = next(p for p in payloads if p["meta"]["run_key"] == f"{REAL_DATE}#998")
+        md = payload["markdown_description"]
+        self.assertIn("🧬 פורמט מוכח", md)
+        self.assertIn("How he built a $1M app in 30 days", md)
+        self.assertIn("Starter Story", md)
+        self.assertIn("2.1M", md)
+        # סיפור בלי source_outlier לא מקבל את השורה
+        self.assertNotIn("🧬 פורמט מוכח", self.by_run_key[f"{REAL_DATE}#1"]["markdown_description"])
+
     def test_non_recommended_story_not_flagged(self):
         key = f"{REAL_DATE}#1"
         payload = self.by_run_key[key]

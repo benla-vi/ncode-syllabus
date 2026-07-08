@@ -48,11 +48,18 @@
 
 1. סקאוט → מיזוג → דירוג — בדיוק כמו היום (`pipeline/run_daily.py`, ללא
    `--pick`/`--auto`), מייצר `output/<date>/01-stories.json` ו-`02-ranking.json`.
-2. `python pipeline/clickup_export.py <date>` — מייצר
+2. **עדשה שישית — אאוטליירים:** בנוסף לחדשות, הסקאוט (לפי
+   `prompts/01-news-scout.md`, סעיף "שכבת אאוטליירים") סורק את דפי הייחוס
+   מ-`config.yaml → news.research_channels`, מחזיר 3-5 פורמטים מנצחים + הצעות
+   מתיחה לנישה, והם נכנסים לתפריט כסיפורים עם `source_outlier`. בתיאור המשימה
+   שנוצרת מופיעה שורת "🧬 פורמט מוכח: ..." (אוטומטית ע"י `clickup_export.py`).
+   אאוטליר יכול להיות גם וידאו-ערך/שיטה — ואז ההצעה היא תסריט הדרכה בפורמט
+   וידאו-ערך.
+3. `python pipeline/clickup_export.py <date>` — מייצר
    `output/<date>/clickup-tasks.json` (מערך payloads, אחד לכל סיפור).
-3. לכל payload ברשימה: `clickup_create_task` עם `name`, `markdown_description`,
+4. לכל payload ברשימה: `clickup_create_task` עם `name`, `markdown_description`,
    `tags`, סטטוס **📥 תפריט** ברשימת "🎬 מפעל הסרטונים".
-4. `git add -f output/<date>` + קומיט — הקבצים מקומיים ל-`output/` תחת
+5. `git add -f output/<date>` + קומיט — הקבצים מקומיים ל-`output/` תחת
    `.gitignore`, ולכן צריך `-f` כדי לשמר אותם כדאטהבייס הקנוני.
 
 ---

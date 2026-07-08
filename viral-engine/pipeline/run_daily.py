@@ -42,6 +42,10 @@ def scout(cfg, system):
         inspiration_pages="; ".join(
             f'{pg["handle"]} — {pg["url"]}' for pg in cfg["news"].get("inspiration_pages", [])
         ),
+        research_channels="\n".join(
+            f'- {ch.get("handle", "")} ({ch.get("platform", "")}): {str(ch.get("what", "")).strip()}'
+            for ch in cfg["news"].get("research_channels", [])
+        ) or "(אין דפי-ייחוס מוגדרים ב-config — דלג על שכבת האאוטליירים)",
         audience_context=load_knowledge("audience/ai-goldrush.md", "(פרופיל קהל טרם נוצר)"),
         brand_context=load_knowledge("brand/ncode.md", "(קובץ מותג טרם נוצר)"),
     )

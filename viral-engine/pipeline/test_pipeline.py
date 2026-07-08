@@ -47,11 +47,12 @@ def test_load_prompt_all():
         ads_style_guide="(מדריך מכירה לדוגמה)",
         audience_context="[קהל]",
         brand_context="[מותג]",
+        research_channels="- @wealth (אינסטגרם): סיפורי כסף",
     )
 
     files_and_markers = {
         "00-system-core.md": [],
-        "01-news-scout.md": ['"headline_he"', '"il_coverage"'],
+        "01-news-scout.md": ['"headline_he"', '"il_coverage"', '"source_outlier"'],
         "02-virality-scorer.md": ['"total_score"', '"recommended_ids"'],
         "03-scriptwriter.md": ['"hooks"', '"retention"', '"loop_close"'],
         "04-ad-writer.md": ['"ads"', '"policy_notes"'],
@@ -85,6 +86,8 @@ def test_load_prompt_all():
     # הסקאוט מכיל "made $" בדוגמה — ולידציה שזה לא קורס את ה-Template
     scout_out = lib.load_prompt("01-news-scout.md", **common)
     check('פרומפט הסקאוט עם "made $" לא קורס', 'made $' in scout_out)
+    check("פרומפט הסקאוט: אין ${research_channels} שיורי", "${research_channels}" not in scout_out)
+    check("פרומפט הסקאוט: סעיף שכבת האאוטליירים קיים", "שכבת אאוטליירים" in scout_out)
 
 
 # ---------------------------------------------------------------------------
@@ -250,8 +253,20 @@ def test_render_menu_includes_unranked_story():
         check("render_menu כולל סיפור שלא ב-ranking", "סיפור בלי דירוג" in menu_md)
 
 
+def test_loop_tower_in_scriptwriter():
+    out = lib.load_prompt(
+        "03-scriptwriter.md",
+        creator_name="בן לביא", style_guide="(מדריך)", comment_triggers="AI",
+        lead_magnets="- מתנה", audience_context="[קהל]", brand_context="[מותג]",
+    )
+    check("פרומפט 03: סעיף מגדל לופים קיים", "מגדל לופים" in out)
+    check("פרומפט 03: פורמט retention החדש (לופים פתוחים:)", "לופים פתוחים:" in out)
+    check("פרומפט 03: כלל הברזל", "אף פעם לא סוגרים לופ בלי שלופ אחר כבר פתוח" in out)
+
+
 def main():
     test_load_prompt_all()
+    test_loop_tower_in_scriptwriter()
     test_new_schema_rendering()
     test_old_schema_backcompat()
     test_resolve_run_dir()
