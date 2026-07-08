@@ -169,10 +169,12 @@ def test_new_schema_rendering():
         finally:
             render_gdoc_html.OUTPUT = orig_output
 
-        check("render_gdoc_html.render (html): כל אופציות ההוק מופיעות", all(o in html_out for o in ["אופציה A", "אופציה B", "אופציה C", "אופציה D", "אופציה E"]))
-        check("render_gdoc_html.render (html): מומלץ מסומן לאופציה הראשונה", "מומלץ" in html_out)
-        check("render_gdoc_html.render (html): הלופ מופיע", "מה שיקרה בסוף" in html_out)
-        check("render_gdoc_html.render (html): עמודת retention בטבלה", "מה מחזיק לביט הבא" in html_out and "הפאיוף — הסיבה שנשארו" in html_out)
+        # פורמט טלפרומפטר רזה: מוצג רק ההוק המומלץ (אופציה A), בלי האלטרנטיבות, בלי טבלה
+        check("render_gdoc_html.render (html): ההוק המומלץ מוצג", "אופציה A" in html_out)
+        check("render_gdoc_html.render (html): אלטרנטיבות ההוק לא מעמיסות", "אופציה E" not in html_out)
+        check("render_gdoc_html.render (html): כותרת ההוק מופיעה", "▶ ההוק" in html_out)
+        check("render_gdoc_html.render (html): סימון סגירת הלופ", "🔓" in html_out)
+        check("render_gdoc_html.render (html): טלפרומפטר אנכי (לא טבלה)", "📝 התסריט" in html_out and "<table" not in html_out)
         check("render_gdoc_html.render (html): ביט loop_close מופיע", "ועכשיו מה שהבטחתי לכם" in html_out)
         check("render_gdoc_html.render (html): אין 'נפסלו' בפלט", "נפסלו" not in html_out and "רejected_summary" not in html_out)
 
@@ -200,7 +202,7 @@ def test_old_schema_backcompat():
             html_out = out_path.read_text(encoding="utf-8")
         finally:
             render_gdoc_html.OUTPUT = orig_output
-        check("תאימות לאחור (html): הוק ישן מרונדר עם [type] text", "[מספר מטורף (מומלץ)]" in html_out and "הוק ישן 1" in html_out)
+        check("תאימות לאחור (html): הוק ישן מרונדר בקופסת ההוק", "הוק ישן 1" in html_out)
 
 
 # ---------------------------------------------------------------------------
