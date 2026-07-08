@@ -48,6 +48,7 @@ def test_load_prompt_all():
         audience_context="[קהל]",
         brand_context="[מותג]",
         research_channels="- @wealth (אינסטגרם): סיפורי כסף",
+        trend_sources="- [trend] Google Trends — https://trends.google.com/trending: מה חם",
     )
 
     files_and_markers = {

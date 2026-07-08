@@ -46,6 +46,10 @@ def scout(cfg, system):
             f'- {ch.get("handle", "")} ({ch.get("platform", "")}): {str(ch.get("what", "")).strip()}'
             for ch in cfg["news"].get("research_channels", [])
         ) or "(אין דפי-ייחוס מוגדרים ב-config — דלג על שכבת האאוטליירים)",
+        trend_sources="\n".join(
+            f'- [{s.get("type", "")}] {s.get("name", "")} — {s.get("url", "")}: {str(s.get("what", "")).strip()}'
+            for s in cfg["news"].get("trend_sources", [])
+        ) or "(אין מקורות טרנדים מוגדרים ב-config)",
         audience_context=load_knowledge("audience/ai-goldrush.md", "(פרופיל קהל טרם נוצר)"),
         brand_context=load_knowledge("brand/ncode.md", "(קובץ מותג טרם נוצר)"),
     )

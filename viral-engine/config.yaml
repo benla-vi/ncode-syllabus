@@ -91,30 +91,164 @@ news:
         סיפורי כסף/הצלחה מטורפים עם ויז'ואלס חזקים. מקור סיפורים למסלול האוורגרין
         ורפרנס ויזואלי (תמונות ארכיון של הדמות, גרפיקת מספרים). כל סיפור משם חייב
         גשר לעולמות של בן: AI, SaaS, לעשות כסף מהאינטרנט.
-  # דפי-ייחוס לשכבת האאוטליירים — הסקאוט מזהה אצלם סרטונים חריגים (יחסית לממוצע
-  # של אותו דף) ומחלץ מהם פורמטים מנצחים (הוק + מבנה), לא תוכן.
+  # ==========================================================================
+  # דפי-ייחוס לשכבת האאוטליירים — 22 עמודים ב-3 קטגוריות (ai_money_builders /
+  # viral_story_pages / israeli_creators). הסקאוט מזהה אצלם סרטונים חריגים
+  # (יחסית לממוצע של אותו דף) ומחלץ פורמטים מנצחים (הוק + מבנה), לא תוכן.
+  # TODO לבן: הוסף/הסר לפי מי שאתה עוקב אחריו בפועל.
+  # ==========================================================================
   research_channels:
-    - handle: "@starterstory"
-      platform: "יוטיוב (youtube.com/@starterstory) + starterstory.com"
-      what: >
-        ראיונות "איך בניתי X שמכניס $Y". אאוטליירים כאן = סיפורי בנייה/הכנסה
-        שהתפוצצו יחסית לערוץ; מקור מעולה לשלדי הוק ולסיפורי-דמות.
-    - handle: "@talecomlaunch"
-      platform: "אינסטגרם"
-      what: >
-        טל רוטר — הרפרנס הסגנוני שלנו (יש תמלולים ב-knowledge/transcripts/tal).
-        אאוטליירים כאן = ההוקים והפורמטים שעבדו לו הכי חזק בעברית.
-    - handle: "@wealth"
-      platform: "אינסטגרם"
-      what: >
-        סיפורי כסף/הצלחה עם ויז'ואלס חזקים. אאוטליירים כאן = סיפורי-דמות עם
-        מספר עתק שעברו משמעותית את הממוצע של הדף.
-    - handle: "TODO"    # TODO לבן: לאשר דף AI-money נוסף (יאותר במחקר)
-      platform: "TODO"
-      what: "TODO: דף AI-money נוסף לאיתור פורמטים מנצחים"
-    - handle: "TODO"    # TODO לבן: לאשר דף AI-money נוסף (יאותר במחקר)
-      platform: "TODO"
-      what: "TODO: דף AI-money נוסף לאיתור פורמטים מנצחים"
+  - handle: '@starterstory'
+    platform: יוטיוב + starterstory.com
+    category: ai_money_builders
+    what: ראיונות "איך בניתי X שמכניס $Y" — קייס-סטדי קל לשכפול לעברית.
+  - handle: '@gregisenberg'
+    platform: X + יוטיוב
+    category: ai_money_builders
+    what: רעיונות סטארטאפ/SaaS מבוססי-AI בפורמט ליסטות; The Startup Ideas Podcast.
+  - handle: '@levelsio'
+    platform: X
+    category: ai_money_builders
+    what: פיטר לוולס — אבי ה-building in public; שקיפות הכנסות בזמן אמת.
+  - handle: '@marc_louvion'
+    platform: X
+    category: ai_money_builders
+    what: מארק לו (ShipFast) — בנה 21 מוצרים, מפרסם MRR; פורמט עדכוני-הכנסה.
+  - handle: '@rileybrown.ai'
+    platform: טיקטוק + X + יוטיוב
+    category: ai_money_builders
+    what: מהראשונים ל-vibe coding — בניית אפליקציה חיה עם AI בסרטונים קצרים.
+  - handle: '@AlexFinn'
+    platform: X + יוטיוב
+    category: ai_money_builders
+    what: בנה אפליקציית AI ל-$300K ARR בלי קוד ומלמד vibe coding עם Claude/Cursor.
+  - handle: '@mreflow'
+    platform: יוטיוב + X
+    category: ai_money_builders
+    what: מאט וולף — "ניסיתי את הכלי"; מציג כלי AI חדשים בפועל (Future Tools).
+  - handle: '@MyFirstMillionPod'
+    platform: יוטיוב (פודקאסט)
+    category: ai_money_builders
+    what: סם פאר ושון פורי — brainstorm רעיונות עסקיים; מכרה רעיונות SaaS/AI.
+  - handle: '@Nicolascole77'
+    platform: X
+    category: ai_money_builders
+    what: כתיבה ויראלית עם AI — פורמטי-פוסט מנצחים; רלוונטי לשלד הקופי עצמו.
+  - handle: '@zach_yadegari'
+    platform: X
+    category: ai_money_builders
+    what: בנה את Cal AI (~$30M ARR) כנער — סיפור "יזם צעיר בונה אפליקציית AI".
+  - handle: '@talecomlaunch'
+    platform: אינסטגרם
+    category: viral_story_pages
+    what: טל רוטר — הרפרנס הסגנוני שלנו (תמלולים ב-knowledge/transcripts/tal).
+  - handle: '@wealth'
+    platform: אינסטגרם
+    category: viral_story_pages
+    what: העמוד הגדול (~15M) — סיפורי-דמות עם מספר עתק וויז'ואלס חזקים.
+  - handle: '@millionaire_mentor'
+    platform: אינסטגרם
+    category: viral_story_pages
+    what: ג'ייסון סטון (~10M) — סיפורי הצלחה ולייף-סטייל של מיליונרים.
+  - handle: '@startupstoriesofficial'
+    platform: אינסטגרם
+    category: viral_story_pages
+    what: סיפורי מייסדים אמיתיים (מאבק/אסטרטגיה/הצלחה) בפורמט קצר.
+  - handle: '@wealth.ceo'
+    platform: אינסטגרם
+    category: viral_story_pages
+    what: תוכן יומי על עשיית כסף ומונטיזציה — ממשפחת עמודי wealth.
+  - handle: '@entrepreneurstories'
+    platform: אינסטגרם
+    category: viral_story_pages
+    what: מוטיבציה יומית סביב סיפורי יזמים בפורמט קצר ויראלי.
+  - handle: '@bennyfarber'
+    platform: אינסטגרם + פודקאסט
+    category: israeli_creators
+    what: בני פרבר — קהילת ה-AI הגדולה בישראל; פודקאסט "AI פשוט".
+  - handle: '@testamind'
+    platform: יוטיוב + טיקטוק
+    category: israeli_creators
+    what: ליאור טסטא — קורסי AI/אוטומציה/שיווק-שותפים בעברית; נישת עשיית-כסף.
+  - handle: '@danaisraeli'
+    platform: אינסטגרם
+    category: israeli_creators
+    what: דנה ישראלי — קהילה גדולה סביב AI וכלים יצירתיים; קורסים בעברית.
+  - handle: '@LetsAInews'
+    platform: יוטיוב
+    category: israeli_creators
+    what: 'Let''s AI — מגזין AI ישראלי: חדשות, כלים והדרכות בעברית.'
+  - handle: '@digimate-il'
+    platform: יוטיוב
+    category: israeli_creators
+    what: רני יפרח (Digimate) — ערוץ וקהילת לימוד AI בעברית + תוכן עסקי.
+  - handle: '@AiILChannel'
+    platform: יוטיוב
+    category: israeli_creators
+    what: '"ערוץ הבינה המלאכותית של ישראל" — תוכן AI בעברית.'
+
+  # ==========================================================================
+  # מקורות טרנדים ואקטואליה — נסרקים בכל ריצה כדי לתפוס "מה חם עכשיו".
+  # type: trend = מה מתפוצץ הרגע; actuality = חדשות AI שוטפות.
+  # 'חסום' = לא נגיש ישירות בסביבה → גישה דרך WebSearch/site: בלבד.
+  # ==========================================================================
+  trend_sources:
+  - name: Google Trends — Trending Now
+    url: https://trends.google.com/trending
+    type: trend
+    what: מה שורף עכשיו בחיפושי גוגל לפי מדינה/קטגוריה. נגיש.
+  - name: Product Hunt — Today
+    url: https://www.producthunt.com/
+    type: trend
+    what: כלי/מוצרי AI חדשים שמשיקים היום — מקור לרעיונות אפליקציה. נגיש.
+  - name: Hacker News — Front page
+    url: https://news.ycombinator.com/
+    type: trend
+    what: שיח מפתחים/סטארטאפים לפני שמגיע לתקשורת. נגיש (לעיתים 403 → site:).
+  - name: Reddit — r/singularity, r/OpenAI, r/Entrepreneur, r/SideProject
+    url: https://www.reddit.com/r/singularity/
+    type: trend
+    what: כלים/דיונים שמתפוצצים בקהילות AI ובילדרים. חסום — site:reddit.com בלבד.
+  - name: X — Explore / Trending
+    url: https://x.com/explore/tabs/trending
+    type: trend
+    what: האשטגים/נושאים חמים ב-X. חסום/לוגין — site:x.com בלבד (או X MCP).
+  - name: TikTok Creative Center — Trends
+    url: https://ads.tiktok.com/business/creativecenter/trends/hub/pc/en
+    type: trend
+    what: האשטגים/סאונדים/סרטונים טרנדיים לרילז. חסום — WebSearch בלבד.
+  - name: YouTube Charts
+    url: https://charts.youtube.com/
+    type: trend
+    what: צ'ארטים יומיים (החליף את דף ה-Trending שהוסר ב-2025). חסום — WebSearch בלבד.
+  - name: TechCrunch — AI
+    url: https://techcrunch.com/category/artificial-intelligence/
+    type: actuality
+    what: 'חדשות AI שוטפות: השקות, גיוסים, כלים, מהלכי ענק. נגיש.'
+  - name: VentureBeat — AI
+    url: https://venturebeat.com/category/ai
+    type: actuality
+    what: כיסוי AI מכוון-עסקים — הזווית של "איך עושים מזה כסף". נגיש.
+  - name: The Rundown AI
+    url: https://www.therundown.ai/
+    type: actuality
+    what: ניוזלטר AI יומי (2M+) — חדשות + הכלי של היום.
+  - name: TLDR AI
+    url: https://tldr.tech/ai
+    type: actuality
+    what: ניוזלטר AI יומי (1M+) — דגש מחקר/מודלים חדשים.
+  - name: Ben's Bites
+    url: https://www.bensbites.com/
+    type: actuality
+    what: ניוזלטר AI לבילדרים/יזמים — תואם בול לקהל ncode.
+  - name: Geektime — AI (עברית)
+    url: https://www.geektime.co.il/tag/ai/
+    type: actuality
+    what: חדשות AI/הייטק ישראליות — הזווית המקומית.
+  - name: כלכליסט-טק — AI (עברית)
+    url: https://www.calcalist.co.il/tags/AI
+    type: actuality
+    what: כיסוי AI כלכלי-הייטק ישראלי — גיוסים, שוק עבודה, מגמות.
 
   # חשבונות X/טוויטר עם סיגנל גבוה — הסוכן מחפש מה חם אצלם
   x_accounts:
