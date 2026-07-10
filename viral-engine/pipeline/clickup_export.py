@@ -195,6 +195,14 @@ def build_script_update(script: dict, run_key: str) -> dict:
         f"**מתנה:** {gift.get('name', '')}",
         "",
     ]
+    fmt = script.get("format") or {}
+    if fmt:
+        lines += [
+            f"### 🎛 פורמט הפקה: {fmt.get('name', '')}",
+            f"📱 **מה מצלמים:** {fmt.get('filming', '')}",
+            f"✂️ **מה העורך בונה:** {fmt.get('editing', '')}",
+            "",
+        ]
     lines += _hook_families_md(script.get("hooks", []))
     lines += _script_table_md(script.get("script", []))
 

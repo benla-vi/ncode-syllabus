@@ -78,6 +78,7 @@ def write_script(cfg, system, story, scorer_notes):
         lead_magnets="\n".join(f"- {m['name']}: {m['what']}" for m in cfg["lead_magnets"]),
         audience_context=load_knowledge("audience/ai-goldrush.md", "(פרופיל קהל טרם נוצר)"),
         brand_context=load_knowledge("brand/ncode.md", "(קובץ מותג טרם נוצר)"),
+        production_formats=load_knowledge("formats/proven-formats.md", "(קטלוג פורמטים טרם נוצר — ברירת מחדל: צילום סלפי מינימלי, כבדות בעריכה)"),
     )
     user = (prompt
             + "\n\n## הסיפור\n```json\n" + json.dumps(story, ensure_ascii=False, indent=2) + "\n```"

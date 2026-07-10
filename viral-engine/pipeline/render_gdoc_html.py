@@ -85,6 +85,13 @@ def render(date_str: str) -> Path:
                  f'&nbsp;·&nbsp; <b>💬 מילת תגובה:</b> {esc(s.get("comment_word"))} '
                  f'&nbsp;·&nbsp; <b>🎁 מתנה:</b> {esc(s.get("gift",{}).get("name"))}</p>')
 
+        fmt = s.get("format") or {}
+        if fmt:
+            h.append(f'<p style="background:#e8f6ee;border-right:5px solid #2e9e5b;padding:8px 12px;font-size:10.5pt">'
+                     f'<b>🎛 פורמט: {esc(fmt.get("name"))}</b><br>'
+                     f'📱 <b>מה מצלמים:</b> {esc(fmt.get("filming"))}<br>'
+                     f'✂️ <b>מה העורך בונה:</b> {esc(fmt.get("editing"))}</p>')
+
         _hooks_block(h, s)
 
         # --- התסריט כטלפרומפטר אנכי ---
