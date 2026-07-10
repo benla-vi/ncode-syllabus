@@ -70,8 +70,10 @@ def score(cfg, system, stories):
 
 
 def write_script(cfg, system, story, scorer_notes):
+    # מתג גרסאות-סקיל: config.prompts.scriptwriter מאפשר חזרה ל-v1
+    # (prompts/legacy/03-scriptwriter-v1.md) בשורת קונפיג אחת, בלי לגעת בקוד.
     prompt = load_prompt(
-        "03-scriptwriter.md",
+        cfg.get("prompts", {}).get("scriptwriter", "03-scriptwriter.md"),
         creator_name=cfg["creator"]["name"],
         style_guide=load_style_guide("organic"),
         comment_triggers=", ".join(cfg["comment_triggers"]),
