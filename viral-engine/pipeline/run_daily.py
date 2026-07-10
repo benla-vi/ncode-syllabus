@@ -72,10 +72,18 @@ def score(cfg, system, stories):
 def write_script(cfg, system, story, scorer_notes):
     # מתג גרסאות-סקיל: config.prompts.scriptwriter מאפשר חזרה ל-v1
     # (prompts/legacy/03-scriptwriter-v1.md) בשורת קונפיג אחת, בלי לגעת בקוד.
+    # שכבת הקול של בן נטענת לפני מדריך הסגנון הכללי — בקונפליקט, הקול גובר.
+    voice = load_knowledge("style/ben-voice.md", "")
+    style = load_style_guide("organic")
+    if voice:
+        style = ("### שכבה 1 — הקול של בן (מחייב; גובר על כל שכבה אחרת בבחירת מילים ותחביר)\n\n"
+                 + voice
+                 + "\n\n### שכבה 2 — מכניקת הוקים ומבנה (מהקורפוס האורגני; לסגנון-על, לא לבחירת מילים)\n\n"
+                 + style)
     prompt = load_prompt(
         cfg.get("prompts", {}).get("scriptwriter", "03-scriptwriter.md"),
         creator_name=cfg["creator"]["name"],
-        style_guide=load_style_guide("organic"),
+        style_guide=style,
         comment_triggers=", ".join(cfg["comment_triggers"]),
         lead_magnets="\n".join(f"- {m['name']}: {m['what']}" for m in cfg["lead_magnets"]),
         audience_context=load_knowledge("audience/ai-goldrush.md", "(פרופיל קהל טרם נוצר)"),
