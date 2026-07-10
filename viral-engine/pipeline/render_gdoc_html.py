@@ -163,6 +163,16 @@ def render_menu(date_str: str) -> Path:
                  f'<b>כוסה בעברית:</b> {esc(st.get("il_coverage"))}</p>')
         h.append(f'<p>{esc(st.get("story"))}</p>')
         h.append(f'<p><b>למה זה יעבוד:</b> {esc(st.get("why_viral"))}</p>')
+        outlier = st.get("source_outlier") or {}
+        if outlier:
+            meta = " · ".join(x for x in [esc(outlier.get("page")),
+                                          esc(outlier.get("views")),
+                                          esc(outlier.get("engagement"))] if x)
+            h.append('<p style="background:#f0e6ff;border-right:4px solid #7d3cff;'
+                     'padding:8px 10px;font-size:10.5pt">'
+                     f'<b>🧬 פורמט מוכח</b> ({meta})<br>'
+                     f'<b>ההוק המקורי:</b> {esc(outlier.get("original_hook"))}<br>'
+                     f'<b>איך מותחים לנישה:</b> {esc(outlier.get("stretch_suggestion"))}</p>')
         if rk.get("verdict"):
             h.append(f'<p><b>שורה תחתונה:</b> {esc(rk.get("verdict"))}</p>')
         if rk.get("angle"):
