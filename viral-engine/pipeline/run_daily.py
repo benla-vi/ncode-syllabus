@@ -107,6 +107,18 @@ def critique(cfg, system, script):
     return extract_json(ask_claude(cfg, system, user, agent="critic"))
 
 
+def fact_check(cfg, system, script, story):
+    """סוכן 7 — בודק עובדות: מאמת כל טענה, מסווג Tier, מחזיר verdict + תיקונים.
+
+    רץ אחרי המבקר, לפני רינדור. verdict=blocked ⇒ אסור לצלם בלי לפתור blockers.
+    """
+    prompt = load_prompt("07-fact-checker.md")
+    user = (prompt
+            + "\n\n## התסריט לבדיקה\n```json\n" + json.dumps(script, ensure_ascii=False, indent=2) + "\n```"
+            + "\n\n## הסיפור והמקורות (מהסקאוט)\n```json\n" + json.dumps(story, ensure_ascii=False, indent=2) + "\n```")
+    return extract_json(ask_claude(cfg, system, user, agent="fact_checker"))
+
+
 def render_menu(stories, ranking, out_dir):
     """תפריט הבחירה של בן: כל הסיפורים + ציונים + המלצות. שום דבר לא נפסל."""
     by_id = {r["id"]: r for r in ranking.get("ranking", [])}
