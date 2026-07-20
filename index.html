@@ -649,6 +649,45 @@
             animation: fadeUp 1s ease forwards 1.6s;
         }
 
+        /* WhatsApp testimonials gallery */
+        .wa-gallery-header {
+            text-align: center;
+            margin: 90px auto 40px;
+        }
+        .wa-gallery-header h3 {
+            font-size: clamp(24px, 3vw, 34px);
+            font-weight: 800;
+        }
+        .wa-gallery-header p {
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-size: 15px;
+        }
+        .wa-gallery {
+            columns: 3;
+            column-gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .wa-shot {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+        }
+        .wa-shot img {
+            width: 100%;
+            display: block;
+        }
+        @media (max-width: 900px) {
+            .wa-gallery { columns: 2; }
+        }
+        @media (max-width: 560px) {
+            .wa-gallery { columns: 1; }
+        }
+
         /* Journey container */
         .journey {
             position: relative;
@@ -2830,6 +2869,27 @@
                 </div>
                 <div class="success-attribution">$30K+ בחודש ממוצר SaaS שנבנה בהכשרה</div>
             </div>
+        </div>
+
+        <div class="wa-gallery-header reveal">
+            <h3>ישר מהוואטסאפ. בזמן אמת מהקהילה.</h3>
+            <p>הודעות אמיתיות של סטודנטים מקבוצות הקהילה — פרטים אישיים טושטשו</p>
+        </div>
+        <div class="wa-gallery">
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-01.png" alt="עדות סטודנט nCode — הקורס הכניס למעלה מ-25,000 ש״ח"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-02.png" alt="עדות סטודנט nCode — מחזור חודשי 70,000 שקל"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-12.png" alt="עדות סטודנט nCode — 18 משלמים מ-36"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-04.png" alt="עדות סטודנט nCode — 22K דולר בחודש"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-03.png" alt="עדות סטודנט nCode — 20 אלף בחודש"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-08.png" alt="עדות סטודנט nCode — 4 סליקות ראשונות"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-05.png" alt="עדות סטודנט nCode — עסקת 9K עם Claude Code"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-06.png" alt="עדות סטודנט nCode — 100K בשנה עם קלוד"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-07.png" alt="עדות סטודנט nCode — 90 מנויים בשבועיים"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-13.png" alt="עדות סטודנט nCode — 6 לקוחות בתשלום חודשי"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-09.png" alt="עדות סטודנט nCode — מוצר מוכן בחודש וחצי"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-10.png" alt="עדות סטודנט nCode — סליקות אוטומטיות"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-14.png" alt="עדות סטודנט nCode — 2000 הורדות באפסטור"></div>
+            <div class="wa-shot reveal"><img loading="lazy" src="images/testimonials/wa-11.png" alt="עדות סטודנט nCode — קבלה מלקוח"></div>
         </div>
     </div>
 </section>
