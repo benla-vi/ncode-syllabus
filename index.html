@@ -688,6 +688,68 @@
             .wa-gallery { columns: 1; }
         }
 
+        /* Video testimonials */
+        .vid-gallery-header {
+            text-align: center;
+            margin: 90px auto 40px;
+        }
+        .vid-gallery-header h3 {
+            font-size: clamp(24px, 3vw, 34px);
+            font-weight: 800;
+        }
+        .vid-gallery-header p {
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-size: 15px;
+        }
+        .vid-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .vid-card {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+        }
+        .vid-frame {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+        .vid-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+        .vid-meta {
+            padding: 16px 18px 18px;
+        }
+        .vid-name {
+            font-weight: 800;
+            font-size: 17px;
+        }
+        .vid-result {
+            color: var(--text-secondary);
+            font-size: 14.5px;
+            margin-top: 6px;
+            line-height: 1.6;
+        }
+        .vid-result strong {
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+        @media (max-width: 760px) {
+            .vid-gallery { grid-template-columns: 1fr; }
+        }
+
         /* Journey container */
         .journey {
             position: relative;
@@ -2868,6 +2930,49 @@
                     מ-רעיון ראשוני <strong>למוצר SaaS חי עם לקוחות משלמים</strong> — בזכות השיטה, הכלים והמנטורים שליוו אותו לאורך כל הדרך.
                 </div>
                 <div class="success-attribution">$30K+ בחודש ממוצר SaaS שנבנה בהכשרה</div>
+            </div>
+        </div>
+
+        <div class="vid-gallery-header reveal">
+            <h3>הם מספרים את זה בעצמם.</h3>
+            <p>ארבעה סטודנטים, ארבע נקודות פתיחה שונות — ותוצאה אמיתית בכל אחת</p>
+        </div>
+        <div class="vid-gallery">
+            <div class="vid-card reveal">
+                <div class="vid-frame">
+                    <iframe loading="lazy" src="https://drive.google.com/file/d/1cT6EyHY_pm7Xs_f6_kdeKBzUWv4dXKu7/preview" allow="autoplay; fullscreen" allowfullscreen title="עדות וידאו — רותם חדד"></iframe>
+                </div>
+                <div class="vid-meta">
+                    <div class="vid-name">רותם חדד</div>
+                    <div class="vid-result">השיק את המוצר <strong>תוך חודש</strong> — ושבוע אחרי כבר הביא לקוח משלם.</div>
+                </div>
+            </div>
+            <div class="vid-card reveal">
+                <div class="vid-frame">
+                    <iframe loading="lazy" src="https://drive.google.com/file/d/1q2RRcMD8nyaIfj1S1KGLKrW7DuuBgueI/preview" allow="autoplay; fullscreen" allowfullscreen title="עדות וידאו — לירן שמש"></iframe>
+                </div>
+                <div class="vid-meta">
+                    <div class="vid-name">לירן שמש</div>
+                    <div class="vid-result">עושה <strong>עשרות אלפי שקלים בחודש</strong> מאפליקציה שבנה בהכשרה.</div>
+                </div>
+            </div>
+            <div class="vid-card reveal">
+                <div class="vid-frame">
+                    <iframe loading="lazy" src="https://drive.google.com/file/d/12J__YIrMMJFyW4YfAsMlg7ElnZQiJXxm/preview" allow="autoplay; fullscreen" allowfullscreen title="עדות וידאו — טל שייך"></iframe>
+                </div>
+                <div class="vid-meta">
+                    <div class="vid-name">טל שייך</div>
+                    <div class="vid-result">הגיע ל-<strong>3,000$ מהאפליקציה</strong> תוך שלושה חודשים.</div>
+                </div>
+            </div>
+            <div class="vid-card reveal">
+                <div class="vid-frame">
+                    <iframe loading="lazy" src="https://drive.google.com/file/d/1x0jZlPTjB-sW19mgMWs25twtkP9orNN2/preview" allow="autoplay; fullscreen" allowfullscreen title="עדות וידאו — שרה פרידמן"></iframe>
+                </div>
+                <div class="vid-meta">
+                    <div class="vid-name">שרה פרידמן</div>
+                    <div class="vid-result">השיקה מוצר — ובערב הראשון עשתה <strong>יותר מ-10,000 ש״ח</strong>.</div>
+                </div>
             </div>
         </div>
 
