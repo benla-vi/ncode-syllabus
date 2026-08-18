@@ -27,34 +27,25 @@ jobs:
               -o "incoming/${name}.png"
             file "incoming/${name}.png"
           done <<'LIST'
-          01_alon-nazarov-0725|1qmqmuXipDfp7D5QVWM22ASgdIKrDm3HA
-          02_alon-nazarov-0724|1SEd_vYD2aU6Fw0uI8CDwQ3p93ubVxtMN
-          03_roy-eli-0809|1ayOJQTVPIhQ3725qKaTl2IJXuFly4Rr0
-          04_niv-shkartzi-0703|19rdAVPvuZilQU3Es2-D1pW-8dsmHzEH0
-          05_chen-mor-0624|1VYmJWceBhc3-WTxf-ow5v8ZUagGgxF-G
-          06_shimon-0620-4|1Q1VEoANF7O-kDkn0HTqpMs77AosmXJGM
-          07_shimon-0620-3|1VnM0-PUuofy3FM52MFJQZg9EviVknevL
-          08_nehorai-0715|1v-UzWoDb3pjvlZgCaj4EdCBNWn0PBCT9
-          09_noa-moalem-0611|14s2r7ncVdmOGU1rLiGlJuAYWhc0VuNtH
-          10_tamir-fener-1118|1yj1ItjzzauVtTTMZUSPQ0VpuISaaJar3
-          11_tripled-income-1130|14g4ADSSRdzXDvxPzFoI_gtSGHa01X_xO
-          12_exit-300k-0112|1IONZ_eZlqj2Vuwc9J3ARF1t1W24RMnXO
-          13_liran-0202|1Upu7-LQUGqdUiVlon5F1EPltIhF_AaFk
-          14_itay-markovich-0925|1mV2PSv959GkiNRQ7B60sQVSZfnbBIS4j
-          15_segev-1102|1rv7TvW2gLiaGqnzQ9Njp5BhXzXpVeQZG
-          16_segev-0504|1YkBc7wBfAJkriDNaLdNR0UCDxpQ1ZD1G
-          17_eviatar-0406|1UHQvUPI4DUpp7jqkfewuw50zsOsNZ4DV
-          18_david-tegenia-1116|17cFza4ScanDIc_sl58oi8O4GBg4RtFDN
-          19_shimon-0509|1XlBHWrC_z45HgYUkkDMndRm2Yht9i8am
-          20_gal-boskila-1112|1bvJSHcj2g6PfVr9mNAn2ujXhgiTNc6xX
-          21_confused-to-95-0713|1U_5jUWlRWLvOx7YiXl1d4TnD7X_TzB5g
-          22_shimon-0518-2|1LCsxH1SQZpMCZA-jjFR5lfUtRsLDAryc
-          23_moshe-0729|1T6ypKz7zB7me6i_zSoxXAHWcf6eiM3BP
-          24_zohar-0127|1slsaGLDa-zlwWfYz_rMOZ78ALjPwS1UD
-          25_lior-cohen-1125|1x4QIu6IA28trKIAcraooUhSUGjrXtflq
-          26_haya-0825|1ci8LN2UrxmhQitXvI_c49LDqKjbRKIlO
-          27_or-gavriel-0715|1_g7yHkh_Q2d1fsWH_rZv_M2eoIwJ1x0-
-          28_netanel-hadad-0713|1jnv-1stZIaerFzQNqpaTbencPqmUxNch
+          b01_chen-mor-0710|1dH7IdrJfz4YglGQltPH9O-R2A76tLL2-
+          b02_moshe-0709-5|1GhsXrm14kDXAnblBINqQZ7mfspJsVKeY
+          b03_moshe-0709-4|1Qi4LjHz_pIQELZ-5QovQUI0wS13dYwDF
+          b04_moshe-0709-3|1pl8zyNE7wRfbrzpI7Bcd7mSXzZZVLn91
+          b05_moshe-0709-2|1d5Lw4or5HN6Hl12xEcZ6aNwwKJM83_ef
+          b06_moshe-0709|1VgUg-TX_5ZNZ_4QOLUGxVsRd6gPoYRNO
+          b07_maor-0709|1tUg6i6U5_916yoVWZ6J7LkxgdAClf5Ml
+          b08_shimon-0706|179QtljVltYJL0bn5tff-mVq-wGTnwhJ-
+          b09_niv-0703-2|1nbVSOTIgJ14wJ1DsVavLi7_e1ATICht_
+          b10_omer-balak-0623|1-HZbwowhD7evBszPTK0eIwrgEK0_TsH7
+          b11_moshe-0623|12EVAH2rNKRnQyYjYhQyY3ZpwI0kgBS5z
+          b12_maor-0622|1oxXdi7du3SCnJ_vOr9xoLEUnsZzFfeu-
+          b13_sarah-friedman-0622|1UeeMr-mL5D2G8kFCQ1JTlcBvl4vGSp40
+          b14_shimon-0620-2|1JceEmSfx4-asP9Z5QAVmBXE1HK95IGPM
+          b15_shimon-0620|10LSWbvo84ysb2FMrQUsISlYti0j3CPnO
+          b16_shimon-0613|1J90K5Vj0Pw6lCTqjPeH28b0lZbdpMaBs
+          b17_unidentified-0603|1FJf8NkS8v9rJ8yqTwiiCA0E0GqZ0yi6X
+          b18_shimon-0518|1TUuKiDQ7Z6joLrQ0X49xzDSz_CKoy4u7
+          b19_amit-malka-0618|10_f_xvT3j6j4bxOxeqzGgpsVwszBDnJy
           LIST
           ls -la incoming
 
@@ -63,9 +54,9 @@ jobs:
           set -eu
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout --orphan assets-incoming
+          git checkout --orphan assets-incoming2
           git rm -rf --cached . >/dev/null
           find . -maxdepth 1 ! -name . ! -name .git ! -name incoming -exec rm -rf {} +
           git add incoming
-          git commit -m "Testimonial screenshots fetched from Drive"
-          git push -f origin assets-incoming
+          git commit -m "Testimonial screenshots batch 2 fetched from Drive"
+          git push -f origin assets-incoming2
